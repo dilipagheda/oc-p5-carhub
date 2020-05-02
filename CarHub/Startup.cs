@@ -6,6 +6,9 @@ using CarHub.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
+using CarHub.Data.Repositories;
+using CarHub.Domain.Services;
 
 namespace CarHub
 {
@@ -27,6 +30,9 @@ namespace CarHub
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<ICarMakeRepository, CarMakeRepository>();
+            services.AddTransient<ICarService, CarService>();
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

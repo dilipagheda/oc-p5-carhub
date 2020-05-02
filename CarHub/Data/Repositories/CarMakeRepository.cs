@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarHub.Data.Repositories
 {
-    public class CarMakeRepository
+    public class CarMakeRepository: ICarMakeRepository
     {
         private readonly ApplicationDbContext _context;
 

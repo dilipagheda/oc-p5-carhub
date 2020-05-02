@@ -7,75 +7,43 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CarHub.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CarHub.Domain.Services;
 
 namespace CarHub.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly HomeViewModel _carMakesViewModel;
-        private readonly List<CarModelViewModel> _carModels;
+        private readonly ICarService _carService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICarService carService)
         {
             _logger = logger;
-            _carMakesViewModel = new HomeViewModel();
-
-            var items = new List<CarMakeViewModel>(){
-                new CarMakeViewModel()
-                {
-                    Id=1,
-                    CarMakeName="Toyota"
-                },
-                new CarMakeViewModel()
-                {
-                    Id=2,
-                    CarMakeName="BMW"
-                },
-                new CarMakeViewModel()
-                {
-                    Id=3,
-                    CarMakeName="Mazda"
-                },
-
-            };
-            _carMakesViewModel.CarMakes = new SelectList(items,"Id","CarMakeName");
-
-            _carModels = new List<CarModelViewModel>()
-            {
-                new CarModelViewModel()
-                {
-                    Id=1,
-                    CarMakeId=1,
-                    CarModelName="Toyota 1"
-                },
-                new CarModelViewModel()
-                {
-                    Id=2,
-                    CarMakeId=1,
-                    CarModelName="Toyota 2"
-                }
-            };
+            _carService = carService;
         }
-
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_carMakesViewModel);
+            var carMakesViewModel = _carService.GetAllCarMakes();
+
+            var homeViewModel = new HomeViewModel()
+            {
+                CarMakes = new SelectList(carMakesViewModel, "Id", "CarMakeName")
+            };
+            return View(homeViewModel);
         }
 
         [HttpPost]
         public IActionResult Index(HomeViewModel homeViewModel)
         {
-            return View(_carMakesViewModel);
+            return View(homeViewModel);
         }
 
-        [HttpGet]
-        public JsonResult CarModelsByMake(int makeId)
-        {
-            var list = _carModels.Where(model => model.CarMakeId == makeId);
-            return new JsonResult(list);
-        }
+        //public JsonResult CarModelsByMake(int makeId)
+        //{
+        //    var list = _carService.Where(model => model.CarMakeId == makeId);
+        //    return new JsonResult(list);
+        //}
 
 
         public IActionResult Privacy()
