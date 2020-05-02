@@ -1,49 +1,242 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CarHub</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Car House - Your local used car dealer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <!-- External CSS libraries -->
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-submenu.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/linearicons/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/css/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="~/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/css/lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/jnoty.css">
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="~/css/skins/red.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" type="text/css" href="~/css/ie10-viewport-bug-workaround.css">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script  src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="~/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script  src="~/js/html5shiv.min.js"></script>
+    <script  src="~/js/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarHub</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <div class="page_loader"></div>
+
+    <!-- Top header start -->
+    <header class="top-header bg-active" id="top-header-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-7">
+                    <div class="list-inline">
+                        <a href="tel:+55-4XX-634-7071"><i class="fa fa-phone"></i>+55-4XX-634-7071</a>
+                        <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>info@carhouse.com</a>
+                        <a href="tel:info@themevessel.com"><i class="fa fa-clock-o"></i>Mon - Sun: 8:00am - 6:00pm</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5">
+                    <ul class="top-social-media pull-right">
+                        <li>
+                            <a href="login.html" class="sign-in"><i class="fa fa-sign-in"></i> Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <a href="signup.html" class="sign-in"><i class="fa fa-user"></i> Register</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    <!-- Top header end -->
+    <!-- Main header start -->
+    <header class="main-header sticky-header sh-2">
         <div class="container">
-            &copy; 2020 - CarHub - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand company-logo-2" href="index.html">
+                    <img src="img/logos/black-logo.png" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="navbar-collapse collapse w-100" id="navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link">
+                                Car Listing
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Main header end -->
+
+
+    @RenderBody()
+
+    <!-- Footer start -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-item clearfix">
+                        <h4>
+                            Contact Info
+                        </h4>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="flaticon-pin"></i>20/F Green Road, Castle Hill, Sydney
+                            </li>
+                            <li>
+                                <i class="flaticon-mail"></i><a href="mailto:sales@hotelempire.com">info@carhouse.com</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-phone"></i><a href="tel:+55-417-634-7071">+0477 85X6 552</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-fax"></i>+0024 85X6 987
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>
+                            Useful Links
+                        </h4>
+                        <ul class="links">
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Home</a>
+                            </li>
+                            <li>
+                                <a href="about.html"><i class="fa fa-angle-right"></i>About Us</a>
+                            </li>
+                             <li>
+                                <a href="car-list-rightside.html"><i class="fa fa-angle-right"></i>Car Listing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer-item clearfix">
+                        <div class="recent-posts">
+                            <h4>Recent Cars</h4>
+                            <div class="media mb-4">
+                                <a class="pr-3" href="car-details.html">
+                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    <h5>
+                                        <a href="car-details.html">Bentley Continental GT</a>
+                                    </h5>
+                                    <div class="listing-post-meta">
+                                        $345,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media mb-4">
+                                <a class="pr-3" href="car-details.html">
+                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    <h5>
+                                        <a href="car-details.html">Fiat Punto Red</a>
+                                    </h5>
+                                    <div class="listing-post-meta">
+                                        $745,00 | <a href="#"><i class="fa fa-calendar"></i>Feb 26, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="pr-3" href="car-details.html">
+                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    <h5>
+                                        <a href="car-details.html">Nissan Micra Gen5</a>
+                                    </h5>
+                                    <div class="listing-post-meta">
+                                        $745,00 | <a href="#"><i class="fa fa-calendar"></i> Feb 14, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-item clearfix">
+                        <h4>Subscribe</h4>
+                        <div class="subscribe-box">
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+                            <form class="form-inline" action="#" method="GET">
+                                <input type="text" class="form-control mb-sm-0" id="inlineFormInputName3" placeholder="Email Address">
+                                <button type="submit" class="btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Footer end -->
+
+
+    <script src="~/js/jquery-2.2.0.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-submenu.js"></script>
+    <script src="~/js/rangeslider.js"></script>
+    <script src="~/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/js/bootstrap-select.min.js"></script>
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <script src="~/js/jquery.scrollUp.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/dropzone.js"></script>
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/jquery.filterizr.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery.countdown.js"></script>
+    <script src="~/js/jquery.mousewheel.min.js"></script>
+    <script src="~/js/lightgallery-all.js"></script>
+    <script src="~/js/jnoty.js"></script>
+    <script src="~/js/app.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Custom javascript -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
