@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CarHub.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarHub.Domain.Services;
+using CarHub.Domain.Services.Interfaces;
 
 namespace CarHub.Controllers
 {
@@ -39,11 +40,11 @@ namespace CarHub.Controllers
             return View(homeViewModel);
         }
 
-        //public JsonResult CarModelsByMake(int makeId)
-        //{
-        //    var list = _carService.Where(model => model.CarMakeId == makeId);
-        //    return new JsonResult(list);
-        //}
+        public JsonResult CarModelsByMake(int id)
+        {
+            var carModels = _carService.GetAllCarModelsByMake(id);
+            return new JsonResult(carModels);
+        }
 
 
         public IActionResult Privacy()

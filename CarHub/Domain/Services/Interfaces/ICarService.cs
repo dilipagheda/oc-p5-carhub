@@ -9,6 +9,7 @@ namespace CarHub.Domain.Services.Interfaces
     public interface ICarService
     {
         public List<CarMakeViewModel> GetAllCarMakes();
+        public List<CarModelViewModel> GetAllCarModelsByMake(int makeId);
 
     }
 }

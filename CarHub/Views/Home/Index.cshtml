@@ -127,3 +127,26 @@
 </div>
 <!-- Search box 3 end -->
 
+@section Scripts {
+   <script>
+       $(document).ready(function () {
+           $( "#CarMakeId" ).change(function() {
+                //var selectedText = $(this).find("option:selected").text();
+               $("#CarModelId").empty();
+               $("#CarModelId").append($("<option>", { text: 'Select Model' }));
+               var selectedValue = $(this).val();
+               console.log(selectedValue);
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("CarModelsByMake", "Home")' + '/' + selectedValue,
+                    success: function (result) {
+                        result.forEach(item => {
+                            $("#CarModelId").append($('<option>', {value:item.id, text:item.carModelName}));
+                        });
+                        $('#CarModelId').selectpicker('refresh');
+                    }
+                });
+            });
+       });
+   </script>
+}

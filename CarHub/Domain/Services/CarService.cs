@@ -13,11 +13,13 @@ namespace CarHub.Domain.Services
     {
         private readonly IMapper _mapper;
         private readonly ICarMakeRepository _carMakeRepository;
+        private readonly ICarModelRepository _carModelRepository;
 
-        public CarService(IMapper mapper, ICarMakeRepository carMakeRepository)
+        public CarService(IMapper mapper, ICarMakeRepository carMakeRepository, ICarModelRepository carModelRepository)
         {
             _mapper = mapper;
             _carMakeRepository = carMakeRepository;
+            _carModelRepository = carModelRepository;
         }
 
         public List<CarMakeViewModel> GetAllCarMakes()
@@ -25,6 +27,13 @@ namespace CarHub.Domain.Services
             var carMakes = _carMakeRepository.GetAllCarMakes();
             var carMakeViewModels = _mapper.Map<List<CarMakeViewModel>>(carMakes);
             return carMakeViewModels;
+        }
+
+        public List<CarModelViewModel> GetAllCarModelsByMake(int makeId)
+        {
+            var carModels = _carModelRepository.GetAllModelsByMake(makeId);
+            var carModelsViewModel = _mapper.Map<List<CarModelViewModel>>(carModels);
+            return carModelsViewModel;
         }
     }
 }

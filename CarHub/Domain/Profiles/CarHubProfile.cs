@@ -14,6 +14,9 @@ namespace CarHub.Domain.Profiles
         {
             CreateMap<CarMake, CarMakeViewModel>()
                 .ForMember(dest => dest.CarMakeName, opt => opt.MapFrom(src => src.MakeName));
+
+            CreateMap<CarModel, CarModelViewModel>()
+                .ForMember(dest => dest.CarModelName, opt => opt.MapFrom(src => src.ModelName));
         }
     }
 }
