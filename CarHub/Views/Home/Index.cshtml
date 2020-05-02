@@ -65,14 +65,14 @@
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select asp-for="CarModelId" asp-items="@Model.CarModels" class="selectpicker search-fields">
+                                <select asp-for="CarModelId" class="selectpicker search-fields">
                                     <option>Select Model</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields">
+                                <select asp-for="TrimId" class="selectpicker search-fields">
                                     <option>Select Trim</option>
                                 </select>
                             </div>
@@ -128,7 +128,7 @@
 <!-- Search box 3 end -->
 
 @section Scripts {
-   <script>
+    <script>
        $(document).ready(function () {
            $( "#CarMakeId" ).change(function() {
                 //var selectedText = $(this).find("option:selected").text();
@@ -146,7 +146,25 @@
                         $('#CarModelId').selectpicker('refresh');
                     }
                 });
+           });
+
+           $( "#CarModelId" ).change(function() {
+                //var selectedText = $(this).find("option:selected").text();
+               $("#TrimId").empty();
+               $("#TrimId").append($("<option>", { text: 'Select Trim' }));
+               var selectedValue = $(this).val();
+               console.log(selectedValue);
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("TrimsByModel", "Home")' + '?modelId=' + selectedValue,
+                    success: function (result) {
+                        result.forEach(item => {
+                            $("#TrimId").append($('<option>', {value:item.id, text:item.trimName}));
+                        });
+                        $('#TrimId').selectpicker('refresh');
+                    }
+                });
             });
        });
-   </script>
+    </script>
 }

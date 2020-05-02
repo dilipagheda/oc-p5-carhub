@@ -17,5 +17,8 @@ namespace CarHub.Domain.ViewModels
         public int CarModelId { get; set; }
         public SelectList CarModels { get; set; }
 
+        [DisplayName("Trim")]
+        public int TrimId { get; set; }
+        public SelectList Trims { get; set; }
     }
 }

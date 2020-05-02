@@ -14,12 +14,14 @@ namespace CarHub.Domain.Services
         private readonly IMapper _mapper;
         private readonly ICarMakeRepository _carMakeRepository;
         private readonly ICarModelRepository _carModelRepository;
+        private readonly ITrimRepository _trimRepository;
 
-        public CarService(IMapper mapper, ICarMakeRepository carMakeRepository, ICarModelRepository carModelRepository)
+        public CarService(IMapper mapper, ICarMakeRepository carMakeRepository, ICarModelRepository carModelRepository, ITrimRepository trimRepository)
         {
             _mapper = mapper;
             _carMakeRepository = carMakeRepository;
             _carModelRepository = carModelRepository;
+            _trimRepository = trimRepository;
         }
 
         public List<CarMakeViewModel> GetAllCarMakes()
@@ -34,6 +36,13 @@ namespace CarHub.Domain.Services
             var carModels = _carModelRepository.GetAllModelsByMake(makeId);
             var carModelsViewModel = _mapper.Map<List<CarModelViewModel>>(carModels);
             return carModelsViewModel;
+        }
+
+        public List<TrimViewModel> GetAllTrimsByModel(int modelId)
+        {
+            var trims = _trimRepository.GetAllTrimsByModel(modelId);
+            var trimsViewModel = _mapper.Map<List<TrimViewModel>>(trims);
+            return trimsViewModel;
         }
     }
 }

@@ -45,7 +45,11 @@ namespace CarHub.Controllers
             var carModels = _carService.GetAllCarModelsByMake(id);
             return new JsonResult(carModels);
         }
-
+        public JsonResult TrimsByModel([FromQuery]int modelId)
+        {
+            var trims = _carService.GetAllTrimsByModel(modelId);
+            return new JsonResult(trims);
+        }
 
         public IActionResult Privacy()
         {

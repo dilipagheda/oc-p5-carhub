@@ -35,6 +35,7 @@ namespace CarHub
 
             services.AddTransient<ICarModelRepository, CarModelRepository>();
             services.AddTransient<ICarMakeRepository, CarMakeRepository>();
+            services.AddTransient<ITrimRepository, TrimRepository>();
             services.AddTransient<ICarService, CarService>();
 
             services.AddAutoMapper(typeof(Startup));

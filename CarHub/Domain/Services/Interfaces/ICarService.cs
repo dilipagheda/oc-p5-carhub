@@ -11,5 +11,6 @@ namespace CarHub.Domain.Services.Interfaces
         public List<CarMakeViewModel> GetAllCarMakes();
         public List<CarModelViewModel> GetAllCarModelsByMake(int makeId);
 
+        public List<TrimViewModel> GetAllTrimsByModel(int modelId);
     }
 }
