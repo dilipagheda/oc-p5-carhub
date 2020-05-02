@@ -1,6 +1,6 @@
 using System;
 
-namespace CarHub.Models
+namespace CarHub.Domain.ViewModels
 {
     public class ErrorViewModel
     {

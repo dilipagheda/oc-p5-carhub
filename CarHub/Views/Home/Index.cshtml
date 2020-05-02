@@ -1,8 +1,129 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner banner-slider-inner text-center">
+            <div class="carousel-item banner-max-height active item-bg">
+                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-l">
+                    <h3>Explore Your Dream Car</h3>
+                    <h5>
+                        Allow us to guide you through the innovative stress<br>
+                        free approach in finding your dream car.
+                    </h5>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-l">
+                    <h3>Wow Factor Standard</h3>
+                    <h5>
+                        Allow us to guide you through the innovative stress<br>
+                        free approach in finding your dream car.
+                    </h5>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-l">
+                    <h3>We Are Wheel</h3>
+                    <h5>
+                        Allow us to guide you through the innovative stress<br>
+                        free approach in finding your dream car.
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="btn-secton">
+            <ol class="carousel-indicators">
+                <li data-target="#bannerCarousole" data-slide-to="0" class="active"></li>
+                <li data-target="#bannerCarousole" data-slide-to="1"></li>
+                <li data-target="#bannerCarousole" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </div>
 </div>
+<!-- Banner end -->
+<!-- Search box 3 start -->
+<div class="search-box-3 sb-7 bg-active">
+    <div class="container">
+        <div class="search-area-inner">
+            <div class="search-contents">
+                <form method="POST" asp-action="Index">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="selectpicker search-fields">
+                                    <option>Select Make</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select asp-for="CarModelId" asp-items="@Model.CarModels" class="selectpicker search-fields">
+                                    <option>Select Model</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields">
+                                    <option>Select Trim</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields">
+                                    <option>Select Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="select-type">
+                                    <option>Select Body Type</option>
+                                    <option>Sedan</option>
+                                    <option>SUV</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="transmission">
+                                    <option>Transmission</option>
+                                    <option>Automatic</option>
+                                    <option>Manual</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <div class="range-slider">
+                                    <div data-min="0" data-max="100000" data-unit="AUD" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <button class="btn btn-block button-theme btn-md">
+                                    <i class="fa fa-search"></i>Find
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search box 3 end -->
+
