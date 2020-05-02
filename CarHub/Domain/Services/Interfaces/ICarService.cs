@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarHub.Domain.Services
+namespace CarHub.Domain.Services.Interfaces
 {
     public interface ICarService
     {

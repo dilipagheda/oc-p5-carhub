@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using CarHub.Data.Repositories;
+using CarHub.Data.Repositories.Interfaces;
+using CarHub.Domain.Services.Interfaces;
 using CarHub.Domain.ViewModels;
 using System;
 using System.Collections.Generic;

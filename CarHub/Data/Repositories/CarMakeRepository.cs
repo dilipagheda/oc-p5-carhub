@@ -1,4 +1,5 @@
 ﻿using CarHub.Data.Models;
+using CarHub.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
