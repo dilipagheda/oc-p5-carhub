@@ -15,13 +15,25 @@ namespace CarHub.Domain.Services
         private readonly ICarMakeRepository _carMakeRepository;
         private readonly ICarModelRepository _carModelRepository;
         private readonly ITrimRepository _trimRepository;
+        private readonly IBodyTypeRepository _bodyTypeRepository;
+        private readonly IDriveTypeRepository _driveTypeRepository;
+        private readonly IFuelTypeRepository _fuelTypeRepository;
 
-        public CarService(IMapper mapper, ICarMakeRepository carMakeRepository, ICarModelRepository carModelRepository, ITrimRepository trimRepository)
+        public CarService(IMapper mapper, 
+                          ICarMakeRepository carMakeRepository, 
+                          ICarModelRepository carModelRepository, 
+                          ITrimRepository trimRepository,
+                          IBodyTypeRepository bodyTypeRepository,
+                          IDriveTypeRepository driveTypeRepository,
+                          IFuelTypeRepository fuelTypeRepository)
         {
             _mapper = mapper;
             _carMakeRepository = carMakeRepository;
             _carModelRepository = carModelRepository;
             _trimRepository = trimRepository;
+            _bodyTypeRepository = bodyTypeRepository;
+            _driveTypeRepository = driveTypeRepository;
+            _fuelTypeRepository = fuelTypeRepository;
         }
 
         public List<CarMakeViewModel> GetAllCarMakes()
@@ -43,6 +55,27 @@ namespace CarHub.Domain.Services
             var trims = _trimRepository.GetAllTrimsByModel(modelId);
             var trimsViewModel = _mapper.Map<List<TrimViewModel>>(trims);
             return trimsViewModel;
+        }
+
+        public List<BodyTypeViewModel> GetAllBodyTypes()
+        {
+            var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
+            var bodyTypesViewModel = _mapper.Map<List<BodyTypeViewModel>>(bodyTypes);
+            return bodyTypesViewModel;
+        }
+
+        public List<DriveTypeViewModel> GetAllDriveTypes()
+        {
+            var driveTypes = _driveTypeRepository.GetAllDriveTypes();
+            var driveTypesViewModel = _mapper.Map<List<DriveTypeViewModel>>(driveTypes);
+            return driveTypesViewModel;
+        }
+
+        public List<FuelTypeViewModel> GetAllFuelTypes()
+        {
+            var fuelTypes = _fuelTypeRepository.GetAllFuelTypes();
+            var fuelTypesViewModel = _mapper.Map<List<FuelTypeViewModel>>(fuelTypes);
+            return fuelTypesViewModel;
         }
     }
 }

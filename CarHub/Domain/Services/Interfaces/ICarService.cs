@@ -12,5 +12,9 @@ namespace CarHub.Domain.Services.Interfaces
         public List<CarModelViewModel> GetAllCarModelsByMake(int makeId);
 
         public List<TrimViewModel> GetAllTrimsByModel(int modelId);
+        public List<BodyTypeViewModel> GetAllBodyTypes();
+        public List<FuelTypeViewModel> GetAllFuelTypes();
+        public List<DriveTypeViewModel> GetAllDriveTypes();
+
     }
 }

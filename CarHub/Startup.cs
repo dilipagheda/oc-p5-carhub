@@ -33,9 +33,12 @@ namespace CarHub
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddTransient<IBodyTypeRepository, BodyTypeRepository>();
             services.AddTransient<ICarModelRepository, CarModelRepository>();
             services.AddTransient<ICarMakeRepository, CarMakeRepository>();
             services.AddTransient<ITrimRepository, TrimRepository>();
+            services.AddTransient<IFuelTypeRepository, FuelTypeRepository>();
+            services.AddTransient<IDriveTypeRepository, DriveTypeRepository>();
             services.AddTransient<ICarService, CarService>();
 
             services.AddAutoMapper(typeof(Startup));
