@@ -214,7 +214,76 @@ namespace CarHub.Data
                     new Trim() { Id = 72, CarModelId = 15, TrimName = "Type S" }
                 );
 
+            //Body type
+            builder.Entity<BodyType>()
+                .HasData(
+                    new BodyType() { Id = 1, BodyTypeName="Small Bus"},
+                    new BodyType() { Id = 2, BodyTypeName = "Large Bus" },
+                    new BodyType() { Id = 3, BodyTypeName = "Cab Chassis" },
+                    new BodyType() { Id = 4, BodyTypeName = "Convertible" },
+                    new BodyType() { Id = 5, BodyTypeName = "Coupe" },
+                    new BodyType() { Id = 6, BodyTypeName = "Hatch" },
+                    new BodyType() { Id = 7, BodyTypeName = "Light Truck" },
+                    new BodyType() { Id = 8, BodyTypeName = "People Mover" },
+                    new BodyType() { Id = 9, BodyTypeName = "Sedan" },
+                    new BodyType() { Id = 10, BodyTypeName = "SUV" },
+                    new BodyType() { Id = 11, BodyTypeName = "Ute" },
+                    new BodyType() { Id = 12, BodyTypeName = "Van" },
+                    new BodyType() { Id = 13, BodyTypeName = "Wagon" }
+                );
 
+            //Drive type
+            builder.Entity<DriveType>()
+                .HasData(
+                    new DriveType() { Id = 1, DriveTypeName = "4x2" },
+                    new DriveType() { Id = 2, DriveTypeName = "4x4" },
+                    new DriveType() { Id = 3, DriveTypeName = "6x2" },
+                    new DriveType() { Id = 4, DriveTypeName = "6x4" },
+                    new DriveType() { Id = 5, DriveTypeName = "6x6" },
+                    new DriveType() { Id = 6, DriveTypeName = "Front Wheel Drive" },
+                    new DriveType() { Id = 7, DriveTypeName = "Rear Wheel Drive" }
+                );
+
+            //Fuel type
+            builder.Entity<FuelType>()
+                .HasData(
+                    new FuelType() { Id = 1, FuelTypeName = "Diesel"},
+                    new FuelType() { Id = 2, FuelTypeName = "Electric" },
+                    new FuelType() { Id = 3, FuelTypeName = "Hybrid" },
+                    new FuelType() { Id = 4, FuelTypeName = "LPG only" },
+                    new FuelType() { Id = 5, FuelTypeName = "Petrol" },
+                    new FuelType() { Id = 6, FuelTypeName = "Petrol - Premium ULP" }
+                );
+
+            //Purchase type
+            builder.Entity<PurchaseType>()
+                .HasData(
+                    new PurchaseType() { Id = 1,PurchaseTypeName="Private Sale"},
+                    new PurchaseType() { Id = 2, PurchaseTypeName = "Auction" }
+                );
+
+            //Color
+            builder.Entity<Color>()
+                .HasData(
+                    new Color() { Id = 1, ColorName = "Beige"},
+                    new Color() { Id = 2, ColorName = "Black" },
+                    new Color() { Id = 3, ColorName = "Blue" },
+                    new Color() { Id = 4, ColorName = "Bronze" },
+                    new Color() { Id = 5, ColorName = "Brown" },
+                    new Color() { Id = 6, ColorName = "Burgundy" },
+                    new Color() { Id = 7, ColorName = "Gold" },
+                    new Color() { Id = 8, ColorName = "Green" },
+                    new Color() { Id = 9, ColorName = "Grey" },
+                    new Color() { Id = 10, ColorName = "Magenta" },
+                    new Color() { Id = 11, ColorName = "Maroon" },
+                    new Color() { Id = 12, ColorName = "Orange" },
+                    new Color() { Id = 13, ColorName = "Pink" },
+                    new Color() { Id = 14, ColorName = "Purple" },
+                    new Color() { Id = 15, ColorName = "Red" },
+                    new Color() { Id = 16, ColorName = "Silver" },
+                    new Color() { Id = 18, ColorName = "White" },
+                    new Color() { Id = 19, ColorName = "Yellow" }
+                );
         }
     }
 }
