@@ -21,6 +21,10 @@ namespace CarHub.Domain.Profiles
             CreateMap<Trim, TrimViewModel>()
                 .ForMember(dest => dest.TrimName, opt => opt.MapFrom(src => src.TrimName));
 
+            CreateMap<BodyType, BodyTypeViewModel>();
+
+            CreateMap<FuelType, FuelTypeViewModel>();
+            CreateMap<DriveType, DriveTypeViewModel>();
         }
     }
 }
