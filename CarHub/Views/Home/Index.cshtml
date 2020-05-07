@@ -58,29 +58,33 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="selectpicker search-fields">
+                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="search-fields">
                                     <option>Select Make</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select asp-for="CarModelId" class="selectpicker search-fields">
+                                <select asp-for="CarModelId" class="search-fields">
                                     <option>Select Model</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select asp-for="TrimId" class="selectpicker search-fields">
+                                <select asp-for="TrimId" class="search-fields">
                                     <option>Select Trim</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields">
+                                <select asp-for="Year" class="search-fields">
                                     <option>Select Year</option>
+                                    @for (int i = 2010; i <= 2020; i++)
+                                    {
+                                        <option>@i</option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -88,16 +92,14 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-type">
-                                    <option>Select Body Type</option>
-                                    <option>Sedan</option>
-                                    <option>SUV</option>
-                                </select>
+                                <select asp-for="BodyTypeId"  asp-items="@Model.BodyTypes" class="search-fields">
+                                        <option>Select Body Type</option>
+                                    </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="transmission">
+                                <select class="search-fields" name="transmission">
                                     <option>Transmission</option>
                                     <option>Automatic</option>
                                     <option>Manual</option>
@@ -129,7 +131,8 @@
 
 @section Scripts {
     <script>
-       $(document).ready(function () {
+        $(document).ready(function () {
+
            $( "#CarMakeId" ).change(function() {
                 //var selectedText = $(this).find("option:selected").text();
                $("#CarModelId").empty();
@@ -143,7 +146,7 @@
                         result.forEach(item => {
                             $("#CarModelId").append($('<option>', {value:item.id, text:item.carModelName}));
                         });
-                        $('#CarModelId').selectpicker('refresh');
+                        //$('#CarModelId').selectpicker('refresh');
                     }
                 });
            });
@@ -161,7 +164,7 @@
                         result.forEach(item => {
                             $("#TrimId").append($('<option>', {value:item.id, text:item.trimName}));
                         });
-                        $('#TrimId').selectpicker('refresh');
+                        //$('#TrimId').selectpicker('refresh');
                     }
                 });
             });

@@ -15,6 +15,7 @@ namespace CarHub.Domain.Services.Interfaces
         public List<BodyTypeViewModel> GetAllBodyTypes();
         public List<FuelTypeViewModel> GetAllFuelTypes();
         public List<DriveTypeViewModel> GetAllDriveTypes();
+        public List<PurchaseTypeViewModel> GetAllPurchaseTypes();
 
     }
 }

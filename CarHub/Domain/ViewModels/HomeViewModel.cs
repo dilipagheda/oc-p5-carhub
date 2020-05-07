@@ -20,5 +20,12 @@ namespace CarHub.Domain.ViewModels
         [DisplayName("Trim")]
         public int TrimId { get; set; }
         public SelectList Trims { get; set; }
+
+        [DisplayName("Year")]
+        public int Year { get; set; }
+
+        [DisplayName("Body Type")]
+        public int BodyTypeId { get; set; }
+        public SelectList BodyTypes { get; set; }
     }
 }
