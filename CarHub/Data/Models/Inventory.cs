@@ -18,7 +18,7 @@ namespace CarHub.Data.Models
         public PurchaseType PurchaseType { get; set; }
         public int InventoryStatusId { get; set; }
         public InventoryStatus InventoryStatus { get; set; }
-        public DateTime AvailableOnDate { get; set; }
+        public DateTime LotDate { get; set; }
         public bool IsFeatured { get; set; }
 
     }
