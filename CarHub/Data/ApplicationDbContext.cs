@@ -284,6 +284,15 @@ namespace CarHub.Data
                     new Color() { Id = 18, ColorName = "White" },
                     new Color() { Id = 19, ColorName = "Yellow" }
                 );
+
+            //Inventory Status
+            builder.Entity<InventoryStatus>()
+                .HasData(
+                    new InventoryStatus() { Id=1, Status="Purchased"},
+                    new InventoryStatus() { Id = 2, Status = "InRepair" },
+                    new InventoryStatus() { Id = 3, Status = "Sold" },
+                    new InventoryStatus() { Id = 4, Status = "Available" }
+                );
         }
     }
 }
