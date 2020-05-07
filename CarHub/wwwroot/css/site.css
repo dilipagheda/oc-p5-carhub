@@ -3,17 +3,70 @@
     padding: 5px !important;
 }
 
-
-/** admin form start **/
-
-.other-hide
-{
-    display:none;
+.admin-form {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);
 }
 
-.other-show
+.admin-form .container
 {
-    display:block;
+    background-color:white;
+    padding:0;
+    padding-top:20px;
+    border-radius:10px;
+}
+
+.admin-form .container .main-title
+{
+    padding-bottom:10px;
+    border-bottom:2px solid red;
+}
+
+    /**admin section - add car form **/
+    .add-new-car-form-section-header {
+        font-weight: 500;
+        margin-bottom: 15px;
+        width: 100%;
+        border-bottom: 1px solid #f0151f;
+    }
+
+    .add-new-car-form-section-header span {
+        color: #f0151f
+    }
+
+    .add-new-car-form-section-header h2 {
+        font-size: 20px;
+    }
+
+::-webkit-input-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+}
+
+::-moz-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+}
+
+:-ms-input-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+}
+
+::placeholder {
+    color: peachpuff;
+    font-size: 13px;
+}
+
+
+
+/** admin form start **/
+.other-hide {
+    display: none;
+}
+
+.other-show {
+    display: block;
 }
 
 .admin-form .contact-info {
