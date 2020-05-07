@@ -18,13 +18,13 @@ namespace CarHub.Domain.Profiles
             CreateMap<CarModel, CarModelViewModel>()
                 .ForMember(dest => dest.CarModelName, opt => opt.MapFrom(src => src.ModelName));
 
-            CreateMap<Trim, TrimViewModel>()
-                .ForMember(dest => dest.TrimName, opt => opt.MapFrom(src => src.TrimName));
+            CreateMap<Trim, TrimViewModel>();
 
             CreateMap<BodyType, BodyTypeViewModel>();
 
             CreateMap<FuelType, FuelTypeViewModel>();
             CreateMap<DriveType, DriveTypeViewModel>();
+            CreateMap<PurchaseType, PurchaseTypeViewModel>();
         }
     }
 }
