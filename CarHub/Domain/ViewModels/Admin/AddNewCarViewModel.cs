@@ -68,6 +68,5 @@ namespace CarHub.Domain.ViewModels.Admin
 
         public bool IsFeatured { get; set; }
         public string LotDate { get; set; }
-        public IFormFile File { get; set; }
     }
 }
