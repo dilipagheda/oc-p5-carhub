@@ -35,6 +35,7 @@ namespace CarHub.Controllers
             var fuelTypesViewModel = _carService.GetAllFuelTypes();
             var driveTypesViewModel = _carService.GetAllDriveTypes();
             var purchaseTypesViewModel = _carService.GetAllPurchaseTypes();
+            var colorsViewModel = _carService.GetAllColors();
 
             var addNewCarViewModel = new AddNewCarViewModel()
             {
@@ -42,7 +43,8 @@ namespace CarHub.Controllers
                 BodyTypes = new SelectList(bodyTypesViewModel, "Id", "BodyTypeName"),
                 FuelTypes = new SelectList(fuelTypesViewModel, "Id", "FuelTypeName"),
                 DriveTypes = new SelectList(driveTypesViewModel, "Id", "DriveTypeName"),
-                PurchaseTypes = new SelectList(purchaseTypesViewModel, "Id", "PurchaseTypeName")
+                PurchaseTypes = new SelectList(purchaseTypesViewModel, "Id", "PurchaseTypeName"),
+                Colors = new SelectList(colorsViewModel,"Id","ColorName")
             };
             return View(addNewCarViewModel);
         }
@@ -50,6 +52,13 @@ namespace CarHub.Controllers
         [HttpPost]
         public IActionResult Index(AddNewCarViewModel addNewCarViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
+
+            }
+
+            //return new id here
             return Ok(10);
         }
 
