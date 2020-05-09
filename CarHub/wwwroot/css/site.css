@@ -3,40 +3,38 @@
     padding: 5px !important;
 }
 
-.admin-form {
+.add-new-car-outer-container {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);
 }
 
-.admin-form .container
-{
-    background-color:white;
-    padding:0;
-    padding-top:20px;
-    border-radius:10px;
+.add-new-car-outer-container .container {
+    background-color: white;
+    padding: 0;
+    padding-top: 20px;
+    border-radius: 10px;
 }
 
-.admin-form .container .main-title
-{
-    padding-bottom:10px;
-    border-bottom:2px solid red;
+.add-new-car-outer-container .container .main-title {
+    padding-bottom: 10px;
+    border-bottom: 2px solid red;
 }
 
-    /**admin section - add car form **/
-    .add-new-car-form-section-header {
-        font-weight: 500;
-        margin-bottom: 15px;
-        width: 100%;
-        border-bottom: 1px solid #f0151f;
-    }
+/**admin section - add car form **/
+.add-new-car-form-section-header {
+    font-weight: 500;
+    margin-bottom: 15px;
+    width: 100%;
+    border-bottom: 1px solid #f0151f;
+}
 
-    .add-new-car-form-section-header span {
-        color: #f0151f
-    }
+.add-new-car-form-section-header span {
+    color: #f0151f
+}
 
-    .add-new-car-form-section-header h2 {
-        font-size: 20px;
-    }
+.add-new-car-form-section-header h2 {
+    font-size: 20px;
+}
 
 ::-webkit-input-placeholder {
     color: peachpuff;
@@ -69,104 +67,8 @@
     display: block;
 }
 
-.admin-form .contact-info {
-    text-align: center;
+#example-vertical section
+{
+    overflow:scroll;
 }
 
-    .admin-form .contact-info strong {
-        font-weight: 500;
-        font-size: 14px;
-        color: #525252;
-    }
-
-    .admin-form .contact-info i {
-        font-size: 24px;
-        color: #212529;
-    }
-
-    .admin-form .contact-info p {
-        margin: 0;
-        font-size: 15px;
-    }
-
-.admin-form .form-control {
-    width: 100%;
-    padding: 10px 20px;
-    font-size: 16px;
-    background: transparent;
-    outline: 0;
-    height: 45px;
-    border-radius: 3px;
-    border: 1px solid #dbdbdb;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .06);
-}
-
-    .admin-form .form-control:focus {
-        color: #495057;
-        background-color: transparent;
-        border: 1px solid #dbdbdb;
-        outline: 0;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .06);
-    }
-
-.admin-form .form-group {
-    margin-bottom: 20px;
-}
-
-.admin-form textarea {
-    min-height: 250px;
-}
-
-.admin-form .btn-message {
-    border-radius: 50px;
-    padding: 10px 60px 11px;
-}
-
-.contact-map {
-    height: 350px !important;
-}
-
-.contact-map-content .map-content {
-    width: 250px;
-}
-
-.admin-form .contact-info-2 {
-    padding: 40px;
-    border-radius: 5px;
-    margin-left: 50px;
-    background: #fff;
-    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
-}
-
-    .admin-form .contact-info-2 .ci-box i {
-        width: 45px;
-        line-height: 50px;
-        margin-right: 5px;
-        font-size: 33px;
-    }
-
-    .admin-form .contact-info-2 .ci-box h5 {
-        font-weight: 500;
-        font-size: 16px;
-        margin: 0 0 5px;
-    }
-
-    .admin-form .contact-info-2 .ci-box p {
-        font-size: 15px;
-        font-weight: 400;
-        margin-bottom: 0;
-    }
-
-    .admin-form .contact-info-2 .ci-box {
-        margin: 0 0 30px 0;
-        position: relative;
-        width: 100%;
-    }
-
-.admin-form .ci-box .icon {
-    position: absolute;
-}
-
-.admin-form .ci-box .detail {
-    margin-left: 50px;
-}

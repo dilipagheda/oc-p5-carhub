@@ -24,6 +24,12 @@ namespace CarHub.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddNewCar()
+        {
             var carMakesViewModel = _carService.GetAllCarMakes();
             var bodyTypesViewModel = _carService.GetAllBodyTypes();
             var fuelTypesViewModel = _carService.GetAllFuelTypes();
@@ -44,8 +50,13 @@ namespace CarHub.Controllers
         [HttpPost]
         public IActionResult Index(AddNewCarViewModel addNewCarViewModel)
         {
-            return View();
+            return Ok(10);
         }
 
+        [HttpPost]
+        public IActionResult UploadFile(FileData fileData)
+        {
+            return Ok(true);
+        }
     }
 }
