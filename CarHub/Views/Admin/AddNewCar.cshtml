@@ -83,9 +83,9 @@
                                 <select asp-for="Year" class="search-fields">
                                     <option>Select Year</option>
                                     <option>Add New..</option>
-                                    @for (int i = 2010; i <= 2020; i++)
+                                    @for (int year = DateTime.Now.Year - 20 ; year <= DateTime.Now.Year + 1; year++)
                                     {
-                                        <option>@i</option>
+                                        <option>@year</option>
                                     }
                                 </select>
                             </div>
@@ -424,18 +424,18 @@
             /////ALL OTEHR STUFF////
 
             $( "#RegoExpiryDate" ).datepicker({
-               appendText:"(dd-mm-yy)",
-                dateFormat: "dd-mm-yyyy"
+               appendText:"(dd-mm-yyyy)",
+               dateFormat: "dd-mm-yy"
             });
 
             $( "#PurchaseDate" ).datepicker({
-               appendText:"(dd-mm-yy)",
-                dateFormat: "dd-mm-yyyy"
+               appendText:"(dd-mm-yyyy)",
+                dateFormat: "dd-mm-yy"
             });
 
             $( "#LotDate" ).datepicker({
-               appendText:"(dd-mm-yy)",
-                dateFormat: "dd-mm-yyyy"
+               appendText:"(dd-mm-yyyy)",
+                dateFormat: "dd-mm-yy"
             });
 
             $("#CarMakeId").change(function () {
@@ -448,23 +448,21 @@
                 } else {
                     $(".carmake-other").addClass("other-hide");
                     $(".carmake-other").removeClass("other-show");
-                    return;
+                    $("#CarModelId").empty();
+                    $("#CarModelId").append($("<option>", { text: 'Select Model' }));
+                    var selectedValue = $(this).val();
+                    console.log(selectedValue);
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("CarModelsByMake", "Home")' + '/' + selectedValue,
+                        success: function (result) {
+                            result.forEach(item => {
+                                $("#CarModelId").append($('<option>', { value: item.id, text: item.carModelName }));
+                            });
+                            //$('#CarModelId').selectpicker('refresh');
+                        }
+                    });
                 }
-
-                $("#CarModelId").empty();
-                $("#CarModelId").append($("<option>", { text: 'Select Model' }));
-                var selectedValue = $(this).val();
-                console.log(selectedValue);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("CarModelsByMake", "Home")' + '/' + selectedValue,
-                    success: function (result) {
-                        result.forEach(item => {
-                            $("#CarModelId").append($('<option>', { value: item.id, text: item.carModelName }));
-                        });
-                        //$('#CarModelId').selectpicker('refresh');
-                    }
-                });
             });
 
             $("#CarModelId").change(function () {
@@ -478,23 +476,21 @@
                 } else {
                     $(".carmodel-other").addClass("other-hide");
                     $(".carmodel-other").removeClass("other-show");
-                    return;
+                    $("#TrimId").empty();
+                    $("#TrimId").append($("<option>", { text: 'Select Trim' }));
+                    var selectedValue = $(this).val();
+                    console.log(selectedValue);
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("TrimsByModel", "Home")' + '?modelId=' + selectedValue,
+                        success: function (result) {
+                            result.forEach(item => {
+                                $("#TrimId").append($('<option>', { value: item.id, text: item.trimName }));
+                            });
+                            //$('#TrimId').selectpicker('refresh');
+                        }
+                    });
                 }
-
-                $("#TrimId").empty();
-                $("#TrimId").append($("<option>", { text: 'Select Trim' }));
-                var selectedValue = $(this).val();
-                console.log(selectedValue);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("TrimsByModel", "Home")' + '?modelId=' + selectedValue,
-                    success: function (result) {
-                        result.forEach(item => {
-                            $("#TrimId").append($('<option>', { value: item.id, text: item.trimName }));
-                        });
-                        //$('#TrimId').selectpicker('refresh');
-                    }
-                });
             });
 
             $("#TrimId").change(function () {
