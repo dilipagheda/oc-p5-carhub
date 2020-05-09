@@ -17,5 +17,6 @@ namespace CarHub.Domain.Services.Interfaces
         public List<DriveTypeViewModel> GetAllDriveTypes();
         public List<PurchaseTypeViewModel> GetAllPurchaseTypes();
 
+        public List<ColorViewModel> GetAllColors();
     }
 }

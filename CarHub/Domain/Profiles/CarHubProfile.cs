@@ -25,6 +25,7 @@ namespace CarHub.Domain.Profiles
             CreateMap<FuelType, FuelTypeViewModel>();
             CreateMap<DriveType, DriveTypeViewModel>();
             CreateMap<PurchaseType, PurchaseTypeViewModel>();
+            CreateMap<Color, ColorViewModel>();
         }
     }
 }

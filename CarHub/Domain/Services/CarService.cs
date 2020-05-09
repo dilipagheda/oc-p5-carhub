@@ -19,6 +19,7 @@ namespace CarHub.Domain.Services
         private readonly IDriveTypeRepository _driveTypeRepository;
         private readonly IFuelTypeRepository _fuelTypeRepository;
         private readonly IPurchaseTypeRepository _purchaseTypeRepository;
+        private readonly IColorRepository _colorRepository;
 
         public CarService(IMapper mapper, 
                           ICarMakeRepository carMakeRepository, 
@@ -27,7 +28,8 @@ namespace CarHub.Domain.Services
                           IBodyTypeRepository bodyTypeRepository,
                           IDriveTypeRepository driveTypeRepository,
                           IFuelTypeRepository fuelTypeRepository,
-                          IPurchaseTypeRepository purchaseTypeRepository)
+                          IPurchaseTypeRepository purchaseTypeRepository,
+                          IColorRepository colorRepository)
         {
             _mapper = mapper;
             _carMakeRepository = carMakeRepository;
@@ -37,6 +39,7 @@ namespace CarHub.Domain.Services
             _driveTypeRepository = driveTypeRepository;
             _fuelTypeRepository = fuelTypeRepository;
             _purchaseTypeRepository = purchaseTypeRepository;
+            _colorRepository = colorRepository;
         }
 
         public List<CarMakeViewModel> GetAllCarMakes()
@@ -86,6 +89,13 @@ namespace CarHub.Domain.Services
             var purchaseTypes = _purchaseTypeRepository.GetAllPurchaseTypes();
             var purchaseTypesViewModel = _mapper.Map<List<PurchaseTypeViewModel>>(purchaseTypes);
             return purchaseTypesViewModel;
+        }
+
+        public List<ColorViewModel> GetAllColors()
+        {
+            var colors = _colorRepository.GetAllColors();
+            var colorsViewModel = _mapper.Map<List<ColorViewModel>>(colors);
+            return colorsViewModel;
         }
     }
 }
