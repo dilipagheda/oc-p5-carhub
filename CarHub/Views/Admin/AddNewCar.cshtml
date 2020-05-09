@@ -8,9 +8,13 @@
 <div class="add-new-car-outer-container content-area-5">
     <div class="container">
         <!-- Main title -->
-        <div class="main-title">
+        <div class="add-new-car main-title">
             <h1>Add New <span>Car</span></h1>
             <p>Please use this form to add a new car to the inventory.</p>
+        </div>
+
+        <div id="validation-errors">
+            <ul></ul>
         </div>
 
         @*<form id="add-new-car-form" enctype="multipart/form-data" method="post" asp-action="Index">
@@ -258,7 +262,7 @@
                 </section>
                 <h3>Upload Images</h3>
                 <section>
-                      <div  id="drag-drop-area" class="DashboardContainer"></div>
+                    <div id="drag-drop-area" class="DashboardContainer"></div>
                 </section>
             </div>
         </form>
@@ -338,19 +342,66 @@
                 metaFields: null
              })
 
-            $('#add-new-car-form').ajaxForm(function() {
-                uppy.setMeta({carId:10})
-                uppy.upload().then((result) => {
-                  console.info('Successful uploads:', result.successful)
 
-                  if (result.failed.length > 0) {
-                    console.error('Errors:')
-                    result.failed.forEach((file) => {
-                      console.error(file.error)
-                    })
-                  }
-                })
-            });
+
+
+            // post-submit callback 
+            function handleError(responseText, statusText, xhr, $form)  { 
+
+                console.log("dilip error");
+                console.log(responseText.responseJSON);
+
+                const response = responseText.responseJSON;
+                if (!response.success) {
+                    const errors = response.errors;
+                    errors.forEach(error => {
+                        const fieldErrors = error.errors;
+                        fieldErrors.forEach(fieldError => {
+                            $("#validation-errors ul").append(`<li>${fieldError.errorMessage}</li>`);
+                        });
+
+                    });
+                }
+            }
+
+            function handleSuccess(responseText, statusText, xhr, $form)  { 
+
+                console.log("dilip success");
+                console.log(responseText.responseJSON);
+                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
+                    '\n\nThe output div should have already been updated with the responseText.'); 
+            }
+
+            var options = { 
+                target:        '#output1',   // target element(s) to be updated with server response 
+                error: handleError,  // post-submit callback 
+                success: handleSuccess
+                // other available options: 
+                //url:       url         // override for form's 'action' attribute 
+                //type:      type        // 'get' or 'post', override for form's 'method' attribute 
+                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+                //clearForm: true        // clear all form fields after successful submit 
+                //resetForm: true        // reset the form after successful submit 
+ 
+                // $.ajax options can be used here too, for example: 
+                //timeout:   3000 
+            }; 
+
+            $('#add-new-car-form').ajaxForm(options);
+
+            //$('#add-new-car-form').ajaxForm(function() {
+            //    uppy.setMeta({carId:10})
+            //    uppy.upload().then((result) => {
+            //      console.info('Successful uploads:', result.successful)
+
+            //      if (result.failed.length > 0) {
+            //        console.error('Errors:')
+            //        result.failed.forEach((file) => {
+            //          console.error(file.error)
+            //        })
+            //      }
+            //    })
+            //});
 
             uppy.on('complete', result => {
                 console.log('successful files:', result.successful)
