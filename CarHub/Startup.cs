@@ -11,6 +11,8 @@ using CarHub.Data.Repositories;
 using CarHub.Data.Repositories.Interfaces;
 using CarHub.Domain.Services;
 using CarHub.Domain.Services.Interfaces;
+using FluentValidation.AspNetCore;
+using CarHub.Domain.Validators;
 
 namespace CarHub
 {
@@ -43,7 +45,8 @@ namespace CarHub
             services.AddTransient<ICarService, CarService>();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewCarViewModelValidator>());
             services.AddRazorPages();
         }
 
