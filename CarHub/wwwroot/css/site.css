@@ -3,6 +3,23 @@
     padding: 5px !important;
 }
 
+.view-cars-outer-container {
+    /*background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);*/
+    background-image: url('../img/static/carimage4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.view-cars-outer-container .container {
+        /*background-color: white;*/
+        background: rgba(0,0,0,0.6);
+        padding: 15px;
+        padding-top: 20px;
+        border-radius: 10px;
+        max-width:90vw;
+    }
+
 .add-new-car-outer-container {
     /*background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);*/
@@ -92,4 +109,32 @@
     list-style-type: disc;
     font-size:15px;
     color:white
+}
+
+.detail .title a span.trim-name-view{
+    color:black !important;
+    text-decoration:underline !important;
+}
+
+h3.add-new-link a span{
+    color:white;
+}
+h3.add-new-link:hover a {
+    text-decoration: underline;
+    color:white;
+}
+
+th{
+    color:white;
+}
+
+#table_id_filter label{
+    color:white;
+}
+
+#table_id_info{
+    color:white;
+}
+.paginate_button {
+    color: white;
 }
