@@ -1,4 +1,4 @@
-﻿@model HomeViewModel
+﻿@model List<InventoryViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,7 +9,7 @@
     <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner banner-slider-inner text-center">
             <div class="carousel-item banner-max-height active item-bg">
-                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <img class="d-block w-100 h-100" src="~/img/static/car-1.jpg" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-l">
                     <h3>Explore Your Dream Car</h3>
                     <h5>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="carousel-item banner-max-height item-bg">
-                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <img class="d-block w-100 h-100" src="~/img/static/car-2.jpg" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-l">
                     <h3>Wow Factor Standard</h3>
                     <h5>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="carousel-item banner-max-height item-bg">
-                <img class="d-block w-100 h-100" src="http://placehold.it/1920x1000" alt="banner">
+                <img class="d-block w-100 h-100" style="object-fit:cover" src="~/img/static/car-3.jpg"  alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-l">
                     <h3>We Are Wheel</h3>
                     <h5>
@@ -49,125 +49,96 @@
     </div>
 </div>
 <!-- Banner end -->
-<!-- Search box 3 start -->
-<div class="search-box-3 sb-7 bg-active">
+
+
+<!-- Featured car start -->
+<div class="featured-car content-area">
     <div class="container">
-        <div class="search-area-inner">
-            <div class="search-contents">
-                <form method="POST" asp-action="Index">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="search-fields">
-                                    <option>Select Make</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select asp-for="CarModelId" class="search-fields">
-                                    <option>Select Model</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select asp-for="TrimId" class="search-fields">
-                                    <option>Select Trim</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select asp-for="Year" class="search-fields">
-                                    <option>Select Year</option>
-                                    @for (int i = 2010; i <= 2020; i++)
-                                    {
-                                        <option>@i</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select asp-for="BodyTypeId"  asp-items="@Model.BodyTypes" class="search-fields">
-                                        <option>Select Body Type</option>
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select class="search-fields" name="transmission">
-                                    <option>Transmission</option>
-                                    <option>Automatic</option>
-                                    <option>Manual</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <div class="range-slider">
-                                    <div data-min="0" data-max="100000" data-unit="AUD" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
-                                    <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Option bar start -->
+                @if (Model.Count > 0)
+                {
+                    <div class="option-bar clearfix">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="sorting-options2">
+                                    <h5>Showing @Model.Count Listings</h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <button class="btn btn-block button-theme btn-md">
-                                    <i class="fa fa-search"></i>Find
-                                </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="option-bar clearfix">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="sorting-options2">
+                                    <h5>Sorry! There are no items available!</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                }
+
+                @foreach (var item in Model)
+                {
+                    <!-- Car box 2 start -->
+                    <div class="car-box-2 cb-4">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-pad">
+                                <div class="car-thumbnail">
+                                    <a href="car-details.html" class="car-img">
+                                        <div class="tag">For Sale</div>
+                                        <div class="price-box">
+                                            <span class="del"><del>@item.TotalCostBeforeDiscount</del></span>
+                                            <br>
+                                            <span>@item.TotalCost</span>
+                                        </div>
+                                        @{
+
+                                            var imageFileName = "http://placehold.it/475x332";
+                                            if (item.AllImages.Count > 0)
+                                            {
+                                                imageFileName = $"/uploads/img/{item.AllImages[0]}";
+                                            }
+                                        }
+                                        <img class="d-block w-100" src="@imageFileName" alt="car image" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-12 col-pad align-self-center">
+                                <div class="detail">
+                                    <h3 class="title">
+                                        <a href="car-details.html">@item.CarMakeName @item.CarModelName <span class="trim-name-view">@item.TrimName</span></a>
+                                    </h3>
+                                    <p>@item.Description</p>
+                                    <ul class="facilities-list clearfix">
+                                        <li>@item.KmToDisplay km</li>
+                                        <li>@item.TransmissionTypeToDisplay</li>
+                                        <li>@item.Year</li>
+                                        <li>@item.FuelTypeName</li>
+                                        <li>@item.DriveTypeName</li>
+                                        <li>@item.ColorName</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
-<!-- Search box 3 end -->
+<!-- Featured car start -->
+
 
 @section Scripts {
     <script>
         $(document).ready(function () {
 
-           $( "#CarMakeId" ).change(function() {
-                //var selectedText = $(this).find("option:selected").text();
-               $("#CarModelId").empty();
-               $("#CarModelId").append($("<option>", { text: 'Select Model' }));
-               var selectedValue = $(this).val();
-               console.log(selectedValue);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("CarModelsByMake", "Home")' + '/' + selectedValue,
-                    success: function (result) {
-                        result.forEach(item => {
-                            $("#CarModelId").append($('<option>', {value:item.id, text:item.carModelName}));
-                        });
-                        //$('#CarModelId').selectpicker('refresh');
-                    }
-                });
-           });
-
-           $( "#CarModelId" ).change(function() {
-                //var selectedText = $(this).find("option:selected").text();
-               $("#TrimId").empty();
-               $("#TrimId").append($("<option>", { text: 'Select Trim' }));
-               var selectedValue = $(this).val();
-               console.log(selectedValue);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("TrimsByModel", "Home")' + '?modelId=' + selectedValue,
-                    success: function (result) {
-                        result.forEach(item => {
-                            $("#TrimId").append($('<option>', {value:item.id, text:item.trimName}));
-                        });
-                        //$('#TrimId').selectpicker('refresh');
-                    }
-                });
-            });
-       });
+        });
     </script>
 }
