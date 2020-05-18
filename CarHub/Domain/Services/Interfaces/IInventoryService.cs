@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarHub.Domain.Services.Interfaces
 {
-    public interface ICarService
+    public interface IInventoryService
     {
         public List<CarMakeViewModel> GetAllCarMakes();
         public List<CarModelViewModel> GetAllCarModelsByMake(int makeId);
@@ -18,5 +18,12 @@ namespace CarHub.Domain.Services.Interfaces
         public List<PurchaseTypeViewModel> GetAllPurchaseTypes();
 
         public List<ColorViewModel> GetAllColors();
+        public InventoryViewModel GetInventoryById(string id);
+        public Guid? AddNewInventory(InventoryViewModel inventoryViewModel);
+        public Task AddNewMediaToInventoryAsync(FileData fileData);
+
+        public List<InventoryViewModel> GetAllInventoryItems();
+
+        public void DeleteInventoryById(string inventoryId);
     }
 }
