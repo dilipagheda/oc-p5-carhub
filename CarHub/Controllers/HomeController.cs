@@ -15,23 +15,20 @@ namespace CarHub.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ICarService _carService;
+        private readonly IInventoryService _inventoryService;
 
-        public HomeController(ILogger<HomeController> logger, ICarService carService)
+        public HomeController(ILogger<HomeController> logger, IInventoryService inventoryService)
         {
             _logger = logger;
-            _carService = carService;
+            _inventoryService = inventoryService;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            var carMakesViewModel = _carService.GetAllCarMakes();
+            var currentInventoryList = _inventoryService.GetAllInventoryItems();
+            return View(currentInventoryList);
 
-            var homeViewModel = new HomeViewModel()
-            {
-                CarMakes = new SelectList(carMakesViewModel, "Id", "CarMakeName")
-            };
-            return View(homeViewModel);
+            //return RedirectToAction("AddNewInventory", "Admin");
         }
 
         [HttpPost]
@@ -42,12 +39,12 @@ namespace CarHub.Controllers
 
         public JsonResult CarModelsByMake(int id)
         {
-            var carModels = _carService.GetAllCarModelsByMake(id);
+            var carModels = _inventoryService.GetAllCarModelsByMake(id);
             return new JsonResult(carModels);
         }
         public JsonResult TrimsByModel([FromQuery]int modelId)
         {
-            var trims = _carService.GetAllTrimsByModel(modelId);
+            var trims = _inventoryService.GetAllTrimsByModel(modelId);
             return new JsonResult(trims);
         }
 
@@ -56,10 +53,10 @@ namespace CarHub.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }
