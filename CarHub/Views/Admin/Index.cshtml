@@ -1,12 +1,121 @@
-﻿@model AddNewCarViewModel
+﻿@model List<InventoryViewModel>
 
 @{
-    ViewData["Title"] = "Add New Car";
+    ViewData["Title"] = "Home Page";
 }
 
-<!-- Contact 2 start -->
-<div class="admin-form content-area-5">
+<!-- Featured car start -->
+<div class="featured-car content-area view-cars-outer-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="title add-new-link">
+                    <a asp-action="AddNewInventory" asp-controller="Admin"><span>Add New</span></a>
+                </h3>
+                <!-- Option bar start -->
+                @if (Model.Count > 0)
+                {
+                    <table id="table_id" class="display">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Trim</th>
+                                <th>Kms</th>
+                                <th>Transmission Type</th>
+                                <th>Rego Number</th>
+                                <th>Rego Expiry</th>
+                                <th>Color</th>
+                                <th>Body Type</th>
+                                <th>No Of Doors</th>
+                                <th>No Of Seats</th>
+                                <th>No Of Cylinders</th>
+                                <th>Drive Type</th>
+                                <th>Fuel Type</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Price</th>
+                                <th>Repairs</th>
+                                <th>Repair Cost</th>
+                                <th>Lot Date</th>
+                                <th>Selling Price</th>
+                                <th>Sale Date</th>
+                                <th>Inventory Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @{
 
+                                        var imageFileName = "http://placehold.it/475x332";
+                                        if (item.AllImages.Count > 0)
+                                        {
+                                            imageFileName = $"/uploads/img/{item.AllImages[0]}";
+                                        }
+                                    }
+                                    <img class="d-block w-100" src="@imageFileName" alt="car image" />
+                                </td>
+                                <td>@item.CarMakeName</td>
+                                <td>@item.CarModelName</td>
+                                <td>@item.TrimName</td>
+                                <td>@item.KmToDisplay</td>
+                                <td>@item.TransmissionTypeToDisplay</td>
+                                <td>@item.RegoNumber</td>
+                                <td>@item.RegoExpiryDate</td>
+                                <td>@item.ColorName</td>
+                                <td>@item.BodyTypeName</td>
+                                <td>@item.NoOfDoors</td>
+                                <td>@item.NoOfSeats</td>
+                                <td>@item.NoOfCylinders</td>
+                                <td>@item.DriveTypeName</td>
+                                <td>@item.FuelTypeName</td>
+                                <td>@item.PurchaseDate</td>
+                                <td>@item.PurchasePrice</td>
+                                <td>@item.RepairDescription</td>
+                                <td>@item.RepairCost</td>
+                                <td>@item.LotDate</td>
+                                <td>@item.SalePrice</td>
+                                <td>@item.SaleDate</td>
+                                <td>@item.InventoryStatusName</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="option-bar clearfix">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="sorting-options2">
+                                    <h5>Sorry! There are no items available!</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
-<!-- Contact 2 end -->
+<!-- Featured car start -->
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "scrollY": 500,
+                "scrollX": true
+            });
+
+        });
+    </script>
+}
+
+
+
 

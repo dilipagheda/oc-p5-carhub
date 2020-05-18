@@ -1,4 +1,4 @@
-﻿@model AddNewCarViewModel
+﻿@model InventoryViewModel
 
 @{
     ViewData["Title"] = "Add New Car";
@@ -9,7 +9,7 @@
     <div class="container">
         <!-- Main title -->
         <div class="add-new-car main-title">
-            <h1>Add New <span>Car</span></h1>
+            <h1>Add New <span>Car</span> to Inventory</h1>
             <p>Please use this form to add a new car to the inventory.</p>
         </div>
 
@@ -17,18 +17,7 @@
             <ul></ul>
         </div>
 
-        @*<form id="add-new-car-form" enctype="multipart/form-data" method="post" asp-action="Index">
-            <div id="drag-drop-area" class="DashboardContainer"></div>
-            <div class="form-group">
-                <label asp-for="NoOfDoors">No. Of Doors</label>
-                <input asp-for="NoOfDoors" type="number" class="form-control" placeholder="Enter number of doors">
-            </div>
-            <button type="submit" class="btn btn-md button-theme">Submit</button>
-        </form>*@
-
-
-
-        <form id="add-new-car-form" method="post" enctype="multipart/form-data" asp-action="Index">
+        <form id="add-new-car-form" method="post" enctype="multipart/form-data" asp-action="AddNewInventory">
             <div id="example-vertical">
                 <h3>Select Car Type</h3>
                 <section>
@@ -44,14 +33,14 @@
                         </div>
                         <div class="col-md-4 text-left other-hide carmake-other">
                             <div class="form-group">
-                                <label asp-for="NewCarMake">New Make</label>
-                                <input asp-for="NewCarMake" type="text" class="form-control" placeholder="Enter a new car make">
+                                <label asp-for="CarMakeName">New Make</label>
+                                <input asp-for="CarMakeName" type="text" class="form-control search-fields" placeholder="Enter a new car make">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label asp-for="CarModelId">Model</label>
-                                <select asp-for="CarModelId" class="search-fields">
+                                <select asp-for="CarModelId" asp-items="@Model.CarModels" class="search-fields">
                                     <option>Select Model</option>
                                     <option>Add New..</option>
                                 </select>
@@ -59,17 +48,23 @@
                         </div>
                         <div class="col-md-4 text-left other-hide carmodel-other">
                             <div class="form-group">
-                                <label asp-for="NewCarModel">New Model</label>
-                                <input asp-for="NewCarModel" type="text" class="form-control" placeholder="Enter a new car model">
+                                <label asp-for="CarModelName">New Model</label>
+                                <input asp-for="CarModelName" type="text" class="form-control search-fields" placeholder="Enter a new car model">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label asp-for="TrimId">Trim</label>
-                                <select asp-for="TrimId" class="search-fields">
+                                <select asp-for="TrimId" asp-items="@Model.Trims" class="search-fields">
                                     <option>Select Trim</option>
                                     <option>Add New..</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-left other-hide trim-other">
+                            <div class="form-group">
+                                <label asp-for="TrimName">New Trim</label>
+                                <input asp-for="TrimName" type="text" class="form-control search-fields" placeholder="Enter a new trim">
                             </div>
                         </div>
                     </div>
@@ -83,7 +78,7 @@
                                 <select asp-for="Year" class="search-fields">
                                     <option>Select Year</option>
                                     <option>Add New..</option>
-                                    @for (int year = DateTime.Now.Year - 20 ; year <= DateTime.Now.Year + 1; year++)
+                                    @for (int year = DateTime.Now.Year - 20; year <= DateTime.Now.Year + 1; year++)
                                     {
                                         <option>@year</option>
                                     }
@@ -92,26 +87,26 @@
                         </div>
                         <div class="col-md-4 text-left other-hide year-other">
                             <div class="form-group">
-                                <label asp-for="NewYear">New Year</label>
-                                <input asp-for="NewYear" type="number" class="form-control" placeholder="Enter a new year">
+                                <label asp-for="YearName">New Year</label>
+                                <input asp-for="YearName" type="number" class="form-control search-fields" placeholder="Enter a new year">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="Kms">Kms</label>
-                                <input asp-for="Kms" type="text" class="form-control" placeholder="Enter a kilometers">
+                                <input asp-for="Kms" type="text" class="form-control search-fields" placeholder="Enter a kilometers">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="RegoNumber">Rego Number</label>
-                                <input asp-for="RegoNumber" type="text" class="form-control" placeholder="Enter a Registration Number">
+                                <input asp-for="RegoNumber" type="text" class="form-control search-fields" placeholder="Enter a Registration Number">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="RegoExpiryDate">Rego Expiry</label>
-                                <input asp-for="RegoExpiryDate" type="text" class="form-control" placeholder="Enter a Registration Expiry Date">
+                                <input asp-for="RegoExpiryDate" type="text" class="form-control search-fields" placeholder="Enter a Registration Expiry Date">
                             </div>
                         </div>
                     </div>
@@ -131,7 +126,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label asp-for="ColorId">Make</label>
+                                <label asp-for="ColorId">Color</label>
                                 <select asp-for="ColorId" asp-items="@Model.Colors" class="search-fields">
                                     <option>Select Color</option>
                                     <option>Add New..</option>
@@ -140,13 +135,13 @@
                         </div>
                         <div class="col-md-4 text-left other-hide color-other">
                             <div class="form-group">
-                                <label asp-for="NewColor">New Color</label>
-                                <input asp-for="NewColor" type="text" class="form-control" placeholder="Enter a new color">
+                                <label asp-for="ColorName">New Color</label>
+                                <input asp-for="ColorName" type="text" class="form-control search-fields" placeholder="Enter a new color">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label asp-for="BodyTypeId">Make</label>
+                                <label asp-for="BodyTypeId">Body Type</label>
                                 <select asp-for="BodyTypeId" asp-items="@Model.BodyTypes" class="search-fields">
                                     <option>Select Body Type</option>
                                     <option>Add New..</option>
@@ -155,26 +150,30 @@
                         </div>
                         <div class="col-md-4 text-left other-hide bodytype-other">
                             <div class="form-group">
-                                <label asp-for="NewBodyType">New Body Type</label>
-                                <input asp-for="NewBodyType" type="text" class="form-control" placeholder="Enter a new body type">
+                                <label asp-for="BodyTypeName">New Body Type</label>
+                                <input asp-for="BodyTypeName" type="text" class="form-control search-fields" placeholder="Enter a new body type">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
-                            <div class="form-group">
-                                <label asp-for="NoOfSeats">No. Of Seats</label>
-                                <input asp-for="NoOfSeats" type="number" class="form-control" placeholder="Enter number of seats">
-                            </div>
-                        </div>
-                        <div class="col-md-8 text-left">
-                            <div class="form-group">
-                                <label asp-for="NoOfDoors">No. Of Doors</label>
-                                <input asp-for="NoOfDoors" type="number" class="form-control" placeholder="Enter number of doors">
-                            </div>
-                        </div>
-                        <div class="col-md-8 text-left">
-                            <div class="form-group">
-                                <label asp-for="NoOfCylinders">No. Of Cylinders</label>
-                                <input asp-for="NoOfCylinders" type="number" class="form-control" placeholder="Enter number of cylinders" min="1" maxlength="2">
+                            <div class="row">
+                                <div class="col-md-4 text-left">
+                                    <div class="form-group">
+                                        <label asp-for="NoOfSeats">No. Of Seats</label>
+                                        <input asp-for="NoOfSeats" type="number" class="form-control search-fields" placeholder="Enter number of seats">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-left">
+                                    <div class="form-group">
+                                        <label asp-for="NoOfDoors">No. Of Doors</label>
+                                        <input asp-for="NoOfDoors" type="number" class="form-control search-fields" placeholder="Enter number of doors">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-left">
+                                    <div class="form-group">
+                                        <label asp-for="NoOfCylinders">No. Of Cylinders</label>
+                                        <input asp-for="NoOfCylinders" type="number" class="form-control search-fields" placeholder="Enter number of cylinders" min="1" maxlength="2">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -188,8 +187,8 @@
                         </div>
                         <div class="col-md-4 text-left other-hide drivetype-other">
                             <div class="form-group">
-                                <label asp-for="NewDriveType">New Drive Type</label>
-                                <input asp-for="NewDriveType" type="text" class="form-control" placeholder="Enter a new drive type">
+                                <label asp-for="DriveTypeName">New Drive Type</label>
+                                <input asp-for="DriveTypeName" type="text" class="form-control search-fields" placeholder="Enter a new drive type">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -203,8 +202,8 @@
                         </div>
                         <div class="col-md-4 text-left other-hide fueltype-other">
                             <div class="form-group">
-                                <label asp-for="NewFuelType">New Fuel Type</label>
-                                <input asp-for="NewFuelType" type="text" class="form-control" placeholder="Enter a new fuel type">
+                                <label asp-for="FuelTypeName">New Fuel Type</label>
+                                <input asp-for="FuelTypeName" type="text" class="form-control search-fields" placeholder="Enter a new fuel type">
                             </div>
                         </div>
                     </div>
@@ -216,46 +215,83 @@
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="Description">Description</label>
-                                <input asp-for="Description" type="text" class="form-control" placeholder="Enter Description">
+                                <input asp-for="Description" type="text" class="form-control search-fields" placeholder="Enter Description">
                             </div>
-                            <div class="col-md-8 text-left">
-                                <div class="form-group">
-                                    <label asp-for="PurchaseDate">Purchase Date</label>
-                                    <input asp-for="PurchaseDate" type="text" class="form-control" placeholder="Enter a Purchase Date">
-                                </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="PurchaseDate">Purchase Date</label>
+                                <input asp-for="PurchaseDate" type="text" class="form-control search-fields" placeholder="Enter a Purchase Date">
                             </div>
-                            <div class="col-md-8 text-left">
-                                <div class="form-group">
-                                    <label asp-for="PurchasePrice">Purchase Price</label>
-                                    <input asp-for="PurchasePrice" type="number" class="form-control" placeholder="Enter a Purchase Price">
-                                </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="PurchasePrice">Purchase Price</label>
+                                <input asp-for="PurchasePrice" type="number" class="form-control search-fields" placeholder="Enter a Purchase Price">
                             </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label asp-for="PurchaseTypeId">Purchase Type</label>
-                                    <select asp-for="PurchaseTypeId" asp-items="@Model.PurchaseTypes" class="search-fields">
-                                        <option>Select Purchase Type</option>
-                                        <option>Add New..</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="PurchaseTypeId">Purchase Type</label>
+                                <select asp-for="PurchaseTypeId" asp-items="@Model.PurchaseTypes" class="search-fields">
+                                    <option>Select Purchase Type</option>
+                                    <option>Add New..</option>
+                                </select>
                             </div>
-                            <div class="col-md-4 text-left other-hide purchasetype-other">
-                                <div class="form-group">
-                                    <label asp-for="NewPurchaseType">New Purchase Type</label>
-                                    <input asp-for="NewPurchaseType" type="text" class="form-control" placeholder="Enter a new purchase type">
-                                </div>
+                        </div>
+                        <div class="col-md-4 text-left other-hide purchasetype-other">
+                            <div class="form-group">
+                                <label asp-for="PurchaseTypeName">New Purchase Type</label>
+                                <input asp-for="PurchaseTypeName" type="text" class="form-control search-fields" placeholder="Enter a new purchase type">
                             </div>
-                            <div class="col-md-8 text-left">
-                                <div class="custom-control custom-checkbox form-group">
-                                    <input asp-for="IsFeatured" type="checkbox" class="custom-control-input">
-                                    <label asp-for="IsFeatured" class="custom-control-label">Let's make this car a Featured Car!</label>
-                                </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="custom-control custom-checkbox form-group">
+                                <input asp-for="IsFeatured" type="checkbox" class="custom-control-input">
+                                <label asp-for="IsFeatured" class="custom-control-label">Let's make this car a Featured Car!</label>
                             </div>
-                            <div class="col-md-8 text-left">
-                                <div class="form-group">
-                                    <label asp-for="LotDate">Lot Date</label>
-                                    <input asp-for="LotDate" type="text" class="form-control" placeholder="Enter a Lot Date">
-                                </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="LotDate">Lot Date</label>
+                                <input asp-for="LotDate" type="text" class="form-control search-fields" placeholder="Enter a Lot Date">
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="SaleDate">Sale Date</label>
+                                <input asp-for="SaleDate" type="text" class="form-control search-fields" placeholder="Enter a Sale Date">
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="SalePrice">Sale Price</label>
+                                <input asp-for="SalePrice" type="number" class="form-control search-fields" placeholder="Enter a Sale Price">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="InventoryStatusId">Inventory Status</label>
+                                <select asp-for="InventoryStatusId" asp-items="@Model.InventoryStatusList" class="search-fields">
+                                    <option>Select Inventory Status</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <h3>Repair Details</h3>
+                <section>
+                    <div class="row">
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="RepairDescription">Repair Description</label>
+                                <input asp-for="RepairDescription" type="text" class="form-control search-fields" placeholder="Enter Repair Description">
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="RepairCost">Repair Cost</label>
+                                <input asp-for="RepairCost" type="number" class="form-control search-fields" placeholder="Enter a Repair Cost">
                             </div>
                         </div>
                     </div>
@@ -290,7 +326,7 @@
                     loading: "Loading ..."
                 },
                 onFinished: function (event, currentIndex) {
-                    alert("hi")
+                    //alert("hi")
                     $("#add-new-car-form").submit();
                 },
                 onStepChanged: function (event, currentIndex, priorIndex) {
@@ -314,7 +350,7 @@
               restrictions: {
                 maxFileSize: 1000000,
                 maxNumberOfFiles: 5,
-                minNumberOfFiles: 1,
+                minNumberOfFiles: 0,
                 allowedFileTypes: ['image/*']
               }
             })
@@ -325,7 +361,7 @@
               target: '.DashboardContainer',
               replaceTargetContent: true,
               showProgressDetails: true,
-              note: 'Images only, 1–5 files, up to 1 MB',
+              note: 'Images only, Maximum 5 files, up to 1 MB',
               height: 470,
               metaFields: [
                 { id: 'name', name: 'Name', placeholder: 'file name' },
@@ -342,11 +378,23 @@
                 metaFields: null
              })
 
+            var options = {
+                target:        '#validation-errors',   // target element(s) to be updated with server response
+                error: handleError,  // post-submit callback
+                success: handleSuccess
+                // other available options:
+                //url:       url         // override for form's 'action' attribute
+                //type:      type        // 'get' or 'post', override for form's 'method' attribute
+                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
+                //clearForm: true        // clear all form fields after successful submit
+                //resetForm: true        // reset the form after successful submit
 
+                // $.ajax options can be used here too, for example:
+                //timeout:   3000
+            };
 
-
-            // post-submit callback 
-            function handleError(responseText, statusText, xhr, $form)  { 
+            // post-submit callback
+            function handleError(responseText, statusText, xhr, $form)  {
 
                 console.log("dilip error");
                 console.log(responseText.responseJSON);
@@ -364,43 +412,42 @@
                 }
             }
 
-            function handleSuccess(responseText, statusText, xhr, $form)  { 
+            function handleSuccess(responseText, statusText, xhr, $form)  {
 
                 console.log("dilip success");
-                console.log(responseText.responseJSON);
-                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
-                    '\n\nThe output div should have already been updated with the responseText.'); 
+                console.log(responseText);
+                let inventoryId = responseText.inventoryId;
+                uppy.setMeta({InventoryId:inventoryId})
+                uppy.upload().then((result) => {
+                    console.info('Successful uploads:', result.successful)
+                    if (result.successful) {
+                        window.location.href='@Url.Action("Index", "Admin")'
+                    }
+
+                      if (result.failed.length > 0) {
+                        console.error('Errors:')
+                        result.failed.forEach((file) => {
+                          console.error(file.error)
+                        })
+                      }
+                })
             }
 
-            var options = { 
-                target:        '#output1',   // target element(s) to be updated with server response 
-                error: handleError,  // post-submit callback 
-                success: handleSuccess
-                // other available options: 
-                //url:       url         // override for form's 'action' attribute 
-                //type:      type        // 'get' or 'post', override for form's 'method' attribute 
-                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-                //clearForm: true        // clear all form fields after successful submit 
-                //resetForm: true        // reset the form after successful submit 
- 
-                // $.ajax options can be used here too, for example: 
-                //timeout:   3000 
-            }; 
+            //$('#add-new-car-form').ajaxForm(options);
 
-            $('#add-new-car-form').ajaxForm(options);
+            // bind to the form's submit event
+            $('#add-new-car-form').submit(function() {
+                // inside event callbacks 'this' is the DOM element so we first
+                // wrap it in a jQuery object and then invoke ajaxSubmit
+                $(this).ajaxSubmit(options);
+
+                // !!! Important !!!
+                // always return false to prevent standard browser submit and page navigation
+                return false;
+            });
 
             //$('#add-new-car-form').ajaxForm(function() {
-            //    uppy.setMeta({carId:10})
-            //    uppy.upload().then((result) => {
-            //      console.info('Successful uploads:', result.successful)
 
-            //      if (result.failed.length > 0) {
-            //        console.error('Errors:')
-            //        result.failed.forEach((file) => {
-            //          console.error(file.error)
-            //        })
-            //      }
-            //    })
             //});
 
             uppy.on('complete', result => {
@@ -438,9 +485,27 @@
                 dateFormat: "dd-mm-yy"
             });
 
+            $( "#SaleDate" ).datepicker({
+               appendText:"(dd-mm-yyyy)",
+                dateFormat: "dd-mm-yy"
+            });
+
+            function resetTrim() {
+                $("#TrimId").empty();
+                $("#TrimId").append($("<option>", { text: 'Select Trim' }));
+                $("#TrimId").append($("<option>", { text: 'Add New..' }));
+            }
+
+            function resetModel() {
+                $("#CarModelId").empty();
+                $("#CarModelId").append($("<option>", { text: 'Select Model' }));
+                $("#CarModelId").append($("<option>", { text: 'Add New..' }));
+            }
+
             $("#CarMakeId").change(function () {
                 var selectedText = $(this).find("option:selected").text();
-
+                resetModel();
+                resetTrim();
                 if (selectedText === "Add New..") {
                     $(".carmake-other").removeClass("other-hide");
                     $(".carmake-other").addClass("other-show");
@@ -448,8 +513,7 @@
                 } else {
                     $(".carmake-other").addClass("other-hide");
                     $(".carmake-other").removeClass("other-show");
-                    $("#CarModelId").empty();
-                    $("#CarModelId").append($("<option>", { text: 'Select Model' }));
+
                     var selectedValue = $(this).val();
                     console.log(selectedValue);
                     $.ajax({
@@ -468,6 +532,7 @@
             $("#CarModelId").change(function () {
 
                 var selectedText = $(this).find("option:selected").text();
+                resetTrim();
 
                 if (selectedText === "Add New..") {
                     $(".carmodel-other").removeClass("other-hide");
@@ -476,8 +541,6 @@
                 } else {
                     $(".carmodel-other").addClass("other-hide");
                     $(".carmodel-other").removeClass("other-show");
-                    $("#TrimId").empty();
-                    $("#TrimId").append($("<option>", { text: 'Select Trim' }));
                     var selectedValue = $(this).val();
                     console.log(selectedValue);
                     $.ajax({
@@ -559,6 +622,34 @@
                 } else {
                     $(".purchasetype-other").addClass("other-hide");
                     $(".purchasetype-other").removeClass("other-show");
+                    return;
+                }
+            });
+
+            $("#ColorId").change(function () {
+                var selectedText = $(this).find("option:selected").text();
+
+                if (selectedText === "Add New..") {
+                    $(".color-other").removeClass("other-hide");
+                    $(".color-other").addClass("other-show");
+                    return;
+                } else {
+                    $(".color-other").addClass("other-hide");
+                    $(".color-other").removeClass("other-show");
+                    return;
+                }
+            });
+
+            $("#BodyTypeId").change(function () {
+                var selectedText = $(this).find("option:selected").text();
+
+                if (selectedText === "Add New..") {
+                    $(".bodytype-other").removeClass("other-hide");
+                    $(".bodytype-other").addClass("other-show");
+                    return;
+                } else {
+                    $(".bodytype-other").addClass("other-hide");
+                    $(".bodytype-other").removeClass("other-show");
                     return;
                 }
             });
