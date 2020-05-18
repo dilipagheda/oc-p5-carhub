@@ -6,11 +6,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarHub.Domain.ViewModels.Admin
+namespace CarHub.Domain.ViewModels
 {
     public class FileData
     {
         public IFormFile File { get; set; }
-        public string CarId { get; set; }
+        public string InventoryId { get; set; }
     }
 }
