@@ -29,9 +29,11 @@ namespace CarHub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => {
+                options.EnableSensitiveDataLogging();
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")); 
+            });
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -42,11 +44,17 @@ namespace CarHub
             services.AddTransient<IFuelTypeRepository, FuelTypeRepository>();
             services.AddTransient<IDriveTypeRepository, DriveTypeRepository>();
             services.AddTransient<IPurchaseTypeRepository, PurchaseTypeRepository>();
-            services.AddTransient<ICarService, CarService>();
+            services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IColorRepository, ColorRepository>();
+            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddTransient<IInventoryStatusRepository, InventoryStatusRepository>();
+            services.AddTransient<IRepairRepository, RepairRepository>();
+            services.AddTransient<IMediaRepository, MediaRepository>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewCarViewModelValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<InventoryViewModelValidator>());
             services.AddRazorPages();
         }
 
