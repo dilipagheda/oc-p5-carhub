@@ -1,33 +1,45 @@
 ﻿@model InventoryViewModel
 
 @{
-    ViewData["Title"] = "Add New Car";
+    ViewData["Title"] = "Manage Inventory";
 }
 
 <!-- Contact 2 start -->
 <div class="add-new-car-outer-container content-area-5">
     <div class="container">
         <!-- Main title -->
-        <div class="add-new-car main-title">
-            <h1>Add New <span>Car</span> to Inventory</h1>
-            <p>Please use this form to add a new car to the inventory.</p>
-        </div>
+        @if (Model.Id != null)
+        {
+            <div class="add-new-car main-title">
+                <h1>Add New <span>Car</span> to Inventory</h1>
+                <p>Please use this form to add a new car to the inventory.</p>
+            </div>
+
+        }
+        else
+        {
+            <div class="add-new-car main-title">
+                <h1>Edit <span>Inventory</span> Item</h1>
+                <p>Please use this form to edit item in the inventory.</p>
+            </div>
+
+        }
 
         <div id="validation-errors">
             <ul></ul>
         </div>
 
-        <form id="add-new-car-form" method="post" enctype="multipart/form-data" asp-action="AddNewInventory">
-            <div id="example-vertical">
+        <form id="manage-car-form" method="post" enctype="multipart/form-data" asp-action="ManageInventory">
+            <div id="manage-car-form-wizard">
                 <h3>Select Car Type</h3>
                 <section>
                     <div class="row">
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="CarMakeId">Make</label>
-                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="search-fields">
-                                    <option>Select Make</option>
-                                    <option>Add New..</option>
+                                <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="search-fields" required>
+                                    <option value="">Select Make</option>
+                                    <option value="add-new">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -41,7 +53,7 @@
                             <div class="form-group">
                                 <label asp-for="CarModelId">Model</label>
                                 <select asp-for="CarModelId" asp-items="@Model.CarModels" class="search-fields">
-                                    <option>Select Model</option>
+                                    <option value="">Select Model</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -56,7 +68,7 @@
                             <div class="form-group">
                                 <label asp-for="TrimId">Trim</label>
                                 <select asp-for="TrimId" asp-items="@Model.Trims" class="search-fields">
-                                    <option>Select Trim</option>
+                                    <option value="">Select Trim</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -76,7 +88,7 @@
                             <div class="form-group">
                                 <label asp-for="Year">Year</label>
                                 <select asp-for="Year" class="search-fields">
-                                    <option>Select Year</option>
+                                    <option value="">Select Year</option>
                                     <option>Add New..</option>
                                     @for (int year = DateTime.Now.Year - 20; year <= DateTime.Now.Year + 1; year++)
                                     {
@@ -88,13 +100,13 @@
                         <div class="col-md-4 text-left other-hide year-other">
                             <div class="form-group">
                                 <label asp-for="YearName">New Year</label>
-                                <input asp-for="YearName" type="number" class="form-control search-fields" placeholder="Enter a new year">
+                                <input asp-for="YearName" type="number" class="form-control search-fields" placeholder="Enter a new year" >
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="Kms">Kms</label>
-                                <input asp-for="Kms" type="text" class="form-control search-fields" placeholder="Enter a kilometers">
+                                <input asp-for="Kms" type="number" class="form-control search-fields" placeholder="Enter a kilometers" >
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
@@ -118,7 +130,7 @@
                             <div class="form-group">
                                 <label asp-for="TransmissionType">Transmission Type</label>
                                 <select asp-for="TransmissionType" class="search-fields">
-                                    <option>Select Transmission Type</option>
+                                    <option value="">Select Transmission Type</option>
                                     <option value="M">Manual</option>
                                     <option value="A">Automatic</option>
                                 </select>
@@ -128,7 +140,7 @@
                             <div class="form-group">
                                 <label asp-for="ColorId">Color</label>
                                 <select asp-for="ColorId" asp-items="@Model.Colors" class="search-fields">
-                                    <option>Select Color</option>
+                                    <option value="">Select Color</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -143,7 +155,7 @@
                             <div class="form-group">
                                 <label asp-for="BodyTypeId">Body Type</label>
                                 <select asp-for="BodyTypeId" asp-items="@Model.BodyTypes" class="search-fields">
-                                    <option>Select Body Type</option>
+                                    <option value="">Select Body Type</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -159,19 +171,19 @@
                                 <div class="col-md-4 text-left">
                                     <div class="form-group">
                                         <label asp-for="NoOfSeats">No. Of Seats</label>
-                                        <input asp-for="NoOfSeats" type="number" class="form-control search-fields" placeholder="Enter number of seats">
+                                        <input asp-for="NoOfSeats" type="number" class="form-control search-fields" placeholder="Enter number of seats" >
                                     </div>
                                 </div>
                                 <div class="col-md-4 text-left">
                                     <div class="form-group">
                                         <label asp-for="NoOfDoors">No. Of Doors</label>
-                                        <input asp-for="NoOfDoors" type="number" class="form-control search-fields" placeholder="Enter number of doors">
+                                        <input asp-for="NoOfDoors" type="number" class="form-control search-fields" placeholder="Enter number of doors" >
                                     </div>
                                 </div>
                                 <div class="col-md-4 text-left">
                                     <div class="form-group">
                                         <label asp-for="NoOfCylinders">No. Of Cylinders</label>
-                                        <input asp-for="NoOfCylinders" type="number" class="form-control search-fields" placeholder="Enter number of cylinders" min="1" maxlength="2">
+                                        <input asp-for="NoOfCylinders" type="number" class="form-control search-fields" placeholder="Enter number of cylinders" >
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +192,7 @@
                             <div class="form-group">
                                 <label asp-for="DriveTypeId">Drive Type</label>
                                 <select asp-for="DriveTypeId" asp-items="@Model.DriveTypes" class="search-fields">
-                                    <option>Select Drive Type</option>
+                                    <option value="">Select Drive Type</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -195,7 +207,7 @@
                             <div class="form-group">
                                 <label asp-for="FuelTypeId">Fuel Type</label>
                                 <select asp-for="FuelTypeId" asp-items="@Model.FuelTypes" class="search-fields">
-                                    <option>Select Fuel Type</option>
+                                    <option value="">Select Fuel Type</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -234,7 +246,7 @@
                             <div class="form-group">
                                 <label asp-for="PurchaseTypeId">Purchase Type</label>
                                 <select asp-for="PurchaseTypeId" asp-items="@Model.PurchaseTypes" class="search-fields">
-                                    <option>Select Purchase Type</option>
+                                    <option value="">Select Purchase Type</option>
                                     <option>Add New..</option>
                                 </select>
                             </div>
@@ -273,7 +285,7 @@
                             <div class="form-group">
                                 <label asp-for="InventoryStatusId">Inventory Status</label>
                                 <select asp-for="InventoryStatusId" asp-items="@Model.InventoryStatusList" class="search-fields">
-                                    <option>Select Inventory Status</option>
+                                    <option value="">Select Inventory Status</option>
                                 </select>
                             </div>
                         </div>
@@ -299,6 +311,7 @@
                 <h3>Upload Images</h3>
                 <section>
                     <div id="drag-drop-area" class="DashboardContainer"></div>
+                    <div id="upload-image-validation"></div>
                 </section>
             </div>
         </form>
@@ -307,352 +320,8 @@
 <!-- Contact 2 end -->
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-
-            /////STEPPER START//////
-            let stepperSettings = {
-                headerTag: "h3",
-                bodyTag: "section",
-                transitionEffect: "slideLeft",
-                stepsOrientation: "vertical",
-                labels: {
-                    cancel: "Cancel",
-                    current: "current step:",
-                    pagination: "Pagination",
-                    finish: "Submit",
-                    next: "Next",
-                    previous: "Previous",
-                    loading: "Loading ..."
-                },
-                onFinished: function (event, currentIndex) {
-                    //alert("hi")
-                    $("#add-new-car-form").submit();
-                },
-                onStepChanged: function (event, currentIndex, priorIndex) {
-                    console.log("currentIndex:" + currentIndex);
-                    console.log("priorIndex:" + priorIndex)
-                }
-            }
-
-            $("#example-vertical").steps(stepperSettings);
-            /////STEPPER END//////
-
-
-            //UPPY START////
-            var Core = Uppy.Core
-            var Dashboard = Uppy.Dashboard
-            var XHRUpload = Uppy.XHRUpload
-            var uppy = Core({
-              id:'uppy',
-              debug: true,
-              autoProceed: false,
-              restrictions: {
-                maxFileSize: 1000000,
-                maxNumberOfFiles: 5,
-                minNumberOfFiles: 0,
-                allowedFileTypes: ['image/*']
-              }
-            })
-
-            uppy.use(Dashboard, {
-              trigger: '.UppyModalOpenerBtn',
-              inline: true,
-              target: '.DashboardContainer',
-              replaceTargetContent: true,
-              showProgressDetails: true,
-              note: 'Images only, Maximum 5 files, up to 1 MB',
-              height: 470,
-              metaFields: [
-                { id: 'name', name: 'Name', placeholder: 'file name' },
-              ],
-                browserBackButtonClose: true,
-              hideUploadButton:true
-            })
-
-             uppy.use(XHRUpload, {
-                endpoint: '@Url.Action("UploadFile", "Admin")',
-                method: 'post',
-                formData: true,
-                fieldName: 'File',
-                metaFields: null
-             })
-
-            var options = {
-                target:        '#validation-errors',   // target element(s) to be updated with server response
-                error: handleError,  // post-submit callback
-                success: handleSuccess
-                // other available options:
-                //url:       url         // override for form's 'action' attribute
-                //type:      type        // 'get' or 'post', override for form's 'method' attribute
-                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
-                //clearForm: true        // clear all form fields after successful submit
-                //resetForm: true        // reset the form after successful submit
-
-                // $.ajax options can be used here too, for example:
-                //timeout:   3000
-            };
-
-            // post-submit callback
-            function handleError(responseText, statusText, xhr, $form)  {
-
-                console.log("dilip error");
-                console.log(responseText.responseJSON);
-
-                const response = responseText.responseJSON;
-                if (!response.success) {
-                    const errors = response.errors;
-                    errors.forEach(error => {
-                        const fieldErrors = error.errors;
-                        fieldErrors.forEach(fieldError => {
-                            $("#validation-errors ul").append(`<li>${fieldError.errorMessage}</li>`);
-                        });
-
-                    });
-                }
-            }
-
-            function handleSuccess(responseText, statusText, xhr, $form)  {
-
-                console.log("dilip success");
-                console.log(responseText);
-                let inventoryId = responseText.inventoryId;
-                uppy.setMeta({InventoryId:inventoryId})
-                uppy.upload().then((result) => {
-                    console.info('Successful uploads:', result.successful)
-                    if (result.successful) {
-                        window.location.href='@Url.Action("Index", "Admin")'
-                    }
-
-                      if (result.failed.length > 0) {
-                        console.error('Errors:')
-                        result.failed.forEach((file) => {
-                          console.error(file.error)
-                        })
-                      }
-                })
-            }
-
-            //$('#add-new-car-form').ajaxForm(options);
-
-            // bind to the form's submit event
-            $('#add-new-car-form').submit(function() {
-                // inside event callbacks 'this' is the DOM element so we first
-                // wrap it in a jQuery object and then invoke ajaxSubmit
-                $(this).ajaxSubmit(options);
-
-                // !!! Important !!!
-                // always return false to prevent standard browser submit and page navigation
-                return false;
-            });
-
-            //$('#add-new-car-form').ajaxForm(function() {
-
-            //});
-
-            uppy.on('complete', result => {
-                console.log('successful files:', result.successful)
-                console.log('failed files:', result.failed)
-            });
-
-
-
-
-
-            //UPPY END////
-
-
-
-
-
-
-
-
-            /////ALL OTEHR STUFF////
-
-            $( "#RegoExpiryDate" ).datepicker({
-               appendText:"(dd-mm-yyyy)",
-               dateFormat: "dd-mm-yy"
-            });
-
-            $( "#PurchaseDate" ).datepicker({
-               appendText:"(dd-mm-yyyy)",
-                dateFormat: "dd-mm-yy"
-            });
-
-            $( "#LotDate" ).datepicker({
-               appendText:"(dd-mm-yyyy)",
-                dateFormat: "dd-mm-yy"
-            });
-
-            $( "#SaleDate" ).datepicker({
-               appendText:"(dd-mm-yyyy)",
-                dateFormat: "dd-mm-yy"
-            });
-
-            function resetTrim() {
-                $("#TrimId").empty();
-                $("#TrimId").append($("<option>", { text: 'Select Trim' }));
-                $("#TrimId").append($("<option>", { text: 'Add New..' }));
-            }
-
-            function resetModel() {
-                $("#CarModelId").empty();
-                $("#CarModelId").append($("<option>", { text: 'Select Model' }));
-                $("#CarModelId").append($("<option>", { text: 'Add New..' }));
-            }
-
-            $("#CarMakeId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-                resetModel();
-                resetTrim();
-                if (selectedText === "Add New..") {
-                    $(".carmake-other").removeClass("other-hide");
-                    $(".carmake-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".carmake-other").addClass("other-hide");
-                    $(".carmake-other").removeClass("other-show");
-
-                    var selectedValue = $(this).val();
-                    console.log(selectedValue);
-                    $.ajax({
-                        type: 'GET',
-                        url: '@Url.Action("CarModelsByMake", "Home")' + '/' + selectedValue,
-                        success: function (result) {
-                            result.forEach(item => {
-                                $("#CarModelId").append($('<option>', { value: item.id, text: item.carModelName }));
-                            });
-                            //$('#CarModelId').selectpicker('refresh');
-                        }
-                    });
-                }
-            });
-
-            $("#CarModelId").change(function () {
-
-                var selectedText = $(this).find("option:selected").text();
-                resetTrim();
-
-                if (selectedText === "Add New..") {
-                    $(".carmodel-other").removeClass("other-hide");
-                    $(".carmodel-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".carmodel-other").addClass("other-hide");
-                    $(".carmodel-other").removeClass("other-show");
-                    var selectedValue = $(this).val();
-                    console.log(selectedValue);
-                    $.ajax({
-                        type: 'GET',
-                        url: '@Url.Action("TrimsByModel", "Home")' + '?modelId=' + selectedValue,
-                        success: function (result) {
-                            result.forEach(item => {
-                                $("#TrimId").append($('<option>', { value: item.id, text: item.trimName }));
-                            });
-                            //$('#TrimId').selectpicker('refresh');
-                        }
-                    });
-                }
-            });
-
-            $("#TrimId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".trim-other").removeClass("other-hide");
-                    $(".trim-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".trim-other").addClass("other-hide");
-                    $(".trim-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#Year").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".year-other").removeClass("other-hide");
-                    $(".year-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".year-other").addClass("other-hide");
-                    $(".year-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#DriveTypeId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".drivetype-other").removeClass("other-hide");
-                    $(".drivetype-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".drivetype-other").addClass("other-hide");
-                    $(".drivetype-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#FuelTypeId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".fueltype-other").removeClass("other-hide");
-                    $(".fueltype-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".fueltype-other").addClass("other-hide");
-                    $(".fueltype-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#PurchaseTypeId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".purchasetype-other").removeClass("other-hide");
-                    $(".purchasetype-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".purchasetype-other").addClass("other-hide");
-                    $(".purchasetype-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#ColorId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".color-other").removeClass("other-hide");
-                    $(".color-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".color-other").addClass("other-hide");
-                    $(".color-other").removeClass("other-show");
-                    return;
-                }
-            });
-
-            $("#BodyTypeId").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-
-                if (selectedText === "Add New..") {
-                    $(".bodytype-other").removeClass("other-hide");
-                    $(".bodytype-other").addClass("other-show");
-                    return;
-                } else {
-                    $(".bodytype-other").addClass("other-hide");
-                    $(".bodytype-other").removeClass("other-show");
-                    return;
-                }
-            });
-        });
-    </script>
+    <script src="~/js/app/manage-car-form-wizard.js"></script>
+    <script src="~/js/app/image-upload-uppy.js"></script>
+    <script src="~/js/app/submit-form-with-ajax.js"></script>
+    <script src="~/js/app/manage-car-form-dynamic.js"></script>
 }
