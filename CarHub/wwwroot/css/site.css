@@ -96,9 +96,8 @@
     display: block;
 }
 
-#example-vertical section
-{
-    overflow:scroll;
+#manage-car-form-wizard section {
+    overflow: scroll;
 }
 
 #validation-errors {
