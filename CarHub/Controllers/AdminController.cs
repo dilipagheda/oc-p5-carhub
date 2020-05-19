@@ -31,38 +31,48 @@ namespace CarHub.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddNewInventory()
+        public IActionResult ManageInventory(string id)
         {
-            var inventoryViewModel = _inventoryService.GetInventoryById(null);
+            var inventoryViewModel = _inventoryService.GetInventoryById(id);
             return View(inventoryViewModel);
         }
 
-        //[HttpGet]
-        //public IActionResult EditInventory(string id)
-        //{
-        //    var inventoryViewModel = _inventoryService.GetInventoryById(id);
-        //    inventoryViewModel.Id = 
-        //    return View(inventoryViewModel);
-        //}
-
         [HttpPost]
-        public IActionResult AddNewInventory(InventoryViewModel inventoryViewModel)
+        public IActionResult ManageInventory(InventoryViewModel inventoryViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
             }
 
-            var inventoryId = _inventoryService.AddNewInventory(inventoryViewModel);
-
-            if(inventoryId == null)
+            if(inventoryViewModel.Id == null || inventoryViewModel.Id == Guid.Empty)
             {
-                ModelState.AddModelError("error", "Sorry! Something went wrong!");
-                return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
+                //Add new
+                var inventoryId = _inventoryService.AddNewInventory(inventoryViewModel);
+
+                if (inventoryId == null)
+                {
+                    ModelState.AddModelError("error", "Sorry! Something went wrong!");
+                    return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
+                }
+
+                //return new id here
+                return Ok(new { success = true, inventoryId = inventoryId });
+            }
+            else
+            {
+                //Edit existing
+                var result = _inventoryService.EditInventory(inventoryViewModel);
+                if (result == false)
+                {
+                    ModelState.AddModelError("error", "Sorry! Something went wrong!");
+                    return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
+                }
+
+                //return new id here
+                return Ok(new { success = true, inventoryId = inventoryViewModel.Id });
             }
 
-            //return new id here
-            return Ok(new { success=true, inventoryId = inventoryId});
         }
 
         [HttpPost]
