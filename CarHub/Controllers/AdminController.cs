@@ -1,18 +1,14 @@
 ﻿using CarHub.Domain.Services.Interfaces;
 using CarHub.Domain.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CarHub.Controllers
 {
-    public class AdminController: Controller
+    public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IInventoryService _inventoryService;
@@ -40,7 +36,7 @@ namespace CarHub.Controllers
         [HttpPost]
         public IActionResult ManageInventory(InventoryViewModel inventoryViewModel)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
             }
@@ -50,7 +46,7 @@ namespace CarHub.Controllers
                 //Add new
                 var inventoryId = _inventoryService.AddNewInventory(inventoryViewModel);
 
-                if (inventoryId == null)
+                if(inventoryId == null)
                 {
                     ModelState.AddModelError("error", "Sorry! Something went wrong!");
                     return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
@@ -58,12 +54,11 @@ namespace CarHub.Controllers
 
                 //return new id here
                 return Ok(new { success = true, inventoryId = inventoryId });
-            }
-            else
+            } else
             {
                 //Edit existing
                 var result = _inventoryService.EditInventory(inventoryViewModel);
-                if (result == false)
+                if(result == false)
                 {
                     ModelState.AddModelError("error", "Sorry! Something went wrong!");
                     return BadRequest(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
@@ -72,21 +67,14 @@ namespace CarHub.Controllers
                 //return new id here
                 return Ok(new { success = true, inventoryId = inventoryViewModel.Id });
             }
-
         }
 
         [HttpPost]
         public async Task<IActionResult> UploadFileAsync(FileData fileData)
         {
             await _inventoryService.AddNewMediaToInventoryAsync(fileData);
-           
-            return Ok(true);
-        }
 
-        public IActionResult Delete(string id)
-        {
-            _inventoryService.DeleteInventoryById(id);
-            return RedirectToAction("Index");
+            return Ok(true);
         }
     }
 }

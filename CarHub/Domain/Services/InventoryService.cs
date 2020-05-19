@@ -31,20 +31,20 @@ namespace CarHub.Domain.Services
         private readonly IWebHostEnvironment _appEnvironment;
 
         public InventoryService(IMapper mapper,
-                          ICarMakeRepository carMakeRepository,
-                          ICarModelRepository carModelRepository,
-                          ITrimRepository trimRepository,
-                          IBodyTypeRepository bodyTypeRepository,
-                          IDriveTypeRepository driveTypeRepository,
-                          IFuelTypeRepository fuelTypeRepository,
-                          IPurchaseTypeRepository purchaseTypeRepository,
-                          IColorRepository colorRepository,
-                          ICarRepository carRepository,
-                          IInventoryRepository inventoryRepository,
-                          IInventoryStatusRepository inventoryStatusRepository,
-                          IRepairRepository repairRepository,
-                          IMediaRepository mediaRepository,
-                          IWebHostEnvironment appEnvironment)
+                                ICarMakeRepository carMakeRepository,
+                                ICarModelRepository carModelRepository,
+                                ITrimRepository trimRepository,
+                                IBodyTypeRepository bodyTypeRepository,
+                                IDriveTypeRepository driveTypeRepository,
+                                IFuelTypeRepository fuelTypeRepository,
+                                IPurchaseTypeRepository purchaseTypeRepository,
+                                IColorRepository colorRepository,
+                                ICarRepository carRepository,
+                                IInventoryRepository inventoryRepository,
+                                IInventoryStatusRepository inventoryStatusRepository,
+                                IRepairRepository repairRepository,
+                                IMediaRepository mediaRepository,
+                                IWebHostEnvironment appEnvironment)
         {
             _mapper = mapper;
             _carMakeRepository = carMakeRepository;
@@ -125,7 +125,7 @@ namespace CarHub.Domain.Services
 
             Guid? newCarId = _carRepository.AddNewCar(car);
 
-            if (newCarId == null)
+            if(newCarId == null)
             {
                 return null;
             }
@@ -141,7 +141,6 @@ namespace CarHub.Domain.Services
             _repairRepository.AddNewRepair(repairDetails);
 
             return newCarId;
-
         }
 
         public bool EditInventory(InventoryViewModel inventoryViewModel)
@@ -149,14 +148,16 @@ namespace CarHub.Domain.Services
             var car = _mapper.Map<Car>(inventoryViewModel);
 
             var inventory = _inventoryRepository.GetInventoryDetailsById(inventoryViewModel.Id.ToString());
-            
-            if (inventory == null) return false;
 
-            if (inventory.CarId == null || inventory.CarId == Guid.Empty) return false;
+            if(inventory == null)
+                return false;
+
+            if(inventory.CarId == null || inventory.CarId == Guid.Empty)
+                return false;
 
             string carId = inventory.CarId.ToString();
 
-            _carRepository.EditCar(carId,car);
+            _carRepository.EditCar(carId, car);
 
             var updatedInventory = _mapper.Map<Inventory>(inventoryViewModel);
 
@@ -164,14 +165,14 @@ namespace CarHub.Domain.Services
 
             var repairDetails = _mapper.Map<Repair>(inventoryViewModel);
 
-            _repairRepository.EditRepair(carId,repairDetails);
+            _repairRepository.EditRepair(carId, repairDetails);
 
             return true;
         }
 
         public InventoryViewModel GetInventoryById(string id)
         {
-            if (id == null)
+            if(id == null)
             {
                 var carMakes = _carMakeRepository.GetAllCarMakes();
                 var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
@@ -189,14 +190,12 @@ namespace CarHub.Domain.Services
                 inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
                 inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
                 return inventoryViewModel;
-            }
-            else
+            } else
             {
                 var inventory = _inventoryRepository.GetInventoryDetailsById(id);
                 string carId = inventory.CarId.ToString();
 
                 //find car for this inventory
-                //var car = _carRepository.GetCarById(carId);
                 var car = inventory.Car;
 
                 //find repair details for this inventory
@@ -206,7 +205,7 @@ namespace CarHub.Domain.Services
                 var inventoryViewModel = _mapper.Map<InventoryViewModel>(inventory);
                 inventoryViewModel = _mapper.Map(car, inventoryViewModel);
 
-                if (repairs != null)
+                if(repairs != null)
                 {
                     inventoryViewModel = _mapper.Map(repairs, inventoryViewModel);
                 }
@@ -243,26 +242,22 @@ namespace CarHub.Domain.Services
             var contentType = file.ContentType;
             var inventoryId = fileData.InventoryId;
             string fileName = null;
-            if (file.Length > 0)
-            {
-                fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
 
-                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+            if(file.Length > 0)
+            {
+                fileName = Guid.NewGuid().ToString().Replace("-", string.Empty) + Path.GetExtension(file.FileName);
+
+                using(var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
-
             }
 
-            var mediaObj = new Media()
-            {
-                ContentType = contentType,
-                FileName = fileName,
-                Caption = ""
-            };
+            var mediaObj = new Media() { ContentType = contentType, FileName = fileName, Caption = string.Empty };
 
             _mediaRepository.AddNewMediaToInventory(inventoryId, false, mediaObj);
         }
+
 
         public List<InventoryViewModel> GetAllInventoryItems()
         {
@@ -274,7 +269,6 @@ namespace CarHub.Domain.Services
                 string carId = inventoryItem.CarId.ToString();
 
                 //find car for this inventory
-                //var car = _carRepository.GetCarById(carId);
                 var car = inventoryItem.Car;
 
                 //find repair details for this inventory
@@ -284,7 +278,7 @@ namespace CarHub.Domain.Services
                 var inventoryViewModel = _mapper.Map<InventoryViewModel>(inventoryItem);
                 inventoryViewModel = _mapper.Map(car, inventoryViewModel);
 
-                if (repairs != null)
+                if(repairs != null)
                 {
                     inventoryViewModel = _mapper.Map(repairs, inventoryViewModel);
                 }
@@ -304,12 +298,14 @@ namespace CarHub.Domain.Services
 
                 inventoryViewModel.ColorName = _colorRepository.GetColorById(car.ColorId);
                 inventoryViewModel.InventoryStatusName = _inventoryStatusRepository.GetInventoryStatusById(inventoryItem.InventoryStatusId);
-                inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(inventoryItem.Id.ToString());
+                inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(inventoryItem.Id
+                    .ToString());
                 inventoryViewModelItems.Add(inventoryViewModel);
             });
 
             return inventoryViewModelItems;
         }
+
 
         public void DeleteInventoryById(string inventoryId)
         {
@@ -319,8 +315,6 @@ namespace CarHub.Domain.Services
             _carRepository.DeleteCarById(carId.ToString());
             _repairRepository.DeleteRepairDetailsByCarId(carId.ToString());
             _mediaRepository.DeleteMediaFromInventory(inventoryId);
-
         }
-
     }
 }

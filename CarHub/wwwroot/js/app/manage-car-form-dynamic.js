@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-    /////ALL OTEHR STUFF////
+    $(document).ready(function () {
+        $('footer').empty();
+    });
 
     $("#RegoExpiryDate").datepicker({
         appendText: "(dd-mm-yyyy)",

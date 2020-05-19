@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    /////STEPPER START//////
     let stepperSettings = {
         headerTag: "h3",
         bodyTag: "section",
@@ -247,5 +246,4 @@
     }
 
     $("#manage-car-form-wizard").steps(stepperSettings);
-    /////STEPPER END//////
 });
