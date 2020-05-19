@@ -89,7 +89,10 @@ namespace CarHub.Domain.Profiles
             CreateMap<List<InventoryStatus>, InventoryViewModel>()
                 .ForMember(dest => dest.InventoryStatusList, opt => opt.MapFrom(src => new SelectList(src, "Id", "Status")));
 
-
+            CreateMap<Car, Car>();
+            CreateMap<Inventory, Inventory>();
+            CreateMap<Repair, Repair>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
