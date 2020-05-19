@@ -46,7 +46,7 @@ namespace CarHub.Domain.Validators
 
             RuleFor(x => x.Description).NotNull();
             RuleFor(x => x.Description).MinimumLength(1);
-
+            RuleFor(x => x.Description).MaximumLength(1000);
 
             RuleFor(x => x.ColorId).NotNull();
             RuleFor(x => x.ColorId).GreaterThan(0).When(x => x.ColorName == null);
