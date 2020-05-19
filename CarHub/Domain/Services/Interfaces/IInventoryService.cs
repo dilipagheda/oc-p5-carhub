@@ -25,5 +25,6 @@ namespace CarHub.Domain.Services.Interfaces
         public List<InventoryViewModel> GetAllInventoryItems();
 
         public void DeleteInventoryById(string inventoryId);
+        public bool EditInventory(InventoryViewModel inventoryViewModel);
     }
 }

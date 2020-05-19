@@ -133,17 +133,40 @@ namespace CarHub.Domain.Services
             inventoryViewModel.Id = (Guid)newCarId;
 
             var inventory = _mapper.Map<Inventory>(inventoryViewModel);
-            //inventory.CarId = (Guid)newCarId;
 
             Guid? newInventoryId = _inventoryRepository.AddInventory(inventory);
 
             var repairDetails = _mapper.Map<Repair>(inventoryViewModel);
-            //repairDetails.CarId = (Guid)newCarId;
 
             _repairRepository.AddNewRepair(repairDetails);
 
             return newCarId;
 
+        }
+
+        public bool EditInventory(InventoryViewModel inventoryViewModel)
+        {
+            var car = _mapper.Map<Car>(inventoryViewModel);
+
+            var inventory = _inventoryRepository.GetInventoryDetailsById(inventoryViewModel.Id.ToString());
+            
+            if (inventory == null) return false;
+
+            if (inventory.CarId == null || inventory.CarId == Guid.Empty) return false;
+
+            string carId = inventory.CarId.ToString();
+
+            _carRepository.EditCar(carId,car);
+
+            var updatedInventory = _mapper.Map<Inventory>(inventoryViewModel);
+
+            _inventoryRepository.EditInventory(updatedInventory);
+
+            var repairDetails = _mapper.Map<Repair>(inventoryViewModel);
+
+            _repairRepository.EditRepair(carId,repairDetails);
+
+            return true;
         }
 
         public InventoryViewModel GetInventoryById(string id)
