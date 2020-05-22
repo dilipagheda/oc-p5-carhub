@@ -29,15 +29,19 @@ namespace CarHub.Domain.Profiles
             CreateMap<Color, ColorViewModel>();
 
             CreateMap<Car, InventoryViewModel>()
-                .ForMember(dest => dest.RegoExpiryDate, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.RegoExpiry)))
+                .ForMember(dest => dest.RegoExpiryDate,
+                           opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.RegoExpiry)))
                 .ReverseMap()
                 .ForPath(dest => dest.RegoExpiry, opt => opt.MapFrom(src => DateTime.Parse(src.RegoExpiryDate)));
 
 
             CreateMap<Inventory, InventoryViewModel>()
-                .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.PurchaseDate)))
-                .ForMember(dest => dest.LotDate, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.LotDate)))
-                .ForMember(dest => dest.SaleDate, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.SaleDate)))
+                .ForMember(dest => dest.PurchaseDate,
+                           opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.PurchaseDate)))
+                .ForMember(dest => dest.LotDate,
+                           opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.LotDate)))
+                .ForMember(dest => dest.SaleDate,
+                           opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.SaleDate)))
                 .ForMember(dest => dest.SalePrice, opt => opt.MapFrom(src => src.SalePrice))
                 .ForMember(dest => dest.InventoryStatusId, opt => opt.MapFrom(src => src.InventoryStatusId))
                 .ReverseMap()
@@ -78,21 +82,23 @@ namespace CarHub.Domain.Profiles
                 .ForMember(dest => dest.FuelTypes, opt => opt.MapFrom(src => new SelectList(src, "Id", "FuelTypeName")));
 
             CreateMap<List<DriveType>, InventoryViewModel>()
-                .ForMember(dest => dest.DriveTypes, opt => opt.MapFrom(src => new SelectList(src, "Id", "DriveTypeName")));
+                .ForMember(dest => dest.DriveTypes,
+                           opt => opt.MapFrom(src => new SelectList(src, "Id", "DriveTypeName")));
 
             CreateMap<List<PurchaseType>, InventoryViewModel>()
-                .ForMember(dest => dest.PurchaseTypes, opt => opt.MapFrom(src => new SelectList(src, "Id", "PurchaseTypeName")));
+                .ForMember(dest => dest.PurchaseTypes,
+                           opt => opt.MapFrom(src => new SelectList(src, "Id", "PurchaseTypeName")));
 
             CreateMap<List<Color>, InventoryViewModel>()
                 .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => new SelectList(src, "Id", "ColorName")));
 
             CreateMap<List<InventoryStatus>, InventoryViewModel>()
-                .ForMember(dest => dest.InventoryStatusList, opt => opt.MapFrom(src => new SelectList(src, "Id", "Status")));
+                .ForMember(dest => dest.InventoryStatusList,
+                           opt => opt.MapFrom(src => new SelectList(src, "Id", "Status")));
 
             CreateMap<Car, Car>();
             CreateMap<Inventory, Inventory>();
-            CreateMap<Repair, Repair>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<Repair, Repair>().ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
