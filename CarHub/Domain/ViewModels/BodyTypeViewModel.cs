@@ -8,6 +8,8 @@ namespace CarHub.Domain.ViewModels
     public class BodyTypeViewModel
     {
         public int Id { get; set; }
+
+
         public string BodyTypeName { get; set; }
     }
 }
