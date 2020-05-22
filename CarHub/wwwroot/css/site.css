@@ -9,6 +9,7 @@
     background-image: url('../img/static/carimage4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    height:100vh;
 }
 
 .view-cars-outer-container .container {
@@ -136,4 +137,11 @@ th{
 }
 .paginate_button {
     color: white;
+}
+
+#table_id_paginate {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 5px;
 }
