@@ -21,55 +21,46 @@
         onStepChanging: function (event, currentIndex, priorIndex) {
             console.log("currentIndex:" + currentIndex);
             console.log("priorIndex:" + priorIndex)
+            console.log(event);
             var validator = $("#manage-car-form").validate({
                 rules: {
                     CarMakeId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     CarMakeName: {
                         required: function (element) {
-                            return ($("#CarMakeId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($('CarMakeId').children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     CarModelId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     CarModelName: {
                         required: function (element) {
-                            return ($("#CarModelId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($('CarModelId').children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     TrimId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     TrimName: {
                         required: function (element) {
-                            return ($("#TrimId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($('TrimId').children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     Year: {
-                        required: function (element) {
-                            return $(element).val() !== 'add-new';
-                        }
-                    },
-                    YearName: {
-                        required: function (element) {
-                            return ($("#Year").val() === 'add-new' && $(element).val().length === 0)
-                        },
-                        maxlength: 4,
-                        minlength:4
+                        required: true
                     },
                     Kms: {
                         required: true,
                         min: 1,
                         max: 500000,
-                        
                     },
                     RegoNumber: {
                         required: true,
@@ -82,22 +73,22 @@
                     },
                     ColorId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     ColorName: {
                         required: function (element) {
-                            return ($("#ColorId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($(ColorId).children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     BodyTypeId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     BodyTypeName: {
                         required: function (element) {
-                            return ($("#BodyTypeId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($(BodyTypeId).children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     NoOfSeats: {
@@ -120,22 +111,22 @@
                     },
                     DriveTypeId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     DriveTypeName: {
                         required: function (element) {
-                            return ($("#BodyTypeId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($("#DriveTypeId").children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     FuelTypeId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     FuelTypeName: {
                         required: function (element) {
-                            return ($("#BodyTypeId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($("#FuelTypeId").children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     Description: {
@@ -155,12 +146,12 @@
                     },
                     PurchaseTypeId: {
                         required: function (element) {
-                            return $(element).val() !== 'add-new';
+                            return $(element).children("option").filter(":selected").text() !== 'Add New..';
                         }
                     },
                     PurchaseTypeName: {
                         required: function (element) {
-                            return ($("#PurchaseTypeId").val() === 'add-new' && $(element).val().length === 0)
+                            return ($("#PurchaseTypeId").children("option").filter(":selected").text() === 'Add New..' && $(element).val().length === 0)
                         }
                     },
                     LotDate: {
@@ -189,55 +180,50 @@
                     }
                 }
             });
-            let step1 = validator.element("#CarMakeId") &&
-                validator.element("#CarMakeName") &&
-                validator.element("#CarModelId") &&
-                validator.element("#CarModelName") &&
-                validator.element("#TrimId") &&
-                validator.element("#TrimName");
-
-            let step2 = validator.element("#Year") &&
-                validator.element("#YearName") &&
-                validator.element("#Kms") &&
-                validator.element("#RegoNumber") &&
-                validator.element("#RegoExpiryDate");
-
-            let step3 = validator.element("#TransmissionType") &&
-                validator.element("#ColorId") &&
-                validator.element("#ColorName") &&
-                validator.element("#BodyTypeId") &&
-                validator.element("#BodyTypeName") &&
-                validator.element("#NoOfSeats") &&
-                validator.element("#NoOfDoors") &&
-                validator.element("#NoOfCylinders") &&
-                validator.element("#DriveTypeId") &&
-                validator.element("#DriveTypeName") &&
-                validator.element("#FuelTypeId") &&
-                validator.element("#FuelTypeName");
-
-            let step4 = validator.element("#Description") &&
-                validator.element("#PurchaseDate") &&
-                validator.element("#PurchasePrice") &&
-                validator.element("#PurchaseTypeId") &&
-                validator.element("#PurchaseTypeName") &&
-                validator.element("#LotDate") &&
-                validator.element("#SaleDate") &&
-                validator.element("#SalePrice") &&
-                validator.element("#InventoryStatusId");
-
-            let step5 = validator.element("#RepairDescription") &&
-                validator.element("#RepairCost");
 
             switch (currentIndex) {
                 case 0:
+                    let step1 = validator.element("#CarMakeId") &&
+                        validator.element("#CarMakeName") &&
+                        validator.element("#CarModelId") &&
+                        validator.element("#CarModelName") &&
+                        validator.element("#TrimId") &&
+                        validator.element("#TrimName");
                     return step1;
                 case 1:
+                    let step2 = validator.element("#Year") &&
+                        validator.element("#Kms") &&
+                        validator.element("#RegoNumber") &&
+                        validator.element("#RegoExpiryDate");
                     return step2;
                 case 2:
+                    let step3 = validator.element("#TransmissionType") &&
+                        validator.element("#ColorId") &&
+                        validator.element("#ColorName") &&
+                        validator.element("#BodyTypeId") &&
+                        validator.element("#BodyTypeName") &&
+                        validator.element("#NoOfSeats") &&
+                        validator.element("#NoOfDoors") &&
+                        validator.element("#NoOfCylinders") &&
+                        validator.element("#DriveTypeId") &&
+                        validator.element("#DriveTypeName") &&
+                        validator.element("#FuelTypeId") &&
+                        validator.element("#FuelTypeName");
                     return step3;
                 case 3:
+                    let step4 = validator.element("#Description") &&
+                        validator.element("#PurchaseDate") &&
+                        validator.element("#PurchasePrice") &&
+                        validator.element("#PurchaseTypeId") &&
+                        validator.element("#PurchaseTypeName") &&
+                        validator.element("#LotDate") &&
+                        validator.element("#SaleDate") &&
+                        validator.element("#SalePrice") &&
+                        validator.element("#InventoryStatusId");
                     return step4;
                 case 4:
+                    let step5 = validator.element("#RepairDescription") &&
+                        validator.element("#RepairCost");
                     return step5;
                 default:
                     return true;

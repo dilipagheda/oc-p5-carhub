@@ -25,14 +25,14 @@
 
     function resetTrim() {
         $("#TrimId").empty();
-        $("#TrimId").append($("<option>", { text: 'Select Trim' }));
-        $("#TrimId").append($("<option>", { text: 'Add New..' }));
+        $("#TrimId").append($('<option>', { value: "",text: 'Select Trim' }));
+        $("#TrimId").append($('<option>', { value: -1,text: 'Add New..' }));
     }
 
     function resetModel() {
         $("#CarModelId").empty();
-        $("#CarModelId").append($("<option>", { text: 'Select Model' }));
-        $("#CarModelId").append($("<option>", { text: 'Add New..' }));
+        $("#CarModelId").append($('<option>', { value: "", text: 'Select Model' }));
+        $("#CarModelId").append($('<option>', { value: -1,text: 'Add New..' }));
     }
 
     $("#CarMakeId").change(function () {
@@ -102,20 +102,6 @@
         } else {
             $(".trim-other").addClass("other-hide");
             $(".trim-other").removeClass("other-show");
-            return;
-        }
-    });
-
-    $("#Year").change(function () {
-        var selectedText = $(this).find("option:selected").text();
-
-        if (selectedText === "Add New..") {
-            $(".year-other").removeClass("other-hide");
-            $(".year-other").addClass("other-show");
-            return;
-        } else {
-            $(".year-other").addClass("other-hide");
-            $(".year-other").removeClass("other-show");
             return;
         }
     });

@@ -23,12 +23,13 @@
     }
 
     function handleSuccess(responseText, statusText, xhr, $form) {
+        alert("success");
         let inventoryId = responseText.inventoryId;
         uppy.setMeta({ InventoryId: inventoryId })
         uppy.upload().then((result) => {
             console.info('Successful uploads:', result.successful)
             if (result.successful) {
-                window.location.href = '@Url.Action("Index", "Admin")'
+                window.location.href = '/Admin/Index'
             }
 
             if (result.failed.length > 0) {
@@ -41,10 +42,10 @@
     }
 
     // bind to the form's submit event
-    $('#manage-car-form').submit(function () {
-
+    $('#manage-car-form').submit(function (e) {
+        //e.stopImmediatePropagation();
+        //e.preventDefault();
         alert("#manage-car-form submit");
-
         //validate fields
         if (uppy.getFiles().length === 0) {
             $('#upload-image-validation').text('You have to select at least 1 file')
@@ -59,8 +60,4 @@
         return false;
     });
 
-    uppy.on('complete', result => {
-        console.log('successful files:', result.successful)
-        console.log('failed files:', result.failed)
-    });
 });
