@@ -123,6 +123,53 @@ namespace CarHub.Domain.Services
         {
             var car = _mapper.Map<Car>(inventoryViewModel);
 
+            if(inventoryViewModel.CarMakeName != null)
+            {
+                var carMakeId = _carMakeRepository.ManageCarMake(new CarMake()
+                    { MakeName = inventoryViewModel.CarMakeName });
+                car.CarMakeId = carMakeId;
+            }
+
+            if(inventoryViewModel.CarModelName != null)
+            {
+                var carModelId = _carModelRepository.ManageCarModel(new CarModel()
+                    { ModelName = inventoryViewModel.CarModelName });
+                car.CarModelId = carModelId;
+            }
+
+            if(inventoryViewModel.TrimName != null)
+            {
+                var trimId = _trimRepository.ManageTrim(new Trim() { TrimName = inventoryViewModel.TrimName });
+                car.TrimId = trimId;
+            }
+
+            _carRepository.AddMakeModelTrim(car.CarMakeId, car.CarModelId, car.TrimId);
+
+            if(inventoryViewModel.BodyTypeName != null)
+            {
+                var bodyTypeId = _bodyTypeRepository.ManageBodyType(new BodyType()
+                    { BodyTypeName = inventoryViewModel.BodyTypeName });
+                car.BodyTypeId = bodyTypeId;
+            }
+            if(inventoryViewModel.ColorName != null)
+            {
+                var colorId = _colorRepository.ManageColor(new Color() { ColorName = inventoryViewModel.ColorName });
+                car.ColorId = colorId;
+            }
+            if(inventoryViewModel.DriveTypeName != null)
+            {
+                var driveTypeId = _driveTypeRepository.ManageDriveType(new Data.Models.DriveType()
+                    { DriveTypeName = inventoryViewModel.DriveTypeName });
+                car.DriveTypeId = driveTypeId;
+            }
+            if(inventoryViewModel.FuelTypeName != null)
+            {
+                var fuelTypeId = _fuelTypeRepository.ManageFuelType(new Data.Models.FuelType()
+                    { FuelTypeName = inventoryViewModel.FuelTypeName });
+                car.FuelTypeId = fuelTypeId;
+            }
+
+
             Guid? newCarId = _carRepository.AddNewCar(car);
 
             if(newCarId == null)
@@ -154,6 +201,54 @@ namespace CarHub.Domain.Services
 
             if(inventory.CarId == null || inventory.CarId == Guid.Empty)
                 return false;
+
+
+            if(inventoryViewModel.CarMakeName != null)
+            {
+                var carMakeId = _carMakeRepository.ManageCarMake(new CarMake()
+                    { MakeName = inventoryViewModel.CarMakeName });
+                car.CarMakeId = carMakeId;
+            }
+
+            if(inventoryViewModel.CarModelName != null)
+            {
+                var carModelId = _carModelRepository.ManageCarModel(new CarModel()
+                    { ModelName = inventoryViewModel.CarModelName });
+                car.CarModelId = carModelId;
+            }
+
+            if(inventoryViewModel.TrimName != null)
+            {
+                var trimId = _trimRepository.ManageTrim(new Trim() { TrimName = inventoryViewModel.TrimName });
+                car.TrimId = trimId;
+            }
+
+            _carRepository.AddMakeModelTrim(car.CarMakeId, car.CarModelId, car.TrimId);
+
+            if(inventoryViewModel.BodyTypeName != null)
+            {
+                var bodyTypeId = _bodyTypeRepository.ManageBodyType(new BodyType()
+                    { BodyTypeName = inventoryViewModel.BodyTypeName });
+                car.BodyTypeId = bodyTypeId;
+            }
+            if(inventoryViewModel.ColorName != null)
+            {
+                var colorId = _colorRepository.ManageColor(new Color() { ColorName = inventoryViewModel.ColorName });
+                car.ColorId = colorId;
+            }
+            if(inventoryViewModel.DriveTypeName != null)
+            {
+                var driveTypeId = _driveTypeRepository.ManageDriveType(new Data.Models.DriveType()
+                    { DriveTypeName = inventoryViewModel.DriveTypeName });
+                car.DriveTypeId = driveTypeId;
+            }
+            if(inventoryViewModel.FuelTypeName != null)
+            {
+                var fuelTypeId = _fuelTypeRepository.ManageFuelType(new Data.Models.FuelType()
+                    { FuelTypeName = inventoryViewModel.FuelTypeName });
+                car.FuelTypeId = fuelTypeId;
+            }
+
 
             string carId = inventory.CarId.ToString();
 
@@ -231,12 +326,14 @@ namespace CarHub.Domain.Services
                 inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
                 inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
 
+                inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(id);
                 return inventoryViewModel;
             }
         }
 
         public async Task AddNewMediaToInventoryAsync(FileData fileData)
         {
+            RemoveExistingFiles(fileData.InventoryId);
             var uploads = Path.Combine(_appEnvironment.WebRootPath, "uploads\\img");
             var file = fileData.File;
             var contentType = file.ContentType;
@@ -258,6 +355,15 @@ namespace CarHub.Domain.Services
             _mediaRepository.AddNewMediaToInventory(inventoryId, false, mediaObj);
         }
 
+        private void RemoveExistingFiles(string inventoryId)
+        {
+            var files = _mediaRepository.DeleteMediaFromInventory(inventoryId);
+            foreach(var file in files)
+            {
+                var uploads = Path.Combine(_appEnvironment.WebRootPath, "uploads\\img");
+                File.Delete(Path.Combine(uploads, file));
+            }
+        }
 
         public List<InventoryViewModel> GetAllInventoryItems()
         {
