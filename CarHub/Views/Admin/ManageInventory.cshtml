@@ -8,19 +8,18 @@
 <div class="add-new-car-outer-container content-area-5">
     <div class="container">
         <!-- Main title -->
-        @if (Model.Id != null)
-        {
-            <div class="add-new-car main-title">
-                <h1>Add New <span>Car</span> to Inventory</h1>
-                <p>Please use this form to add a new car to the inventory.</p>
-            </div>
-
-        }
-        else
+        @if (Model.Id != null && Model.Id != Guid.Empty)
         {
             <div class="add-new-car main-title">
                 <h1>Edit <span>Inventory</span> Item</h1>
                 <p>Please use this form to edit item in the inventory.</p>
+            </div>
+        }
+        else
+        {
+            <div class="add-new-car main-title">
+                <h1>Add New <span>Car</span> to Inventory</h1>
+                <p>Please use this form to add a new car to the inventory.</p>
             </div>
 
         }
@@ -31,6 +30,7 @@
 
         <form id="manage-car-form" method="post" enctype="multipart/form-data" asp-action="ManageInventory">
             <div id="manage-car-form-wizard">
+                `
                 <h3>Select Car Type</h3>
                 <section>
                     <div class="row">
@@ -38,8 +38,8 @@
                             <div class="form-group">
                                 <label asp-for="CarMakeId">Make</label>
                                 <select asp-for="CarMakeId" asp-items="@Model.CarMakes" class="search-fields" required>
-                                    <option value="">Select Make</option>
-                                    <option value="add-new">Add New..</option>
+                                    <option value="" selected>Select Make</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <label asp-for="CarModelId">Model</label>
                                 <select asp-for="CarModelId" asp-items="@Model.CarModels" class="search-fields">
                                     <option value="">Select Model</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <label asp-for="TrimId">Trim</label>
                                 <select asp-for="TrimId" asp-items="@Model.Trims" class="search-fields">
                                     <option value="">Select Trim</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -89,18 +89,11 @@
                                 <label asp-for="Year">Year</label>
                                 <select asp-for="Year" class="search-fields">
                                     <option value="">Select Year</option>
-                                    <option>Add New..</option>
                                     @for (int year = DateTime.Now.Year - 20; year <= DateTime.Now.Year + 1; year++)
                                     {
                                         <option>@year</option>
                                     }
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-left other-hide year-other">
-                            <div class="form-group">
-                                <label asp-for="YearName">New Year</label>
-                                <input asp-for="YearName" type="number" class="form-control search-fields" placeholder="Enter a new year">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
@@ -141,7 +134,7 @@
                                 <label asp-for="ColorId">Color</label>
                                 <select asp-for="ColorId" asp-items="@Model.Colors" class="search-fields">
                                     <option value="">Select Color</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -156,7 +149,7 @@
                                 <label asp-for="BodyTypeId">Body Type</label>
                                 <select asp-for="BodyTypeId" asp-items="@Model.BodyTypes" class="search-fields">
                                     <option value="">Select Body Type</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -193,7 +186,7 @@
                                 <label asp-for="DriveTypeId">Drive Type</label>
                                 <select asp-for="DriveTypeId" asp-items="@Model.DriveTypes" class="search-fields">
                                     <option value="">Select Drive Type</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -208,7 +201,7 @@
                                 <label asp-for="FuelTypeId">Fuel Type</label>
                                 <select asp-for="FuelTypeId" asp-items="@Model.FuelTypes" class="search-fields">
                                     <option value="">Select Fuel Type</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -247,7 +240,7 @@
                                 <label asp-for="PurchaseTypeId">Purchase Type</label>
                                 <select asp-for="PurchaseTypeId" asp-items="@Model.PurchaseTypes" class="search-fields">
                                     <option value="">Select Purchase Type</option>
-                                    <option>Add New..</option>
+                                    <option value="-1">Add New..</option>
                                 </select>
                             </div>
                         </div>
@@ -320,8 +313,11 @@
 <!-- Contact 2 end -->
 
 @section Scripts {
+    <script>
+        var allImageData = @Html.Raw(Json.Serialize(Model.AllImages))
+    </script>
     <script src="~/js/app/manage-car-form-wizard.js"></script>
     <script src="~/js/app/image-upload-uppy.js"></script>
-    <script src="~/js/app/submit-form-with-ajax.js"></script>
     <script src="~/js/app/manage-car-form-dynamic.js"></script>
+    <script src="~/js/app/submit-form-with-ajax.js"></script>
 }
