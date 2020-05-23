@@ -4,22 +4,27 @@
 }
 
 .view-cars-outer-container {
-    /*background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);*/
     background-image: url('../img/static/carimage4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height:100vh;
+    height: 100vh;
+    padding:0;
 }
 
-.view-cars-outer-container .container {
-        /*background-color: white;*/
-        background: rgba(0,0,0,0.6);
-        padding: 15px;
-        padding-top: 20px;
-        border-radius: 10px;
-        max-width:90vw;
-    }
+.container-fluid-inner {
+   
+    padding: 15px;
+    padding-top: 20px;
+}
+
+.view-cars-outer-container .container-fluid {
+    /*background-color: white;*/
+    padding-left: 0;
+    padding-right: 0;
+    background: rgba(0,0,0,0.6);
+    height:100vh;
+    padding-top:75px;
+}
 
 .add-new-car-outer-container {
     /*background: rgb(2,0,36);
@@ -27,6 +32,7 @@
     background-image: url('../img/static/carimage4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+
 }
 
     .add-new-car-outer-container .container {
@@ -144,4 +150,13 @@ th{
     border-radius: 10px;
     margin-top: 5px;
     padding: 5px;
+}
+
+#table_id_wrapper label{
+    color:white;
+}
+
+.dataTables_scrollBody{
+    max-height:none !important;
+    height:auto !important;
 }
