@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CarHub.Domain.Services
@@ -187,7 +187,7 @@ namespace CarHub.Domain.Services
 
             _repairRepository.AddNewRepair(repairDetails);
 
-            return newCarId;
+            return newInventoryId;
         }
 
         public bool EditInventory(InventoryViewModel inventoryViewModel)
@@ -336,8 +336,9 @@ namespace CarHub.Domain.Services
             }
         }
 
-        public async Task AddNewMediaToInventoryAsync(FileData fileData)
+        public async Task AddNewMediaToInventoryAsync(FileData fileData, CancellationToken token)
         {
+            token.ThrowIfCancellationRequested();
             var uploads = Path.Combine(_appEnvironment.WebRootPath, "uploads\\img");
             var file = fileData.File;
             var contentType = file.ContentType;
@@ -369,9 +370,11 @@ namespace CarHub.Domain.Services
             }
         }
 
-        public List<InventoryViewModel> GetAllInventoryItems()
+        public List<InventoryViewModel> GetAllInventoryItems(bool filterSold = false)
         {
-            var inventoryItems = _inventoryRepository.GetAllInventoryItems();
+            var inventoryItems = filterSold
+                ? _inventoryRepository.GetUnSoldInventoryItems()
+                : _inventoryRepository.GetAllInventoryItems();
             var inventoryViewModelItems = new List<InventoryViewModel>();
 
             inventoryItems.ForEach(inventoryItem =>
@@ -426,5 +429,8 @@ namespace CarHub.Domain.Services
             _repairRepository.DeleteRepairDetailsByCarId(carId.ToString());
             _mediaRepository.DeleteMediaFromInventory(inventoryId);
         }
+
+        public List<InventoryItemSummary> GetInventoryItemSummary(List<InventoryViewModel> inventoryViewModel)
+        { return _mapper.Map<List<InventoryItemSummary>>(inventoryViewModel); }
     }
 }

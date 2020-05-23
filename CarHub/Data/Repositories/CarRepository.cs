@@ -27,7 +27,7 @@ namespace CarHub.Data.Repositories
             if(id == null)
                 return null;
 
-            return _context.Cars.Where(c => c.Id.ToString() == id).FirstOrDefault();
+            return _context.Cars.Where(c => c.Id.ToString().Equals(id)).FirstOrDefault();
         }
 
         public Guid? AddNewCar(Car carObj)
@@ -45,7 +45,7 @@ namespace CarHub.Data.Repositories
 
         public void DeleteCarById(string id)
         {
-            var carToRemove = _context.Cars.Where(x => x.Id.ToString() == id).FirstOrDefault();
+            var carToRemove = _context.Cars.Where(x => x.Id.ToString().Equals(id)).FirstOrDefault();
             _context.Cars.Remove(carToRemove);
             _context.SaveChanges();
         }

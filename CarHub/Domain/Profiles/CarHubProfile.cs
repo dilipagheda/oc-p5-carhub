@@ -112,6 +112,14 @@ namespace CarHub.Domain.Profiles
             CreateMap<Car, Car>();
             CreateMap<Inventory, Inventory>();
             CreateMap<Repair, Repair>().ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            CreateMap<InventoryViewModel, InventoryItemSummary>()
+                .ForMember(dest => dest.InventoryId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.TotalCost))
+                .ForMember(dest => dest.HeadLine,
+                           opt => opt.MapFrom(src => $"{src.CarMakeName} {src.CarModelName} {src.TrimName}"))
+                .ForMember(dest => dest.Image,
+                           opt => opt.MapFrom(src => src.AllImages != null ? src.AllImages[0] : null));
         }
     }
 }
