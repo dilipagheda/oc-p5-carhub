@@ -48,9 +48,6 @@ namespace CarHub.Data.Repositories
             }
         }
 
-        public IEnumerable<CarMake> FindCarMakeBySearchPhrase(string searchPhrase)
-        { return _context.CarMakes.Where(c => c.MakeName.ToLower().StartsWith(searchPhrase)).ToList(); }
-
         public string GetCarMakeNameById(int id)
         { return _context.CarMakes.Where(x => x.Id == id).Select(x => x.MakeName).FirstOrDefault(); }
     }
