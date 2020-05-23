@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 
 @{
-    var viewModel = ViewBag.RecentItemsList;
+    var viewModel = (List<InventoryItemSummary>)ViewBag.RecentItemsList;
     var controller = ViewContext.RouteData.Values["controller"];
 
 }
@@ -129,7 +129,7 @@
 
     @RenderBody()
 
-    @if (controller!= null && controller.ToString() == "Home")
+    @if (controller != null && controller.ToString() == "Home")
     {
         <!-- Footer start -->
         <footer class="footer">
@@ -160,47 +160,28 @@
                         <div class="footer-item clearfix">
                             <div class="recent-posts">
                                 <h4>Recent Cars</h4>
-                                <div class="media mb-4">
-                                    <a class="pr-3" href="car-details.html">
-                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                    </a>
-                                    <div class="media-body align-self-center">
-                                        <h5>
-                                            <a href="car-details.html">@viewModel</a>
-                                        </h5>
-                                        <div class="listing-post-meta">
-                                            $345,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2020</a>
+                                @foreach (var item in viewModel)
+                                {
+                                    var imagePath = "http://placehold.it/60x60";
+                                    if (item.Image != null)
+                                    {
+                                        imagePath = $"/uploads/img/{item.Image}";
+                                    }
+                                    <div class="media mb-4">
+                                        <a class="pr-3" asp-action="ViewDetails" asp-controller="Home" asp-route-id="@item.InventoryId">
+                                            <img class="media-object" src=@imagePath alt="small-car">
+                                        </a>
+                                        <div class="media-body align-self-center">
+                                            <h5>
+                                                <a asp-action="ViewDetails" asp-controller="Home" asp-route-id="@item.InventoryId">@item.HeadLine</a>
+                                            </h5>
+                                            <div class="listing-post-meta">
+                                                @item.Price
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="media mb-4">
-                                    <a class="pr-3" href="car-details.html">
-                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                    </a>
-                                    <div class="media-body align-self-center">
-                                        <h5>
-                                            <a href="car-details.html">Fiat Punto Red</a>
-                                        </h5>
-                                        <div class="listing-post-meta">
-                                            $745,00 | <a href="#"><i class="fa fa-calendar"></i>Feb 26, 2020</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a class="pr-3" href="car-details.html">
-                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                    </a>
-                                    <div class="media-body align-self-center">
-                                        <h5>
-                                            <a href="car-details.html">Nissan Micra Gen5</a>
-                                        </h5>
-                                        <div class="listing-post-meta">
-                                            $745,00 | <a href="#"><i class="fa fa-calendar"></i> Feb 14, 2020</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
-
                         </div>
                     </div>
                 </div>
