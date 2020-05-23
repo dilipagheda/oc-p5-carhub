@@ -1,7 +1,4 @@
 ﻿$(document).ready(function () {
-    $(document).ready(function () {
-        $('footer').empty();
-    });
 
     $("#RegoExpiryDate").datepicker({
         appendText: "(dd-mm-yyyy)",

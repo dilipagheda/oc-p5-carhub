@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    var viewModel = ViewBag.RecentItemsList;
+    var controller = ViewContext.RouteData.Values["controller"];
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Car House - Your local used car dealer</title>
@@ -64,12 +73,21 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-5">
                     <ul class="top-social-media pull-right">
-                        <li>
-                            <a href="login.html" class="sign-in"><i class="fa fa-sign-in"></i> Login</a>
-                        </li>
-                        <li>
-                            <a href="signup.html" class="sign-in"><i class="fa fa-user"></i> Register</a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+
+                                <form asp-page="/Account/Logout" asp-area="Identity">
+                                    <button type="submit" class="sign-in btn btn-link"><i class="fa fa-sign-out"></i> Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-page="/Account/Login" asp-area="Identity" class="sign-in"><i class="fa fa-sign-in"></i> Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -81,7 +99,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand company-logo-2" href="index.html">
-                    <img src="~/img/black-logo.png" alt="logo"/>
+                    <img src="~/img/black-logo.png" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
@@ -93,11 +111,14 @@
                                 Home
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" asp-action="Index" asp-controller="Admin">
-                                Admin
-                            </a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" asp-action="Index" asp-controller="Admin">
+                                    Admin
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </nav>
@@ -108,112 +129,104 @@
 
     @RenderBody()
 
-    <!-- Footer start -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer-item clearfix">
-                        <h4>
-                            Contact Info
-                        </h4>
-                        <ul class="contact-info">
-                            <li>
-                                <i class="flaticon-pin"></i>20/F Green Road, Castle Hill, Sydney
-                            </li>
-                            <li>
-                                <i class="flaticon-mail"></i><a href="mailto:sales@hotelempire.com">info@carhouse.com</a>
-                            </li>
-                            <li>
-                                <i class="flaticon-phone"></i><a href="tel:+55-417-634-7071">+0477 85X6 552</a>
-                            </li>
-                            <li>
-                                <i class="flaticon-fax"></i>+0024 85X6 987
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-                    <div class="footer-item">
-                        <h4>
-                            Useful Links
-                        </h4>
-                        <ul class="links">
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Home</a>
-                            </li>
-                            <li>
-                                <a href="about.html"><i class="fa fa-angle-right"></i>About Us</a>
-                            </li>
-                            <li>
-                                <a href="car-list-rightside.html"><i class="fa fa-angle-right"></i>Car Listing</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="footer-item clearfix">
-                        <div class="recent-posts">
-                            <h4>Recent Cars</h4>
-                            <div class="media mb-4">
-                                <a class="pr-3" href="car-details.html">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                </a>
-                                <div class="media-body align-self-center">
-                                    <h5>
-                                        <a href="car-details.html">Bentley Continental GT</a>
-                                    </h5>
-                                    <div class="listing-post-meta">
-                                        $345,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2020</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media mb-4">
-                                <a class="pr-3" href="car-details.html">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                </a>
-                                <div class="media-body align-self-center">
-                                    <h5>
-                                        <a href="car-details.html">Fiat Punto Red</a>
-                                    </h5>
-                                    <div class="listing-post-meta">
-                                        $745,00 | <a href="#"><i class="fa fa-calendar"></i>Feb 26, 2020</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="pr-3" href="car-details.html">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
-                                </a>
-                                <div class="media-body align-self-center">
-                                    <h5>
-                                        <a href="car-details.html">Nissan Micra Gen5</a>
-                                    </h5>
-                                    <div class="listing-post-meta">
-                                        $745,00 | <a href="#"><i class="fa fa-calendar"></i> Feb 14, 2020</a>
-                                    </div>
-                                </div>
-                            </div>
+    @if (controller!= null && controller.ToString() == "Home")
+    {
+        <!-- Footer start -->
+        <footer class="footer">
+            <div class="container footer-inner">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-item clearfix">
+                            <h4>
+                                Contact Info
+                            </h4>
+                            <ul class="contact-info">
+                                <li>
+                                    <i class="flaticon-pin"></i>20/F Green Road, Castle Hill, Sydney
+                                </li>
+                                <li>
+                                    <i class="flaticon-mail"></i><a href="mailto:sales@hotelempire.com">info@carhouse.com</a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-phone"></i><a href="tel:+55-417-634-7071">+0477 85X6 552</a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-fax"></i>+0024 85X6 987
+                                </li>
+                            </ul>
                         </div>
-
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer-item clearfix">
-                        <h4>Subscribe</h4>
-                        <div class="subscribe-box">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                            <form class="form-inline" action="#" method="GET">
-                                <input type="text" class="form-control mb-sm-0" id="inlineFormInputName3" placeholder="Email Address">
-                                <button type="submit" class="btn">Subscribe</button>
-                            </form>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-item">
+                            <h4>
+                                Useful Links
+                            </h4>
+                            <ul class="links">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-right"></i>Home</a>
+                                </li>
+                                <li>
+                                    <a href="about.html"><i class="fa fa-angle-right"></i>About Us</a>
+                                </li>
+                                <li>
+                                    <a href="car-list-rightside.html"><i class="fa fa-angle-right"></i>Car Listing</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer-item clearfix">
+                            <div class="recent-posts">
+                                <h4>Recent Cars</h4>
+                                <div class="media mb-4">
+                                    <a class="pr-3" href="car-details.html">
+                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <h5>
+                                            <a href="car-details.html">@viewModel</a>
+                                        </h5>
+                                        <div class="listing-post-meta">
+                                            $345,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2020</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mb-4">
+                                    <a class="pr-3" href="car-details.html">
+                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <h5>
+                                            <a href="car-details.html">Fiat Punto Red</a>
+                                        </h5>
+                                        <div class="listing-post-meta">
+                                            $745,00 | <a href="#"><i class="fa fa-calendar"></i>Feb 26, 2020</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <a class="pr-3" href="car-details.html">
+                                        <img class="media-object" src="http://placehold.it/60x60" alt="small-car">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <h5>
+                                            <a href="car-details.html">Nissan Micra Gen5</a>
+                                        </h5>
+                                        <div class="listing-post-meta">
+                                            $745,00 | <a href="#"><i class="fa fa-calendar"></i> Feb 14, 2020</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- Footer end -->
+        </footer>
+        <!-- Footer end -->
+
+    }
 
 
     <script src="~/js/jquery-2.2.0.min.js"></script>
