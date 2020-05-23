@@ -160,3 +160,8 @@ th{
     max-height:none !important;
     height:auto !important;
 }
+
+.recent-posts img{
+    width:60px;
+    height:60px;
+}
