@@ -31,9 +31,22 @@ namespace CarHub.Domain.Profiles
             CreateMap<Car, InventoryViewModel>()
                 .ForMember(dest => dest.RegoExpiryDate,
                            opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.RegoExpiry)))
+                .ForMember(dest => dest.CarMakeName, opt => opt.MapFrom(src => src.CarMake.MakeName))
+                .ForMember(dest => dest.CarModelName, opt => opt.MapFrom(src => src.CarModel.ModelName))
+                .ForMember(dest => dest.BodyTypeName, opt => opt.MapFrom(src => src.BodyType.BodyTypeName))
+                .ForMember(dest => dest.FuelTypeName, opt => opt.MapFrom(src => src.FuelType.FuelTypeName))
+                .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.Color.ColorName))
+                .ForMember(dest => dest.TrimName, opt => opt.MapFrom(src => src.Trim.TrimName))
+                .ForMember(dest => dest.DriveTypeName, opt => opt.MapFrom(src => src.DriveType.DriveTypeName))
                 .ReverseMap()
-                .ForPath(dest => dest.RegoExpiry, opt => opt.MapFrom(src => DateTime.Parse(src.RegoExpiryDate)));
-
+                .ForPath(dest => dest.RegoExpiry, opt => opt.MapFrom(src => DateTime.Parse(src.RegoExpiryDate)))
+                .ForPath(dest => dest.CarMake, opt => opt.Ignore())
+                .ForPath(dest => dest.CarModel, opt => opt.Ignore())
+                .ForPath(dest => dest.BodyType, opt => opt.Ignore())
+                .ForPath(dest => dest.FuelType, opt => opt.Ignore())
+                .ForPath(dest => dest.Color, opt => opt.Ignore())
+                .ForPath(dest => dest.Trim, opt => opt.Ignore())
+                .ForPath(dest => dest.DriveType, opt => opt.Ignore());
 
             CreateMap<Inventory, InventoryViewModel>()
                 .ForMember(dest => dest.PurchaseDate,
