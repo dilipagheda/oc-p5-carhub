@@ -14,7 +14,6 @@
             loading: "Loading ..."
         },
         onFinished: function (event, currentIndex) {
-            alert("onFinished")
             $("#manage-car-form").submit();
         },
 

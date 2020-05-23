@@ -23,7 +23,6 @@
     }
 
     function handleSuccess(responseText, statusText, xhr, $form) {
-        alert("success");
         let inventoryId = responseText.inventoryId;
         uppy.setMeta({ InventoryId: inventoryId })
         uppy.upload().then((result) => {
@@ -43,9 +42,6 @@
 
     // bind to the form's submit event
     $('#manage-car-form').submit(function (e) {
-        //e.stopImmediatePropagation();
-        //e.preventDefault();
-        alert("#manage-car-form submit");
         //validate fields
         if (uppy.getFiles().length === 0) {
             $('#upload-image-validation').text('You have to select at least 1 file')
