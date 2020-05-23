@@ -57,8 +57,6 @@
         console.log('failed files:', result.failed)
     });
     //UPPY END////
-    //uppy.getPlugin('Url')
-    //    .addFile('uploads/img/f9b615838fcc4972b5fcb2a5ebb9dd05.jpg')
 
     if (allImageData) {
         allImageData.forEach(image => {
