@@ -1,0 +1,142 @@
+﻿@model InventoryViewModel
+
+@{
+    ViewData["Title"] = "View Details";
+}
+
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Car Details</h1>
+            <ul class="breadcrumbs">
+                <li><a asp-action="Index">Home</a></li>
+                <li class="active">Car Details</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+<!-- Car details page start -->
+<div class="car-details-page content-area-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="car-details-section">
+                    <!-- Heading start -->
+                    <div class="heading-car clearfix">
+                        <div class="pull-left">
+                            <h3>@Model.CarMakeName @Model.CarModelName</h3>
+                        </div>
+                        <div class="pull-right">
+                            <h3><span>@Model.TotalCost</span></h3>
+                        </div>
+                    </div>
+                    <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40">
+                        <!-- main slider carousel items -->
+                        <div class="carousel-inner">
+                            @{
+                                var index = 0;
+                            }
+                            @foreach (var image in Model.AllImages)
+                            {
+                                var path = $"/uploads/img/{image}";
+                                if (index == 0)
+                                {
+                                    <div class="active item carousel-item" data-slide-number="@index">
+                                        <img src="@path" class="img-fluid" alt="slider-car">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item carousel-item" data-slide-number="@index">
+                                        <img src="@path" class="img-fluid" alt="slider-car">
+                                    </div>
+                                }
+                                index++;
+                            }
+                        </div>
+                        <!-- main slider carousel nav controls -->
+                        <div class="carousel-indicators-section clearfix">
+                            <ul class="carousel-indicators car-properties list-inline nav nav-justified">
+                                @{
+                                    index = 0;
+                                }
+                                @foreach (var image in Model.AllImages)
+                                {
+                                    var path = $"/uploads/img/{image}";
+                                    if (index == 0)
+                                    {
+                                        <li class="list-inline-item active">
+                                            <a id="carousel-selector-0" class="selected" data-slide-to="@index" data-target="#carDetailsSlider">
+                                                <img src="@path" class="img-fluid" alt="small-car">
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-inline-item">
+                                            <a id="carousel-selector-1" data-slide-to="@index" data-target="#carDetailsSlider">
+                                                <img src="@path" class="img-fluid" alt="small-car">
+                                            </a>
+                                        </li>
+                                    }
+                                    index++;
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="car-description mb-50">
+                        <h3 class="heading-2">
+                            Description
+                        </h3>
+                        <p>@Model.Description</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+                    <div class="widget advanced-search d-none-992">
+                        <h3 class="sidebar-title">Car Features</h3>
+                        <ul>
+                            <li>
+                                <span>Trim:</span>@Model.TrimName
+                            </li>
+                            <li>
+                                <span>Body Style:</span>@Model.BodyTypeName
+                            </li>
+                            <li>
+                                <span>Cylinders:</span>@Model.NoOfCylinders
+                            </li>
+                            <li>
+                                <span>Transmission:</span>@Model.TransmissionTypeToDisplay
+                            </li>
+                            <li>
+                                <span>Drivetrain:</span>@Model.DriveTypeName
+                            </li>
+                            <li>
+                                <span>Color:</span>@Model.ColorName
+                            </li>
+                            <li>
+                                <span>Kms:</span>@Model.Kms
+                            </li>
+                            <li>
+                                <span>Doors:</span>@Model.NoOfDoors
+                            </li>
+                            <li>
+                                <span>Seats:</span>@Model.NoOfSeats
+                            </li>
+                            <li>
+                                <span>Fuel Type:</span>@Model.FuelTypeName
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Properties details page end -->
