@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="carousel-item banner-max-height item-bg">
-                <img class="d-block w-100 h-100" style="object-fit:cover" src="~/img/static/car-3.jpg"  alt="banner">
+                <img class="d-block w-100 h-100" style="object-fit:cover" src="~/img/static/car-3.jpg" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-l">
                     <h3>We Are Wheel</h3>
                     <h5>
@@ -49,8 +49,6 @@
     </div>
 </div>
 <!-- Banner end -->
-
-
 <!-- Featured car start -->
 <div class="featured-car content-area">
     <div class="container">
@@ -90,29 +88,27 @@
                         <div class="row">
                             <div class="col-lg-5 col-md-12 col-pad">
                                 <div class="car-thumbnail">
-                                    <a href="car-details.html" class="car-img">
-                                        <div class="tag">For Sale</div>
-                                        <div class="price-box">
-                                            <span class="del"><del>@item.TotalCostBeforeDiscount</del></span>
-                                            <br>
-                                            <span>@item.TotalCost</span>
-                                        </div>
-                                        @{
+                                    <div class="tag">For Sale</div>
+                                    <div class="price-box">
+                                        <span class="del"><del>@item.TotalCostBeforeDiscount</del></span>
+                                        <br>
+                                        <span>@item.TotalCost</span>
+                                    </div>
+                                    @{
 
-                                            var imageFileName = "http://placehold.it/475x332";
-                                            if (item.AllImages.Count > 0)
-                                            {
-                                                imageFileName = $"/uploads/img/{item.AllImages[0]}";
-                                            }
+                                        var imageFileName = "http://placehold.it/475x332";
+                                        if (item.AllImages.Count > 0)
+                                        {
+                                            imageFileName = $"/uploads/img/{item.AllImages[0]}";
                                         }
-                                        <img class="d-block w-100" src="@imageFileName" alt="car image" />
-                                    </a>
+                                    }
+                                    <img class="d-block w-100" src="@imageFileName" alt="car image" />
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-12 col-pad align-self-center">
                                 <div class="detail">
                                     <h3 class="title">
-                                        <a href="car-details.html">@item.CarMakeName @item.CarModelName <span class="trim-name-view">@item.TrimName</span></a>
+                                        <a asp-action="ViewDetails" asp-route-id="@item.Id">@item.CarMakeName @item.CarModelName <span class="trim-name-view">@item.TrimName</span></a>
                                     </h3>
                                     <p>@item.Description</p>
                                     <ul class="facilities-list clearfix">
