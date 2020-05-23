@@ -17,5 +17,7 @@ namespace CarHub.Data.Repositories.Interfaces
         public List<Inventory> GetAllInventoryItems();
 
         public void DeleteInventoryById(string inventoryId);
+
+        public List<Inventory> GetUnSoldInventoryItems();
     }
 }

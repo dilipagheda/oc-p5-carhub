@@ -15,18 +15,25 @@ namespace CarHub.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
         private readonly IInventoryService _inventoryService;
 
         public HomeController(ILogger<HomeController> logger, IInventoryService inventoryService)
         {
             _logger = logger;
+
             _inventoryService = inventoryService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var currentInventoryList = _inventoryService.GetAllInventoryItems();
+            var currentInventoryList = _inventoryService.GetAllInventoryItems(true);
+
+            List<InventoryItemSummary> inventoryItemSummary = _inventoryService.GetInventoryItemSummary(currentInventoryList);
+
+            this.ViewData["RecentItemsList"] = inventoryItemSummary.Take(3).ToList();
+
             return View(currentInventoryList);
         }
 
@@ -34,6 +41,13 @@ namespace CarHub.Controllers
         public IActionResult ViewDetails(string id)
         {
             var inventoryItem = _inventoryService.GetInventoryById(id);
+
+            var currentInventoryList = _inventoryService.GetAllInventoryItems(true);
+
+            List<InventoryItemSummary> inventoryItemSummary = _inventoryService.GetInventoryItemSummary(currentInventoryList);
+
+            this.ViewData["RecentItemsList"] = inventoryItemSummary.Take(3).ToList();
+
             return View(inventoryItem);
         }
 
@@ -43,12 +57,14 @@ namespace CarHub.Controllers
         public JsonResult CarModelsByMake(int id)
         {
             var carModels = _inventoryService.GetAllCarModelsByMake(id);
+
             return new JsonResult(carModels);
         }
 
         public JsonResult TrimsByModel([FromQuery]int modelId)
         {
             var trims = _inventoryService.GetAllTrimsByModel(modelId);
+
             return new JsonResult(trims);
         }
 

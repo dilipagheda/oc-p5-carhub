@@ -61,7 +61,17 @@ namespace CarHub.Data.Repositories
                 .FirstOrDefault();
         }
 
-        public List<Inventory> GetAllInventoryItems() { return _context.InventoryList.Include(x => x.Car).ToList(); }
+        public List<Inventory> GetAllInventoryItems()
+        { return _context.InventoryList.Include(x => x.Car).Include(x => x.InventoryStatus).ToList(); }
+
+        public List<Inventory> GetUnSoldInventoryItems()
+        {
+            return _context.InventoryList
+                .Where(x => x.InventoryStatus.Status != "Sold")
+                .Include(x => x.Car)
+                .Include(x => x.InventoryStatus)
+                .ToList();
+        }
 
         public void DeleteInventoryById(string inventoryId)
         {

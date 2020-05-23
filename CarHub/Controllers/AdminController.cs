@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CarHub.Controllers
@@ -24,7 +25,7 @@ namespace CarHub.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var currentInventoryList = _inventoryService.GetAllInventoryItems();
+            var currentInventoryList = _inventoryService.GetAllInventoryItems(false);
             return View(currentInventoryList);
         }
 
@@ -74,7 +75,7 @@ namespace CarHub.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadFileAsync(FileData fileData)
         {
-            await _inventoryService.AddNewMediaToInventoryAsync(fileData);
+            await _inventoryService.AddNewMediaToInventoryAsync(fileData, CancellationToken.None);
 
             return Ok(true);
         }
