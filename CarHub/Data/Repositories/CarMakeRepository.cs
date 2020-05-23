@@ -3,47 +3,45 @@ using CarHub.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CarHub.Data.Repositories
 {
-    public class CarMakeRepository: ICarMakeRepository
+    public class CarMakeRepository : ICarMakeRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public CarMakeRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public CarMakeRepository(ApplicationDbContext context) { _context = context; }
 
-        public IEnumerable<CarMake> GetAllCarMakes()
-        {
-            return _context.CarMakes.ToList();
-        }
+        public IEnumerable<CarMake> GetAllCarMakes() { return _context.CarMakes.ToList(); }
 
-        public void AddNewCarMake(CarMake carMakeObj)
+        public int ManageCarMake(CarMake carMakeObj)
         {
             if(carMakeObj != null)
             {
-                _context.CarMakes.Add(carMakeObj);
-                _context.SaveChanges();
-            }
-        }
-
-        public void UpdateCarMake(int id, string carMakeName)
-        {
-            CarMake carMakeObj =_context.CarMakes.Find(id);
-            if(carMakeObj != null)
+                var existingCarMake = _context.CarMakes
+                    .Where(x => x.MakeName.ToLower().Equals(carMakeObj.MakeName.ToLower()))
+                    .FirstOrDefault();
+                if(existingCarMake != null)
+                {
+                    existingCarMake.MakeName = carMakeObj.MakeName;
+                    _context.SaveChanges();
+                    return existingCarMake.Id;
+                } else
+                {
+                    _context.CarMakes.Add(carMakeObj);
+                    _context.SaveChanges();
+                    return carMakeObj.Id;
+                }
+            } else
             {
-                carMakeObj.MakeName = carMakeName;
-                _context.SaveChanges();
+                return 0;
             }
         }
 
         public void DeleteCarMake(int id)
         {
             CarMake carMakeObj = _context.CarMakes.Find(id);
-            if (carMakeObj != null)
+            if(carMakeObj != null)
             {
                 _context.CarMakes.Remove(carMakeObj);
                 _context.SaveChanges();
@@ -51,8 +49,9 @@ namespace CarHub.Data.Repositories
         }
 
         public IEnumerable<CarMake> FindCarMakeBySearchPhrase(string searchPhrase)
-        {
-            return _context.CarMakes.Where(c => c.MakeName.ToLower().StartsWith(searchPhrase)).ToList();
-        }
+        { return _context.CarMakes.Where(c => c.MakeName.ToLower().StartsWith(searchPhrase)).ToList(); }
+
+        public string GetCarMakeNameById(int id)
+        { return _context.CarMakes.Where(x => x.Id == id).Select(x => x.MakeName).FirstOrDefault(); }
     }
 }

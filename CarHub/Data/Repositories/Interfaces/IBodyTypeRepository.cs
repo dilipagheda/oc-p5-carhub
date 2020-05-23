@@ -9,5 +9,9 @@ namespace CarHub.Data.Repositories.Interfaces
     public interface IBodyTypeRepository
     {
         public List<BodyType> GetAllBodyTypes();
+
+        public string GetBodyTypeById(int id);
+
+        public int ManageBodyType(BodyType bodyTypeObj);
     }
 }

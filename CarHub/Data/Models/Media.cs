@@ -7,9 +7,12 @@ namespace CarHub.Data.Models
 {
     public class Media
     {
-        public int Id { get; set; }
-        public char MediaType { get; set; }
-        public string MediaName { get; set; }
+        public Guid Id { get; set; }
+
+        public string ContentType { get; set; }
+
+        public string FileName { get; set; }
+
         public string Caption { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace CarHub.Data.Models
     public class InventoryStatus
     {
         public int Id { get; set; }
+
         public string Status { get; set; }
     }
 }

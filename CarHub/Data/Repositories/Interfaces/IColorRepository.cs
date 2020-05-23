@@ -9,5 +9,9 @@ namespace CarHub.Data.Repositories.Interfaces
     public interface IColorRepository
     {
         public List<Color> GetAllColors();
+
+        public string GetColorById(int id);
+
+        public int ManageColor(Color colorObj);
     }
 }

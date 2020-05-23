@@ -28,8 +28,13 @@ namespace CarHub.Controllers
         {
             var currentInventoryList = _inventoryService.GetAllInventoryItems();
             return View(currentInventoryList);
+        }
 
-            //return RedirectToAction("AddNewInventory", "Admin");
+        [HttpGet]
+        public IActionResult ViewDetails(string id)
+        {
+            var inventoryItem = _inventoryService.GetInventoryById(id);
+            return View(inventoryItem);
         }
 
         [HttpPost]

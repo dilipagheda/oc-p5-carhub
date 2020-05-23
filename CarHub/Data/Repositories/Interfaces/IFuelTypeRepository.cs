@@ -10,5 +10,8 @@ namespace CarHub.Data.Repositories.Interfaces
     {
         public List<FuelType> GetAllFuelTypes();
 
+        public string GetFuelTypeById(int id);
+
+        public int ManageFuelType(FuelType fuelTypeObj);
     }
 }

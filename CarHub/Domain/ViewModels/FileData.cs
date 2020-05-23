@@ -11,6 +11,7 @@ namespace CarHub.Domain.ViewModels
     public class FileData
     {
         public IFormFile File { get; set; }
+
         public string InventoryId { get; set; }
     }
 }

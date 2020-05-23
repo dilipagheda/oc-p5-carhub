@@ -8,6 +8,7 @@ namespace CarHub.Data.Models
     public class PurchaseType
     {
         public int Id { get; set; }
+
         public string PurchaseTypeName { get; set; }
     }
 }

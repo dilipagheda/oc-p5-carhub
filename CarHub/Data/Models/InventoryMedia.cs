@@ -7,11 +7,14 @@ namespace CarHub.Data.Models
 {
     public class InventoryMedia
     {
-        public Guid CarId { get; set; }
-        public Car Car { get; set; }
-        public int MediaId { get; set; }
-        public Media Media { get; set; }
-        public bool IsCoverMedia { get; set; }
+        public Guid InventoryId { get; set; }
 
+        public Inventory Inventory { get; set; }
+
+        public Guid MediaId { get; set; }
+
+        public Media Media { get; set; }
+
+        public bool IsCoverMedia { get; set; }
     }
 }

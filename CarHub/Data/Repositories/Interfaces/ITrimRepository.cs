@@ -9,5 +9,9 @@ namespace CarHub.Data.Repositories.Interfaces
     public interface ITrimRepository
     {
         public List<Trim> GetAllTrimsByModel(int modelId);
+
+        public string GetTrimById(int id);
+
+        public int ManageTrim(Trim trimObj);
     }
 }

@@ -9,5 +9,9 @@ namespace CarHub.Data.Repositories.Interfaces
     public interface IDriveTypeRepository
     {
         public List<DriveType> GetAllDriveTypes();
+
+        public string GetDriveTypeById(int id);
+
+        public int ManageDriveType(DriveType driveTypeObj);
     }
 }

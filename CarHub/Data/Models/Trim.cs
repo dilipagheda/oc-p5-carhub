@@ -8,8 +8,9 @@ namespace CarHub.Data.Models
     public class Trim
     {
         public int Id { get; set; }
+
         public string TrimName { get; set; }
-        public int CarModelId { get; set; }
-        public CarModel CarModel { get; set; }
+
+        public List<Car> Cars { get; set; }
     }
 }
