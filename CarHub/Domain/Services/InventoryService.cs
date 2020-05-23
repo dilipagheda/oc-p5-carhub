@@ -194,7 +194,9 @@ namespace CarHub.Domain.Services
         {
             var car = _mapper.Map<Car>(inventoryViewModel);
 
-            var inventory = _inventoryRepository.GetInventoryDetailsById(inventoryViewModel.Id.ToString());
+            var inventoryId = inventoryViewModel.Id.ToString();
+
+            var inventory = _inventoryRepository.GetInventoryDetailsById(inventoryId);
 
             if(inventory == null)
                 return false;
@@ -262,6 +264,8 @@ namespace CarHub.Domain.Services
 
             _repairRepository.EditRepair(carId, repairDetails);
 
+            RemoveExistingFiles(inventoryId);
+
             return true;
         }
 
@@ -326,6 +330,7 @@ namespace CarHub.Domain.Services
                 inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
                 inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
 
+
                 inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(id);
                 return inventoryViewModel;
             }
@@ -333,7 +338,6 @@ namespace CarHub.Domain.Services
 
         public async Task AddNewMediaToInventoryAsync(FileData fileData)
         {
-            RemoveExistingFiles(fileData.InventoryId);
             var uploads = Path.Combine(_appEnvironment.WebRootPath, "uploads\\img");
             var file = fileData.File;
             var contentType = file.ContentType;
