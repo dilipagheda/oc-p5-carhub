@@ -24,10 +24,6 @@ namespace CarHub.Data.Repositories
         {
             if(inventory != null)
             {
-                //_context.Entry(inventory.PurchaseType).State = EntityState.Unchanged;
-                //_context.Entry(inventory.InventoryStatus).State = EntityState.Unchanged;
-                //_context.Entry(inventory.Car).State = EntityState.Unchanged;
-
                 _context.InventoryList.Add(inventory);
                 _context.SaveChanges();
                 return inventory.Id;
@@ -88,7 +84,7 @@ namespace CarHub.Data.Repositories
 
             if(inventoryToUpdate != null)
             {
-                _mapper.Map(inventory, inventoryToUpdate);
+                _mapper.Map(inventory, inventoryToUpdate, typeof(Inventory), typeof(Inventory));
                 _context.Entry(inventoryToUpdate).State = EntityState.Modified;
                 _context.SaveChanges();
             }

@@ -12,12 +12,16 @@ namespace CarHub.Domain.ViewModels
     {
         public Guid Id { get; set; }
 
+        public Guid CarId { get; set; }
+
         [DisplayName("Make")]
         public int CarMakeId { get; set; }
 
         public SelectList CarMakes { get; set; }
 
         public string CarMakeName { get; set; }
+
+        public string NewCarMakeName { get; set; }
 
         [DisplayName("Model")]
         public int CarModelId { get; set; }
@@ -26,12 +30,16 @@ namespace CarHub.Domain.ViewModels
 
         public string CarModelName { get; set; }
 
+        public string NewCarModelName { get; set; }
+
         [DisplayName("Trim")]
         public int TrimId { get; set; }
 
         public SelectList Trims { get; set; }
 
         public string TrimName { get; set; }
+
+        public string NewTrimName { get; set; }
 
         [DisplayName("Year")]
         public int Year { get; set; }
@@ -43,6 +51,8 @@ namespace CarHub.Domain.ViewModels
         public SelectList BodyTypes { get; set; }
 
         public string BodyTypeName { get; set; }
+
+        public string NewBodyTypeName { get; set; }
 
         public int Kms { get; set; }
 
@@ -59,6 +69,8 @@ namespace CarHub.Domain.ViewModels
 
         public string ColorName { get; set; }
 
+        public string NewColorName { get; set; }
+
         public SelectList Colors { get; set; }
 
         public int NoOfSeats { get; set; }
@@ -72,12 +84,16 @@ namespace CarHub.Domain.ViewModels
 
         public string DriveTypeName { get; set; }
 
+        public string NewDriveTypeName { get; set; }
+
         public SelectList DriveTypes { get; set; }
 
         [DisplayName("Fuel Type")]
         public int FuelTypeId { get; set; }
 
         public string FuelTypeName { get; set; }
+
+        public string NewFuelTypeName { get; set; }
 
         public SelectList FuelTypes { get; set; }
 
@@ -89,6 +105,8 @@ namespace CarHub.Domain.ViewModels
         public int PurchaseTypeId { get; set; }
 
         public string PurchaseTypeName { get; set; }
+
+        public string NewPurchaseTypeName { get; set; }
 
         public SelectList PurchaseTypes { get; set; }
 

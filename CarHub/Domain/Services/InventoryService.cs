@@ -119,56 +119,23 @@ namespace CarHub.Domain.Services
             return colorsViewModel;
         }
 
+        private Car NullifyDependantEntities(Car car)
+        {
+            car.FuelType = null;
+            car.CarMake = null;
+            car.CarModel = null;
+            car.Trim = null;
+            car.Color = null;
+            car.BodyType = null;
+            car.DriveType = null;
+            return car;
+        }
+
         public Guid? AddNewInventory(InventoryViewModel inventoryViewModel)
         {
             var car = _mapper.Map<Car>(inventoryViewModel);
-
-            if(inventoryViewModel.CarMakeName != null)
-            {
-                var carMakeId = _carMakeRepository.ManageCarMake(new CarMake()
-                    { MakeName = inventoryViewModel.CarMakeName });
-                car.CarMakeId = carMakeId;
-            }
-
-            if(inventoryViewModel.CarModelName != null)
-            {
-                var carModelId = _carModelRepository.ManageCarModel(new CarModel()
-                    { ModelName = inventoryViewModel.CarModelName });
-                car.CarModelId = carModelId;
-            }
-
-            if(inventoryViewModel.TrimName != null)
-            {
-                var trimId = _trimRepository.ManageTrim(new Trim() { TrimName = inventoryViewModel.TrimName });
-                car.TrimId = trimId;
-            }
-
-            _carRepository.AddMakeModelTrim(car.CarMakeId, car.CarModelId, car.TrimId);
-
-            if(inventoryViewModel.BodyTypeName != null)
-            {
-                var bodyTypeId = _bodyTypeRepository.ManageBodyType(new BodyType()
-                    { BodyTypeName = inventoryViewModel.BodyTypeName });
-                car.BodyTypeId = bodyTypeId;
-            }
-            if(inventoryViewModel.ColorName != null)
-            {
-                var colorId = _colorRepository.ManageColor(new Color() { ColorName = inventoryViewModel.ColorName });
-                car.ColorId = colorId;
-            }
-            if(inventoryViewModel.DriveTypeName != null)
-            {
-                var driveTypeId = _driveTypeRepository.ManageDriveType(new Data.Models.DriveType()
-                    { DriveTypeName = inventoryViewModel.DriveTypeName });
-                car.DriveTypeId = driveTypeId;
-            }
-            if(inventoryViewModel.FuelTypeName != null)
-            {
-                var fuelTypeId = _fuelTypeRepository.ManageFuelType(new Data.Models.FuelType()
-                    { FuelTypeName = inventoryViewModel.FuelTypeName });
-                car.FuelTypeId = fuelTypeId;
-            }
-
+            car = NullifyDependantEntities(car);
+            car = ManageCarAttributes(inventoryViewModel, car);
 
             Guid? newCarId = _carRepository.AddNewCar(car);
 
@@ -177,22 +144,79 @@ namespace CarHub.Domain.Services
                 return null;
             }
 
-            inventoryViewModel.Id = (Guid)newCarId;
+            inventoryViewModel.CarId = (Guid)newCarId;
 
             var inventory = _mapper.Map<Inventory>(inventoryViewModel);
 
+
             Guid? newInventoryId = _inventoryRepository.AddInventory(inventory);
 
+            inventoryViewModel.Id = (Guid)newInventoryId;
+
+
             var repairDetails = _mapper.Map<Repair>(inventoryViewModel);
+            repairDetails.CarId = (Guid)newCarId;
 
             _repairRepository.AddNewRepair(repairDetails);
 
             return newInventoryId;
         }
 
+
+        private Car ManageCarAttributes(InventoryViewModel inventoryViewModel, Car car)
+        {
+            if(inventoryViewModel.NewCarMakeName != null)
+            {
+                var carMakeId = _carMakeRepository.ManageCarMake(new CarMake()
+                    { MakeName = inventoryViewModel.NewCarMakeName });
+                car.CarMakeId = carMakeId;
+            }
+
+            if(inventoryViewModel.NewCarModelName != null)
+            {
+                var carModelId = _carModelRepository.ManageCarModel(new CarModel()
+                    { ModelName = inventoryViewModel.NewCarModelName });
+                car.CarModelId = carModelId;
+            }
+
+            if(inventoryViewModel.NewTrimName != null)
+            {
+                var trimId = _trimRepository.ManageTrim(new Trim() { TrimName = inventoryViewModel.NewTrimName });
+                car.TrimId = trimId;
+            }
+
+            _carRepository.AddMakeModelTrim(car.CarMakeId, car.CarModelId, car.TrimId);
+
+            if(inventoryViewModel.NewBodyTypeName != null)
+            {
+                var bodyTypeId = _bodyTypeRepository.ManageBodyType(new BodyType()
+                    { BodyTypeName = inventoryViewModel.NewBodyTypeName });
+                car.BodyTypeId = bodyTypeId;
+            }
+            if(inventoryViewModel.NewColorName != null)
+            {
+                var colorId = _colorRepository.ManageColor(new Color() { ColorName = inventoryViewModel.NewColorName });
+                car.ColorId = colorId;
+            }
+            if(inventoryViewModel.NewDriveTypeName != null)
+            {
+                var driveTypeId = _driveTypeRepository.ManageDriveType(new Data.Models.DriveType()
+                    { DriveTypeName = inventoryViewModel.NewDriveTypeName });
+                car.DriveTypeId = driveTypeId;
+            }
+            if(inventoryViewModel.NewFuelTypeName != null)
+            {
+                var fuelTypeId = _fuelTypeRepository.ManageFuelType(new Data.Models.FuelType()
+                    { FuelTypeName = inventoryViewModel.NewFuelTypeName });
+                car.FuelTypeId = fuelTypeId;
+            }
+            return car;
+        }
+
         public bool EditInventory(InventoryViewModel inventoryViewModel)
         {
             var car = _mapper.Map<Car>(inventoryViewModel);
+            car = NullifyDependantEntities(car);
 
             var inventoryId = inventoryViewModel.Id.ToString();
 
@@ -204,53 +228,7 @@ namespace CarHub.Domain.Services
             if(inventory.CarId == null || inventory.CarId == Guid.Empty)
                 return false;
 
-
-            if(inventoryViewModel.CarMakeName != null)
-            {
-                var carMakeId = _carMakeRepository.ManageCarMake(new CarMake()
-                    { MakeName = inventoryViewModel.CarMakeName });
-                car.CarMakeId = carMakeId;
-            }
-
-            if(inventoryViewModel.CarModelName != null)
-            {
-                var carModelId = _carModelRepository.ManageCarModel(new CarModel()
-                    { ModelName = inventoryViewModel.CarModelName });
-                car.CarModelId = carModelId;
-            }
-
-            if(inventoryViewModel.TrimName != null)
-            {
-                var trimId = _trimRepository.ManageTrim(new Trim() { TrimName = inventoryViewModel.TrimName });
-                car.TrimId = trimId;
-            }
-
-            _carRepository.AddMakeModelTrim(car.CarMakeId, car.CarModelId, car.TrimId);
-
-            if(inventoryViewModel.BodyTypeName != null)
-            {
-                var bodyTypeId = _bodyTypeRepository.ManageBodyType(new BodyType()
-                    { BodyTypeName = inventoryViewModel.BodyTypeName });
-                car.BodyTypeId = bodyTypeId;
-            }
-            if(inventoryViewModel.ColorName != null)
-            {
-                var colorId = _colorRepository.ManageColor(new Color() { ColorName = inventoryViewModel.ColorName });
-                car.ColorId = colorId;
-            }
-            if(inventoryViewModel.DriveTypeName != null)
-            {
-                var driveTypeId = _driveTypeRepository.ManageDriveType(new Data.Models.DriveType()
-                    { DriveTypeName = inventoryViewModel.DriveTypeName });
-                car.DriveTypeId = driveTypeId;
-            }
-            if(inventoryViewModel.FuelTypeName != null)
-            {
-                var fuelTypeId = _fuelTypeRepository.ManageFuelType(new Data.Models.FuelType()
-                    { FuelTypeName = inventoryViewModel.FuelTypeName });
-                car.FuelTypeId = fuelTypeId;
-            }
-
+            car = ManageCarAttributes(inventoryViewModel, car);
 
             string carId = inventory.CarId.ToString();
 
@@ -273,67 +251,77 @@ namespace CarHub.Domain.Services
         {
             if(id == null)
             {
-                var carMakes = _carMakeRepository.GetAllCarMakes();
-                var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
-                var fuelTypes = _fuelTypeRepository.GetAllFuelTypes();
-                var driveTypes = _driveTypeRepository.GetAllDriveTypes();
-                var purchaseTypes = _purchaseTypeRepository.GetAllPurchaseTypes();
-                var colors = _colorRepository.GetAllColors();
-                var inventoryStatusList = _inventoryStatusRepository.GetAllInventoryStatus();
-
-                var inventoryViewModel = _mapper.Map<InventoryViewModel>(carMakes);
-                inventoryViewModel = _mapper.Map(bodyTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(fuelTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(driveTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(purchaseTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
-                return inventoryViewModel;
+                return PerformMappingWithNoId();
             } else
             {
-                var inventory = _inventoryRepository.GetInventoryDetailsById(id);
-                string carId = inventory.CarId.ToString();
-
-                //find car for this inventory
-                var car = inventory.Car;
-
-                //find repair details for this inventory
-                var repairs = _repairRepository.GetRepairDetailsByCarId(carId);
-
-                //mappings
-                var inventoryViewModel = _mapper.Map<InventoryViewModel>(inventory);
-                inventoryViewModel = _mapper.Map(car, inventoryViewModel);
-
-                if(repairs != null)
-                {
-                    inventoryViewModel = _mapper.Map(repairs, inventoryViewModel);
-                }
-
-                //map all dropdown data
-                var carMakes = _carMakeRepository.GetAllCarMakes();
-                var carModelsbyMake = _carModelRepository.GetAllModelsByMake(car.CarMakeId);
-                var carTrimsByModel = _trimRepository.GetAllTrimsByModel(car.CarModelId);
-                var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
-                var fuelTypes = _fuelTypeRepository.GetAllFuelTypes();
-                var driveTypes = _driveTypeRepository.GetAllDriveTypes();
-                var purchaseTypes = _purchaseTypeRepository.GetAllPurchaseTypes();
-                var colors = _colorRepository.GetAllColors();
-                var inventoryStatusList = _inventoryStatusRepository.GetAllInventoryStatus();
-
-                inventoryViewModel = _mapper.Map(carMakes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(carModelsbyMake, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(carTrimsByModel, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(bodyTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(fuelTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(driveTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(purchaseTypes, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
-                inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
-
-
-                inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(id);
-                return inventoryViewModel;
+                return PerformMappingWithId(id);
             }
+        }
+
+        private InventoryViewModel PerformMappingWithNoId()
+        {
+            var carMakes = _carMakeRepository.GetAllCarMakes();
+            var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
+            var fuelTypes = _fuelTypeRepository.GetAllFuelTypes();
+            var driveTypes = _driveTypeRepository.GetAllDriveTypes();
+            var purchaseTypes = _purchaseTypeRepository.GetAllPurchaseTypes();
+            var colors = _colorRepository.GetAllColors();
+            var inventoryStatusList = _inventoryStatusRepository.GetAllInventoryStatus();
+
+            var inventoryViewModel = _mapper.Map<InventoryViewModel>(carMakes);
+            inventoryViewModel = _mapper.Map(bodyTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(fuelTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(driveTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(purchaseTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
+            return inventoryViewModel;
+        }
+
+        private InventoryViewModel PerformMappingWithId(string id)
+        {
+            var inventory = _inventoryRepository.GetInventoryDetailsById(id);
+            string carId = inventory.CarId.ToString();
+
+            //find car for this inventory
+            var car = inventory.Car;
+
+            //find repair details for this inventory
+            var repairs = _repairRepository.GetRepairDetailsByCarId(carId);
+
+            //mappings
+            var inventoryViewModel = _mapper.Map<InventoryViewModel>(inventory);
+            inventoryViewModel = _mapper.Map(car, inventoryViewModel);
+
+            if(repairs != null)
+            {
+                inventoryViewModel = _mapper.Map(repairs, inventoryViewModel);
+            }
+
+            //map all dropdown data
+            var carMakes = _carMakeRepository.GetAllCarMakes();
+            var carModelsbyMake = _carModelRepository.GetAllModelsByMake(car.CarMakeId);
+            var carTrimsByModel = _trimRepository.GetAllTrimsByModel(car.CarModelId);
+            var bodyTypes = _bodyTypeRepository.GetAllBodyTypes();
+            var fuelTypes = _fuelTypeRepository.GetAllFuelTypes();
+            var driveTypes = _driveTypeRepository.GetAllDriveTypes();
+            var purchaseTypes = _purchaseTypeRepository.GetAllPurchaseTypes();
+            var colors = _colorRepository.GetAllColors();
+            var inventoryStatusList = _inventoryStatusRepository.GetAllInventoryStatus();
+
+            inventoryViewModel = _mapper.Map(carMakes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(carModelsbyMake, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(carTrimsByModel, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(bodyTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(fuelTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(driveTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(purchaseTypes, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(colors, inventoryViewModel);
+            inventoryViewModel = _mapper.Map(inventoryStatusList, inventoryViewModel);
+
+
+            inventoryViewModel.AllImages = _mediaRepository.GetAllMediaFileNamesByInventoryId(id);
+            return inventoryViewModel;
         }
 
         public async Task AddNewMediaToInventoryAsync(FileData fileData, CancellationToken token)

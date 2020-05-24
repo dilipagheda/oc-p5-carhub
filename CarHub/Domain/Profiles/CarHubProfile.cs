@@ -38,8 +38,10 @@ namespace CarHub.Domain.Profiles
                 .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.Color.ColorName))
                 .ForMember(dest => dest.TrimName, opt => opt.MapFrom(src => src.Trim.TrimName))
                 .ForMember(dest => dest.DriveTypeName, opt => opt.MapFrom(src => src.DriveType.DriveTypeName))
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ReverseMap()
                 .ForPath(dest => dest.RegoExpiry, opt => opt.MapFrom(src => DateTime.Parse(src.RegoExpiryDate)))
+                .ForPath(dest => dest.Id, opt => opt.Ignore())
                 .ForPath(dest => dest.CarMake, opt => opt.Ignore())
                 .ForPath(dest => dest.CarModel, opt => opt.Ignore())
                 .ForPath(dest => dest.BodyType, opt => opt.Ignore())
@@ -57,22 +59,25 @@ namespace CarHub.Domain.Profiles
                            opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", src.SaleDate)))
                 .ForMember(dest => dest.SalePrice, opt => opt.MapFrom(src => src.SalePrice))
                 .ForMember(dest => dest.InventoryStatusId, opt => opt.MapFrom(src => src.InventoryStatusId))
+                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId))
                 .ReverseMap()
                 .ForPath(dest => dest.LotDate, opt => opt.MapFrom(src => DateTime.Parse(src.LotDate)))
                 .ForPath(dest => dest.SaleDate, opt => opt.MapFrom(src => DateTime.Parse(src.SaleDate)))
-                .ForPath(dest => dest.CarId, opt => opt.MapFrom(src => src.Id));
+                .ForPath(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId));
 
 
             CreateMap<Repair, InventoryViewModel>()
                 .ForMember(dest => dest.RepairDescription, opt => opt.MapFrom(src => src.Description))
-                .ForMember(dest => dest.RepairCost, opt => opt.MapFrom(src => src.Cost));
-
+                .ForMember(dest => dest.RepairCost, opt => opt.MapFrom(src => src.Cost))
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId));
 
             CreateMap<InventoryViewModel, Repair>()
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.RepairDescription))
                 .ForMember(dest => dest.Cost, opt => opt.MapFrom(src => src.RepairCost))
-                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Car, opt => opt.Ignore());
+                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId))
+                .ForMember(dest => dest.Car, opt => opt.Ignore())
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             //mappings for displaying value in dropdowns. It needs to be one-way only.
 
@@ -109,9 +114,26 @@ namespace CarHub.Domain.Profiles
                 .ForMember(dest => dest.InventoryStatusList,
                            opt => opt.MapFrom(src => new SelectList(src, "Id", "Status")));
 
-            CreateMap<Car, Car>();
-            CreateMap<Inventory, Inventory>();
-            CreateMap<Repair, Repair>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<Car, Car>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForPath(dest => dest.CarMake, opt => opt.Ignore())
+                .ForPath(dest => dest.CarModel, opt => opt.Ignore())
+                .ForPath(dest => dest.BodyType, opt => opt.Ignore())
+                .ForPath(dest => dest.FuelType, opt => opt.Ignore())
+                .ForPath(dest => dest.Color, opt => opt.Ignore())
+                .ForPath(dest => dest.Trim, opt => opt.Ignore())
+                .ForPath(dest => dest.DriveType, opt => opt.Ignore());
+
+            CreateMap<Inventory, Inventory>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CarId, opt => opt.Ignore())
+                .ForMember(dest => dest.PurchaseType, opt => opt.Ignore())
+                .ForMember(dest => dest.InventoryStatus, opt => opt.Ignore());
+
+
+            CreateMap<Repair, Repair>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CarId, opt => opt.Ignore());
 
             CreateMap<InventoryViewModel, InventoryItemSummary>()
                 .ForMember(dest => dest.InventoryId, opt => opt.MapFrom(src => src.Id))

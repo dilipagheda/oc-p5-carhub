@@ -6094,9 +6094,11 @@ footer {
     padding: 12px 30px 12px 30px;
 }
 
+
+
 /** Sub Banner start **/
 .sub-banner {
-    background: rgba(0, 0, 0, 0.04) url(http://placehold.it/1920x360) top left repeat;
+    background: rgba(0, 0, 0, 0.04) url(/img/static//view-details-page-header-img.jpg) top left repeat;
     background-size: cover;
     height: 360px;
     background-position: center center;
