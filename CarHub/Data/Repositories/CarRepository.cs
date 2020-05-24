@@ -23,12 +23,7 @@ namespace CarHub.Data.Repositories
         public List<Car> GetAllCars() { return _context.Cars.ToList(); }
 
         public Car GetCarById(string id)
-        {
-            if(id == null)
-                return null;
-
-            return _context.Cars.Where(c => c.Id.ToString().Equals(id)).FirstOrDefault();
-        }
+        { return _context.Cars.Where(c => c.Id.ToString().Equals(id)).FirstOrDefault(); }
 
         public Guid? AddNewCar(Car carObj)
         {
@@ -52,10 +47,16 @@ namespace CarHub.Data.Repositories
 
         public void EditCar(string carId, Car carObj)
         {
+            if(carObj == null)
+                return;
+
             var currentCarObj = GetCarById(carId);
-            _mapper.Map(carObj, currentCarObj, typeof(Car), typeof(Car));
-            _context.Entry(currentCarObj).State = EntityState.Modified;
-            _context.SaveChanges();
+            if(currentCarObj != null)
+            {
+                _mapper.Map(carObj, currentCarObj, typeof(Car), typeof(Car));
+                _context.Entry(currentCarObj).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
         }
 
         public void AddMakeModelTrim(int makeId, int modelId, int trimId)
