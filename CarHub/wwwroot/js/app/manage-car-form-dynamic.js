@@ -1,23 +1,35 @@
 ﻿$(document).ready(function () {
+    var dateToday = new Date();
+    var PurchaseDateMonthsInThePast = 3;
+    var SaleDateMonthsInThePast = 3;
+    var minPurchaseDate = new Date();
+    minPurchaseDate.setMonth(minPurchaseDate.getMonth() - 3);
+
+    var minSaleDate = new Date();
+    minSaleDate.setMonth(minSaleDate.getMonth() - 3);
 
     $("#RegoExpiryDate").datepicker({
         appendText: "(dd-mm-yyyy)",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        minDate: dateToday,
     });
 
     $("#PurchaseDate").datepicker({
         appendText: "(dd-mm-yyyy)",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        minDate: minPurchaseDate,
     });
 
     $("#LotDate").datepicker({
         appendText: "(dd-mm-yyyy)",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        minDate: dateToday,
     });
 
     $("#SaleDate").datepicker({
         appendText: "(dd-mm-yyyy)",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        minDate: minSaleDate,
     });
 
     function resetTrim() {

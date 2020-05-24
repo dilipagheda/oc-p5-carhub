@@ -3,13 +3,19 @@
     padding: 5px !important;
 }
 
-.view-cars-outer-container {
-    background-image: url('../img/static/carimage4.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    padding:0;
+.add-new-car-button{
+    background-color:red;
 }
+.add-new-car-button:hover{
+    cursor:pointer;
+    text-decoration:none;
+}
+
+    .view-cars-outer-container {
+        background-color: #222E56;
+        height: 100vh;
+        padding: 0;
+    }
 
 .container-fluid-inner {
    
@@ -27,12 +33,7 @@
 }
 
 .add-new-car-outer-container {
-    /*background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(240,21,31,1) 61%, rgba(255,0,108,1) 72%);*/
-    background-image: url('../img/static/carimage4.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-
+    background-color: #222E56;
 }
 
     .add-new-car-outer-container .container {

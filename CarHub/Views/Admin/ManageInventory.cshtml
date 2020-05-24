@@ -213,10 +213,26 @@
                         </div>
                     </div>
                 </section>
+                <h3>Repair Details</h3>
+                <section>
+                    <div class="row">
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="RepairDescription">Repair Description</label>
+                                <input asp-for="RepairDescription" type="text" class="form-control search-fields" placeholder="Enter Repair Description">
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <div class="form-group">
+                                <label asp-for="RepairCost">Repair Cost</label>
+                                <input asp-for="RepairCost" type="number" class="form-control search-fields" placeholder="Enter a Repair Cost">
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <h3>Inventory Details</h3>
                 <section>
                     <div class="row">
-
                         <div class="col-md-8 text-left">
                             <div class="form-group">
                                 <label asp-for="Description">Description</label>
@@ -262,15 +278,20 @@
                                 <input asp-for="LotDate" type="text" class="form-control search-fields" placeholder="Enter a Lot Date">
                             </div>
                         </div>
+                    </div>
+                </section>
+                <h3>Sale Details</h3>
+                <section>
+                    <div class="row">
                         <div class="col-md-8 text-left">
                             <div class="form-group">
-                                <label asp-for="SaleDate">Sale Date</label>
+                                <label asp-for="SaleDate">Sale Date (optional)</label>
                                 <input asp-for="SaleDate" type="text" class="form-control search-fields" placeholder="Enter a Sale Date">
                             </div>
                         </div>
                         <div class="col-md-8 text-left">
                             <div class="form-group">
-                                <label asp-for="SalePrice">Sale Price</label>
+                                <label asp-for="SalePrice">Sale Price (optional)</label>
                                 <input asp-for="SalePrice" type="number" class="form-control search-fields" placeholder="Enter a Sale Price">
                             </div>
                         </div>
@@ -284,23 +305,7 @@
                         </div>
                     </div>
                 </section>
-                <h3>Repair Details</h3>
-                <section>
-                    <div class="row">
-                        <div class="col-md-8 text-left">
-                            <div class="form-group">
-                                <label asp-for="RepairDescription">Repair Description</label>
-                                <input asp-for="RepairDescription" type="text" class="form-control search-fields" placeholder="Enter Repair Description">
-                            </div>
-                        </div>
-                        <div class="col-md-8 text-left">
-                            <div class="form-group">
-                                <label asp-for="RepairCost">Repair Cost</label>
-                                <input asp-for="RepairCost" type="number" class="form-control search-fields" placeholder="Enter a Repair Cost">
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
                 <h3>Upload Images</h3>
                 <section>
                     <div id="drag-drop-area" class="DashboardContainer"></div>

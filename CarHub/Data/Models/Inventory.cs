@@ -13,7 +13,7 @@ namespace CarHub.Data.Models
 
         public Car Car { get; set; }
 
-        public DateTime SaleDate { get; set; }
+        public DateTime? SaleDate { get; set; }
 
         public decimal SalePrice { get; set; }
 

@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    var strPurchasePrice;
+    var strRepairCost;
+
     let stepperSettings = {
         headerTag: "h3",
         bodyTag: "section",
@@ -163,7 +166,9 @@
                     },
                     SalePrice: {
                         required: false,
-                        min: 1,
+                        min: function (element) {
+                            return parseInt(strPurchasePrice) + parseInt(strRepairCost) + 500;
+                        },
                         
                     },
                     InventoryStatusId: {
@@ -210,20 +215,33 @@
                         validator.element("#NewFuelTypeName");
                     return step3;
                 case 3:
-                    let step4 = validator.element("#Description") &&
+                    let step4 = validator.element("#RepairDescription") &&
+                        validator.element("#RepairCost");
+                    strRepairCost = $("#RepairCost").val();
+
+                    if ($("#RepairDescription").val().length == 0 || parseInt($("#RepairCost").val()) == 0) {
+                        if (confirm('Are you sure you do not have any repairs?')) {
+                            return step4;        
+                        } else {
+                            // Do nothing!
+                            return false;
+                        }
+                    }
+                    
+                case 4:
+                    let step5 = validator.element("#Description") &&
                         validator.element("#PurchaseDate") &&
                         validator.element("#PurchasePrice") &&
                         validator.element("#PurchaseTypeId") &&
                         validator.element("#NewPurchaseTypeName") &&
-                        validator.element("#LotDate") &&
-                        validator.element("#SaleDate") &&
+                        validator.element("#LotDate");
+                    strPurchasePrice = $("#PurchasePrice").val();
+                    return step5;
+                case 5:
+                    let step6 = validator.element("#SaleDate") &&
                         validator.element("#SalePrice") &&
                         validator.element("#InventoryStatusId");
-                    return step4;
-                case 4:
-                    let step5 = validator.element("#RepairDescription") &&
-                        validator.element("#RepairCost");
-                    return step5;
+                    return step6;
                 default:
                     return true;
             }

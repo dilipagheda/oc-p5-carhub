@@ -70,7 +70,8 @@ namespace CarHub.Domain.Profiles
                 .ForMember(dest => dest.RepairDescription, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.RepairCost, opt => opt.MapFrom(src => src.Cost))
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId));
+                .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId))
+                .ForMember(dest => dest.Description, opt => opt.Ignore());
 
             CreateMap<InventoryViewModel, Repair>()
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.RepairDescription))
@@ -78,6 +79,7 @@ namespace CarHub.Domain.Profiles
                 .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => src.CarId))
                 .ForMember(dest => dest.Car, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
+
 
             //mappings for displaying value in dropdowns. It needs to be one-way only.
 

@@ -48,7 +48,9 @@ namespace CarHub.Data.Repositories
         public void EditCar(string carId, Car carObj)
         {
             if(carObj == null)
+            {
                 return;
+            }
 
             var currentCarObj = GetCarById(carId);
             if(currentCarObj != null)

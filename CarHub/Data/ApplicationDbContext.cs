@@ -462,8 +462,6 @@ namespace CarHub.Data
                 { Id = 39, CarMakeId = 1, CarModelId = 6, TrimId = 39 },
                          new MakeModelTrim()
                 { Id = 40, CarMakeId = 1, CarModelId = 6, TrimId = 40 },
-
-                         //////
                          new MakeModelTrim()
                 { Id = 41, CarMakeId = 2, CarModelId = 7, TrimId = 41 },
                          new MakeModelTrim()
@@ -747,11 +745,505 @@ namespace CarHub.Data
                 .HasData(new InventoryStatus()
                 { Id = 1, Status = "Purchased" },
                          new InventoryStatus()
-                { Id = 2, Status = "InRepair" },
+                { Id = 2, Status = "In Repair" },
                          new InventoryStatus()
                 { Id = 3, Status = "Sold" },
                          new InventoryStatus()
                 { Id = 4, Status = "Available" });
+
+            //Cars
+            Guid[] carIds =
+            {
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid()
+            };
+
+            Guid[] inventoryIds =
+            {
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid()
+            };
+
+            Guid[] mediaIds =
+            {
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid(),
+                Guid.NewGuid()
+            };
+
+            builder.Entity<Car>()
+                .HasData(new Car()
+                {
+                    Id = carIds[0],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 1,
+                    TrimId = 1,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "ABD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[1],
+                    Year = 2011,
+                    CarMakeId = 2,
+                    CarModelId = 9,
+                    TrimId = 50,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "BBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[2],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 2,
+                    TrimId = 13,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "CBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[3],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 2,
+                    TrimId = 11,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "CBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[4],
+                    Year = 2011,
+                    CarMakeId = 2,
+                    CarModelId = 15,
+                    TrimId = 72,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "DBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[5],
+                    Year = 2011,
+                    CarMakeId = 2,
+                    CarModelId = 13,
+                    TrimId = 62,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "EBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[6],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 6,
+                    TrimId = 40,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "GBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[7],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 6,
+                    TrimId = 39,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "XBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[8],
+                    Year = 2011,
+                    CarMakeId = 1,
+                    CarModelId = 7,
+                    TrimId = 43,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "ZBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                },
+                         new Car()
+                {
+                    Id = carIds[9],
+                    Year = 2011,
+                    CarMakeId = 2,
+                    CarModelId = 8,
+                    TrimId = 45,
+                    Kms = 10000,
+                    TransmissionType = 'A',
+                    RegoNumber = "SBD65F",
+                    RegoExpiry = DateTime.Now.AddMonths(6),
+                    Description = "This is a great car! very good condition",
+                    ColorId = 1,
+                    BodyTypeId = 1,
+                    NoOfSeats = 4,
+                    NoOfDoors = 4,
+                    NoOfCylinders = 4,
+                    DriveTypeId = 1,
+                    FuelTypeId = 1
+                });
+
+            builder.Entity<Inventory>()
+                .HasData(new Inventory()
+                {
+                    Id = inventoryIds[0],
+                    CarId = carIds[0],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 5000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[1],
+                    CarId = carIds[1],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 6000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[2],
+                    CarId = carIds[2],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 7000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[3],
+                    CarId = carIds[3],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 9000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[4],
+                    CarId = carIds[4],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 8000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[5],
+                    CarId = carIds[5],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 3000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[6],
+                    CarId = carIds[6],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 1000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[7],
+                    CarId = carIds[7],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 2000,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[8],
+                    CarId = carIds[8],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 5400,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                },
+                         new Inventory()
+                {
+                    Id = inventoryIds[9],
+                    CarId = carIds[9],
+                    SalePrice = 0,
+                    PurchaseDate = DateTime.Now,
+                    PurchasePrice = 5800,
+                    PurchaseTypeId = 1,
+                    LotDate = new DateTime(2020, 03, 01),
+                    IsFeatured = false,
+                    InventoryStatusId = 1,
+                    SaleDate = null
+                });
+
+            builder.Entity<Repair>()
+                .HasData(new Repair()
+                { Id = 1, CarId = carIds[0], Description = "Full restoration", Cost = 500 },
+                         new Repair()
+                { Id = 2, CarId = carIds[1], Description = "New engine, new gearbox", Cost = 500 },
+                         new Repair()
+                { Id = 3, CarId = carIds[2], Description = "New suspensions, repainting", Cost = 500 },
+                         new Repair()
+                { Id = 4, CarId = carIds[3], Description = "Wheels replacements, new tyres", Cost = 500 },
+                         new Repair()
+                { Id = 5, CarId = carIds[4], Description = "Tires, brakes, AC", Cost = 500 },
+                         new Repair()
+                { Id = 6, CarId = carIds[5], Description = "Tires", Cost = 500 },
+                         new Repair()
+                { Id = 7, CarId = carIds[6], Description = "AC, brakes", Cost = 500 },
+                         new Repair()
+                { Id = 8, CarId = carIds[7], Description = "Tires, brakes", Cost = 500 },
+                         new Repair()
+                { Id = 9, CarId = carIds[8], Description = "Radiator, brakes", Cost = 500 },
+                         new Repair()
+                { Id = 10, CarId = carIds[9], Description = "Front wheel bearings", Cost = 500 });
+
+            builder.Entity<Media>()
+                .HasData(new Media()
+                {
+                    Id = mediaIds[0],
+                    ContentType = "img",
+                    FileName = "0b58cd3dba9c43ad9439c1c835c2a389.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[1],
+                    ContentType = "img",
+                    FileName = "15b6d7528c174ebc9a683c8a13f12922.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[2],
+                    ContentType = "img",
+                    FileName = "1941da49ad4c47f68f2599bc988a0f14.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[3],
+                    ContentType = "img",
+                    FileName = "19c341d8932c49abaebc34b5d50d8296.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[4],
+                    ContentType = "img",
+                    FileName = "29d31758302f4a2d8974f700d7c95677.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[5],
+                    ContentType = "img",
+                    FileName = "41f8b966532d4dbda20b848a1d5f8c12.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[6],
+                    ContentType = "img",
+                    FileName = "5752029a253e4ff4ae14abcc1a300cd5.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[7],
+                    ContentType = "img",
+                    FileName = "69619222e71b477989ec6fd2b54227ff.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[8],
+                    ContentType = "img",
+                    FileName = "6ef4b3c9c6c847f3aa8c9c10d647daea.jpg",
+                    Caption = "caption"
+                },
+                         new Media()
+                {
+                    Id = mediaIds[9],
+                    ContentType = "img",
+                    FileName = "7083a10366af463cb621af35baad1043.jpg",
+                    Caption = "caption"
+                });
+
+
+            builder.Entity<InventoryMedia>()
+                .HasData(new InventoryMedia()
+                { InventoryId = inventoryIds[0], MediaId = mediaIds[0], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[1], MediaId = mediaIds[1], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[2], MediaId = mediaIds[2], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[3], MediaId = mediaIds[3], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[4], MediaId = mediaIds[4], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[5], MediaId = mediaIds[5], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[6], MediaId = mediaIds[6], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[7], MediaId = mediaIds[7], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[8], MediaId = mediaIds[8], IsCoverMedia = true },
+                         new InventoryMedia()
+                { InventoryId = inventoryIds[9], MediaId = mediaIds[9], IsCoverMedia = true });
         }
     }
 }

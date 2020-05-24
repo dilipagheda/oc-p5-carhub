@@ -34,7 +34,9 @@ namespace CarHub.Data.Repositories
         public Repair GetRepairDetailsByCarId(string carId)
         {
             if(carId == null)
+            {
                 return null;
+            }
 
             return _context.Repairs.Where(r => r.CarId.ToString() == carId).FirstOrDefault();
         }
