@@ -391,7 +391,7 @@ namespace CarHub.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CarId = table.Column<Guid>(nullable: false),
-                    SaleDate = table.Column<DateTime>(nullable: false),
+                    SaleDate = table.Column<DateTime>(nullable: true),
                     SalePrice = table.Column<decimal>(nullable: false),
                     PurchaseDate = table.Column<DateTime>(nullable: false),
                     PurchasePrice = table.Column<decimal>(nullable: false),
@@ -540,36 +540,36 @@ namespace CarHub.Migrations
                     { 59, "GLA-Class" },
                     { 46, "2 Series" },
                     { 31, "Dualis" },
-                    { 22, "CX-7" },
                     { 29, "A6" },
+                    { 5, "Kluger" },
                     { 1, "Camry" },
                     { 2, "Corolla" },
                     { 3, "Hiace" },
                     { 4, "Hilux" },
-                    { 5, "Kluger" },
-                    { 6, "Landcruiser" },
+                    { 30, "370Z" },
                     { 7, "Accord" },
                     { 8, "Accord Euro" },
                     { 9, "City" },
                     { 10, "Civic" },
-                    { 30, "370Z" },
+                    { 11, "CR-V" },
                     { 12, "HR-V" },
                     { 13, "Jazz" },
                     { 14, "Odyssey" },
-                    { 11, "CR-V" },
+                    { 6, "Landcruiser" },
                     { 16, "2" },
+                    { 15, "Integra" },
                     { 28, "A5" },
                     { 27, "A4" },
-                    { 15, "Integra" },
-                    { 25, "A1" },
+                    { 26, "A3" },
                     { 24, "MX-5" },
                     { 23, "CX-9" },
-                    { 26, "A3" },
+                    { 25, "A1" },
                     { 21, "CX-5" },
                     { 20, "CX-3" },
                     { 19, "BT-50" },
                     { 18, "6" },
-                    { 17, "3" }
+                    { 17, "3" },
+                    { 22, "CX-7" }
                 });
 
             migrationBuilder.InsertData(
@@ -577,24 +577,24 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "ColorName" },
                 values: new object[,]
                 {
-                    { 19, "Yellow" },
-                    { 18, "White" },
                     { 16, "Silver" },
+                    { 10, "Magenta" },
                     { 15, "Red" },
+                    { 14, "Purple" },
                     { 13, "Pink" },
                     { 12, "Orange" },
                     { 11, "Maroon" },
-                    { 10, "Magenta" },
-                    { 14, "Purple" },
-                    { 8, "Green" },
+                    { 9, "Grey" },
                     { 2, "Black" },
-                    { 3, "Blue" },
-                    { 4, "Bronze" },
-                    { 1, "Beige" },
-                    { 5, "Brown" },
-                    { 6, "Burgundy" },
                     { 7, "Gold" },
-                    { 9, "Grey" }
+                    { 6, "Burgundy" },
+                    { 5, "Brown" },
+                    { 4, "Bronze" },
+                    { 3, "Blue" },
+                    { 1, "Beige" },
+                    { 18, "White" },
+                    { 8, "Green" },
+                    { 19, "Yellow" }
                 });
 
             migrationBuilder.InsertData(
@@ -602,13 +602,13 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "DriveTypeName" },
                 values: new object[,]
                 {
-                    { 1, "4x2" },
-                    { 2, "4x4" },
-                    { 3, "6x2" },
-                    { 4, "6x4" },
-                    { 5, "6x6" },
                     { 6, "Front Wheel Drive" },
-                    { 7, "Rear Wheel Drive" }
+                    { 7, "Rear Wheel Drive" },
+                    { 5, "6x6" },
+                    { 1, "4x2" },
+                    { 3, "6x2" },
+                    { 2, "4x4" },
+                    { 4, "6x4" }
                 });
 
             migrationBuilder.InsertData(
@@ -630,9 +630,26 @@ namespace CarHub.Migrations
                 values: new object[,]
                 {
                     { 1, "Purchased" },
-                    { 2, "InRepair" },
+                    { 2, "In Repair" },
                     { 3, "Sold" },
                     { 4, "Available" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MediaList",
+                columns: new[] { "Id", "Caption", "ContentType", "FileName" },
+                values: new object[,]
+                {
+                    { new Guid("3478e9bb-db80-41b4-a2fe-6e16907744cf"), "caption", "img", "5752029a253e4ff4ae14abcc1a300cd5.jpg" },
+                    { new Guid("f1e6dfcb-b325-474a-a1a4-aaaf8c869da8"), "caption", "img", "7083a10366af463cb621af35baad1043.jpg" },
+                    { new Guid("fb0f2b3a-1acb-4b3f-a48f-caf5ce27db36"), "caption", "img", "6ef4b3c9c6c847f3aa8c9c10d647daea.jpg" },
+                    { new Guid("99d65535-d6b6-4065-b1d9-db8f7c90a0ca"), "caption", "img", "41f8b966532d4dbda20b848a1d5f8c12.jpg" },
+                    { new Guid("f080cde7-9311-4f34-82ff-a87e5ad1d3dd"), "caption", "img", "69619222e71b477989ec6fd2b54227ff.jpg" },
+                    { new Guid("ef38b201-97bb-4c88-9301-ddc50710d367"), "caption", "img", "19c341d8932c49abaebc34b5d50d8296.jpg" },
+                    { new Guid("e516e28d-1527-4ade-8e54-3285d916996b"), "caption", "img", "1941da49ad4c47f68f2599bc988a0f14.jpg" },
+                    { new Guid("34e5d242-4fef-450e-b3bb-f32d15abf35b"), "caption", "img", "15b6d7528c174ebc9a683c8a13f12922.jpg" },
+                    { new Guid("6165ec51-b6d0-4e57-a126-52c13a8e151b"), "caption", "img", "0b58cd3dba9c43ad9439c1c835c2a389.jpg" },
+                    { new Guid("e1e1a627-fb4e-4f45-ba86-75a954c4ccb9"), "caption", "img", "29d31758302f4a2d8974f700d7c95677.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -652,27 +669,27 @@ namespace CarHub.Migrations
                     { 51, "GLi" },
                     { 50, "VTi-L" },
                     { 49, "VTi" },
-                    { 38, "Standard" },
                     { 48, "Sport" },
                     { 47, "Luxury Navi" },
+                    { 38, "Standard" },
                     { 46, "Luxury" },
-                    { 42, "Limited Edition" },
-                    { 44, "V6L" },
                     { 43, "V6" },
+                    { 44, "V6L" },
+                    { 42, "Limited Edition" },
                     { 41, "EXi" },
                     { 40, "Workmate" },
                     { 39, "VX" },
                     { 52, "RS" },
                     { 45, "Limited Edition" },
                     { 53, "Si" },
-                    { 66, "Luxury" },
+                    { 65, "Vibe" },
                     { 55, "Limited Edition" },
                     { 70, "Luxury" },
                     { 69, "GSi" },
                     { 68, "VTi" },
                     { 67, "V6-L" },
+                    { 66, "Luxury" },
                     { 37, "Sahara" },
-                    { 65, "Vibe" },
                     { 64, "GLi Vibe" },
                     { 63, "GLi Limited Edition" },
                     { 62, "GLi" },
@@ -684,7 +701,7 @@ namespace CarHub.Migrations
                     { 56, "Luxury" },
                     { 54, "Sport" },
                     { 36, "GXL Troopcarrier" },
-                    { 22, "Rogue" },
+                    { 24, "SR" },
                     { 34, "GX" },
                     { 13, "Conquest" },
                     { 12, "Ascent Sport Hybrid" },
@@ -713,8 +730,8 @@ namespace CarHub.Migrations
                     { 27, "Altitude" },
                     { 26, "SR5 Hi-Rider" },
                     { 25, "SR5" },
-                    { 24, "SR" },
                     { 23, "Rugged X" },
+                    { 22, "Rogue" },
                     { 21, "DX" },
                     { 20, "Super Custom" },
                     { 19, "Grand Cabin GL" },
@@ -724,21 +741,37 @@ namespace CarHub.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Cars",
+                columns: new[] { "Id", "BodyTypeId", "CarMakeId", "CarModelId", "ColorId", "Description", "DriveTypeId", "FuelTypeId", "Kms", "NoOfCylinders", "NoOfDoors", "NoOfSeats", "RegoExpiry", "RegoNumber", "TransmissionType", "TrimId", "Year" },
+                values: new object[,]
+                {
+                    { new Guid("04257d02-e51c-4e75-9198-18e617429499"), 1, 1, 7, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6356), "ZBD65F", "A", 43, 2011 },
+                    { new Guid("ba28f1ac-30c8-43de-b6b0-553086486280"), 1, 2, 15, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6342), "DBD65F", "A", 72, 2011 },
+                    { new Guid("5ed99392-bc90-486c-b504-a355c8907941"), 1, 2, 8, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6359), "SBD65F", "A", 45, 2011 },
+                    { new Guid("ec4c3ea5-78c6-402e-805c-1f595ecd6215"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6329), "CBD65F", "A", 13, 2011 },
+                    { new Guid("96fbca61-f410-48fe-8688-4757c9a8839e"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6349), "GBD65F", "A", 40, 2011 },
+                    { new Guid("a07901ac-27a7-4fb9-b977-afaf16940c42"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6336), "CBD65F", "A", 11, 2011 },
+                    { new Guid("11ddc4ac-ec97-4ec2-82fb-9e5ed5016231"), 1, 1, 1, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 239, DateTimeKind.Local).AddTicks(8853), "ABD65F", "A", 1, 2011 },
+                    { new Guid("2cce40fc-3450-44cb-9fa9-e7393864eb6e"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6353), "XBD65F", "A", 39, 2011 },
+                    { new Guid("4348e8d1-e2a3-40e9-8d3d-0e8e44bc40fc"), 1, 2, 9, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6249), "BBD65F", "A", 50, 2011 },
+                    { new Guid("80152bcd-7386-4b6f-a581-6fdc2b51ac2f"), 1, 2, 13, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(6346), "EBD65F", "A", 62, 2011 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "MakeModelTrims",
                 columns: new[] { "Id", "CarMakeId", "CarModelId", "TrimId" },
                 values: new object[,]
                 {
-                    { 73L, 3, 16, null },
-                    { 41L, 2, 7, 41 },
-                    { 40L, 1, 6, 40 },
-                    { 39L, 1, 6, 39 },
-                    { 38L, 1, 6, 38 },
-                    { 37L, 1, 6, 37 },
-                    { 36L, 1, 6, 36 },
                     { 35L, 1, 6, 35 },
+                    { 36L, 1, 6, 36 },
+                    { 37L, 1, 6, 37 },
+                    { 39L, 1, 6, 39 },
+                    { 40L, 1, 6, 40 },
+                    { 41L, 2, 7, 41 },
+                    { 38L, 1, 6, 38 },
                     { 34L, 1, 6, 34 },
-                    { 33L, 1, 6, 33 },
                     { 32L, 1, 5, 32 },
+                    { 42L, 2, 7, 42 },
                     { 31L, 1, 5, 31 },
                     { 30L, 1, 5, 30 },
                     { 29L, 1, 5, 29 },
@@ -751,13 +784,11 @@ namespace CarHub.Migrations
                     { 22L, 1, 4, 22 },
                     { 21L, 1, 4, 21 },
                     { 20L, 1, 3, 20 },
-                    { 19L, 1, 3, 19 },
-                    { 18L, 1, 3, 18 },
-                    { 17L, 1, 3, 17 },
-                    { 42L, 2, 7, 42 },
-                    { 16L, 1, 2, 16 },
-                    { 43L, 2, 7, 43 },
+                    { 33L, 1, 6, 33 },
+                    { 73L, 3, 16, null },
+                    { 44L, 2, 7, 44 },
                     { 45L, 2, 8, 45 },
+                    { 71L, 2, 15, 71 },
                     { 70L, 2, 15, 70 },
                     { 69L, 2, 15, 69 },
                     { 68L, 2, 14, 68 },
@@ -769,8 +800,8 @@ namespace CarHub.Migrations
                     { 62L, 2, 13, 62 },
                     { 61L, 2, 12, 61 },
                     { 60L, 2, 12, 60 },
+                    { 43L, 2, 7, 43 },
                     { 59L, 2, 12, 59 },
-                    { 58L, 2, 12, 58 },
                     { 57L, 2, 11, 57 },
                     { 56L, 2, 11, 56 },
                     { 55L, 2, 11, 55 },
@@ -783,10 +814,12 @@ namespace CarHub.Migrations
                     { 48L, 2, 8, 48 },
                     { 47L, 2, 8, 47 },
                     { 46L, 2, 8, 46 },
-                    { 44L, 2, 7, 44 },
-                    { 15L, 1, 2, 15 },
-                    { 14L, 1, 2, 14 },
-                    { 13L, 1, 2, 13 },
+                    { 58L, 2, 12, 58 },
+                    { 19L, 1, 3, 19 },
+                    { 16L, 1, 2, 16 },
+                    { 17L, 1, 3, 17 },
+                    { 100L, 6, 43, null },
+                    { 99L, 6, 42, null },
                     { 98L, 6, 41, null },
                     { 97L, 6, 40, null },
                     { 96L, 6, 39, null },
@@ -812,10 +845,13 @@ namespace CarHub.Migrations
                     { 76L, 3, 19, null },
                     { 75L, 3, 18, null },
                     { 74L, 3, 17, null },
-                    { 99L, 6, 42, null },
-                    { 100L, 6, 43, null },
                     { 101L, 6, 44, null },
+                    { 18L, 1, 3, 18 },
                     { 102L, 7, 45, null },
+                    { 104L, 7, 47, null },
+                    { 15L, 1, 2, 15 },
+                    { 14L, 1, 2, 14 },
+                    { 13L, 1, 2, 13 },
                     { 12L, 1, 2, 12 },
                     { 11L, 1, 2, 11 },
                     { 10L, 1, 2, 10 },
@@ -828,8 +864,8 @@ namespace CarHub.Migrations
                     { 3L, 1, 1, 3 },
                     { 2L, 1, 1, 2 },
                     { 1L, 1, 1, 1 },
-                    { 71L, 2, 15, 71 },
                     { 116L, 10, 59, null },
+                    { 115L, 10, 58, null },
                     { 114L, 10, 57, null },
                     { 113L, 10, 56, null },
                     { 112L, 10, 55, null },
@@ -840,10 +876,59 @@ namespace CarHub.Migrations
                     { 107L, 8, 50, null },
                     { 106L, 8, 49, null },
                     { 105L, 7, 48, null },
-                    { 104L, 7, 47, null },
                     { 103L, 7, 46, null },
-                    { 115L, 10, 58, null },
                     { 72L, 2, 15, 72 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InventoryList",
+                columns: new[] { "Id", "CarId", "InventoryStatusId", "IsFeatured", "LotDate", "PurchaseDate", "PurchasePrice", "PurchaseTypeId", "SaleDate", "SalePrice" },
+                values: new object[,]
+                {
+                    { new Guid("e3fa9255-ee67-4086-b4c7-333ed35bb96e"), new Guid("11ddc4ac-ec97-4ec2-82fb-9e5ed5016231"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 242, DateTimeKind.Local).AddTicks(8525), 5000m, 1, null, 0m },
+                    { new Guid("e562d338-0ef9-4fcb-9336-4f133f2c8ee4"), new Guid("a07901ac-27a7-4fb9-b977-afaf16940c42"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1008), 9000m, 1, null, 0m },
+                    { new Guid("5e498a4e-a461-48bf-b491-48a3f30a3e4d"), new Guid("80152bcd-7386-4b6f-a581-6fdc2b51ac2f"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1051), 3000m, 1, null, 0m },
+                    { new Guid("aabab9b8-c6ca-4038-96ea-86a2ad834a88"), new Guid("ec4c3ea5-78c6-402e-805c-1f595ecd6215"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1004), 7000m, 1, null, 0m },
+                    { new Guid("791db38d-d3aa-4b9b-9236-4fde3a4c9eda"), new Guid("2cce40fc-3450-44cb-9fa9-e7393864eb6e"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1058), 2000m, 1, null, 0m },
+                    { new Guid("b23211ae-f44d-4cbe-bc22-e267d45cee41"), new Guid("4348e8d1-e2a3-40e9-8d3d-0e8e44bc40fc"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(944), 6000m, 1, null, 0m },
+                    { new Guid("1be49df0-f04d-4a9f-98ec-304484d161b1"), new Guid("96fbca61-f410-48fe-8688-4757c9a8839e"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1055), 1000m, 1, null, 0m },
+                    { new Guid("8439b0da-ce5e-4f7a-80f6-48d5bac09967"), new Guid("ba28f1ac-30c8-43de-b6b0-553086486280"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1047), 8000m, 1, null, 0m },
+                    { new Guid("6e9c056f-014c-4d4b-bc20-ed04742ad711"), new Guid("04257d02-e51c-4e75-9198-18e617429499"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1061), 5400m, 1, null, 0m },
+                    { new Guid("50a1686d-f093-43af-aac0-433149e05ae4"), new Guid("5ed99392-bc90-486c-b504-a355c8907941"), 1, false, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 5, 24, 21, 7, 59, 243, DateTimeKind.Local).AddTicks(1064), 5800m, 1, null, 0m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Repairs",
+                columns: new[] { "Id", "CarId", "Cost", "Description" },
+                values: new object[,]
+                {
+                    { 6, new Guid("80152bcd-7386-4b6f-a581-6fdc2b51ac2f"), 500m, "Tires" },
+                    { 2, new Guid("4348e8d1-e2a3-40e9-8d3d-0e8e44bc40fc"), 500m, "New engine, new gearbox" },
+                    { 10, new Guid("5ed99392-bc90-486c-b504-a355c8907941"), 500m, "Front wheel bearings" },
+                    { 7, new Guid("96fbca61-f410-48fe-8688-4757c9a8839e"), 500m, "AC, brakes" },
+                    { 8, new Guid("2cce40fc-3450-44cb-9fa9-e7393864eb6e"), 500m, "Tires, brakes" },
+                    { 3, new Guid("ec4c3ea5-78c6-402e-805c-1f595ecd6215"), 500m, "New suspensions, repainting" },
+                    { 4, new Guid("a07901ac-27a7-4fb9-b977-afaf16940c42"), 500m, "Wheels replacements, new tyres" },
+                    { 1, new Guid("11ddc4ac-ec97-4ec2-82fb-9e5ed5016231"), 500m, "Full restoration" },
+                    { 9, new Guid("04257d02-e51c-4e75-9198-18e617429499"), 500m, "Radiator, brakes" },
+                    { 5, new Guid("ba28f1ac-30c8-43de-b6b0-553086486280"), 500m, "Tires, brakes, AC" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InventoryMediaList",
+                columns: new[] { "InventoryId", "MediaId", "IsCoverMedia" },
+                values: new object[,]
+                {
+                    { new Guid("e3fa9255-ee67-4086-b4c7-333ed35bb96e"), new Guid("6165ec51-b6d0-4e57-a126-52c13a8e151b"), true },
+                    { new Guid("e562d338-0ef9-4fcb-9336-4f133f2c8ee4"), new Guid("ef38b201-97bb-4c88-9301-ddc50710d367"), true },
+                    { new Guid("aabab9b8-c6ca-4038-96ea-86a2ad834a88"), new Guid("e516e28d-1527-4ade-8e54-3285d916996b"), true },
+                    { new Guid("791db38d-d3aa-4b9b-9236-4fde3a4c9eda"), new Guid("f080cde7-9311-4f34-82ff-a87e5ad1d3dd"), true },
+                    { new Guid("1be49df0-f04d-4a9f-98ec-304484d161b1"), new Guid("3478e9bb-db80-41b4-a2fe-6e16907744cf"), true },
+                    { new Guid("6e9c056f-014c-4d4b-bc20-ed04742ad711"), new Guid("fb0f2b3a-1acb-4b3f-a48f-caf5ce27db36"), true },
+                    { new Guid("50a1686d-f093-43af-aac0-433149e05ae4"), new Guid("f1e6dfcb-b325-474a-a1a4-aaaf8c869da8"), true },
+                    { new Guid("b23211ae-f44d-4cbe-bc22-e267d45cee41"), new Guid("34e5d242-4fef-450e-b3bb-f32d15abf35b"), true },
+                    { new Guid("5e498a4e-a461-48bf-b491-48a3f30a3e4d"), new Guid("99d65535-d6b6-4065-b1d9-db8f7c90a0ca"), true },
+                    { new Guid("8439b0da-ce5e-4f7a-80f6-48d5bac09967"), new Guid("e1e1a627-fb4e-4f45-ba86-75a954c4ccb9"), true }
                 });
 
             migrationBuilder.CreateIndex(
