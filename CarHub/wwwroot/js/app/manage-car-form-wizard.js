@@ -161,13 +161,20 @@
                         
                     },
                     SaleDate: {
-                        required: false,
-                        
+                        required: function(element) {
+                            return $("#InventoryStatusId").val() == '3'
+                        },
                     },
                     SalePrice: {
-                        required: false,
+                        required: function (element) {
+                            return $("#InventoryStatusId").val()=='3'
+                        },
                         min: function (element) {
-                            return parseInt(strPurchasePrice) + parseInt(strRepairCost) + 500;
+                            if ($("#InventoryStatusId").val() == '3') {
+                                return parseInt(strPurchasePrice) + parseInt(strRepairCost) + 500;
+                            } else {
+                                return 0;
+                            }
                         },
                         
                     },
@@ -175,12 +182,23 @@
                         required: true
                     },
                     RepairDescription: {
-                        required: false,
+                        required: function (element) {
+                            return $("#RepairCost").val() > 0;
+                        },
                         maxlength:1000
                     },
                     RepairCost: {
-                        required: false,
-                        max:30000
+                        required: function (element) {
+                            return $("#RepairDescription").val().length > 0;
+                        },
+                        max: 30000,
+                        min: function (element) {
+                            if ($("#RepairDescription").val().length > 0) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        }
                     }
                 }
             });
@@ -217,6 +235,9 @@
                 case 3:
                     let step4 = validator.element("#RepairDescription") &&
                         validator.element("#RepairCost");
+                    if (!step4) {
+                        return false;
+                    }
                     strRepairCost = $("#RepairCost").val();
 
                     if ($("#RepairDescription").val().length == 0 || parseInt($("#RepairCost").val()) == 0) {
