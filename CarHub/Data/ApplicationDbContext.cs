@@ -1005,7 +1005,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 5000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1018,7 +1018,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 6000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1031,7 +1031,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 7000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1044,7 +1044,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 9000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1057,7 +1057,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 8000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1070,7 +1070,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 3000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1083,7 +1083,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 1000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1096,7 +1096,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 2000,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1109,7 +1109,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 5400,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
@@ -1122,7 +1122,7 @@ namespace CarHub.Data
                     PurchaseDate = DateTime.Now,
                     PurchasePrice = 5800,
                     PurchaseTypeId = 1,
-                    LotDate = new DateTime(2020, 03, 01),
+                    LotDate = DateTime.Now,
                     IsFeatured = false,
                     InventoryStatusId = 1,
                     SaleDate = null
