@@ -40,7 +40,9 @@ namespace CarHub.Domain.Validators
 
             RuleFor(x => x.RegoExpiryDate).NotNull();
             RuleFor(x => Convert.ToDateTime(x.RegoExpiryDate)).NotNull();
-            RuleFor(x => Convert.ToDateTime(x.RegoExpiryDate).Date).GreaterThanOrEqualTo(DateTime.Now.Date);
+            RuleFor(x => Convert.ToDateTime(x.RegoExpiryDate).Date)
+                .GreaterThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage("Rego expiry date must be greater than or equal to today");
 
             RuleFor(x => x.Description).NotNull();
             RuleFor(x => x.Description).MinimumLength(1);
@@ -65,21 +67,40 @@ namespace CarHub.Domain.Validators
 
             RuleFor(x => x.PurchaseDate).NotNull();
             RuleFor(x => Convert.ToDateTime(x.PurchaseDate)).NotNull();
-            RuleFor(x => Convert.ToDateTime(x.PurchaseDate).Date).GreaterThanOrEqualTo(DateTime.Now.Date);
+            RuleFor(x => Convert.ToDateTime(x.PurchaseDate).Date)
+                .GreaterThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage("Purchase date must be greater than or equal to today");
+
 
             RuleFor(x => x.PurchasePrice).NotNull();
             RuleFor(x => x.PurchasePrice).GreaterThan(0);
+
+            RuleFor(x => x.SalePrice)
+                .NotNull()
+                .When(x => x.InventoryStatusId == 3)
+                .WithMessage("Sale price is required when inventory status is Sold");
+
+            RuleFor(x => x.SaleDate)
+                .NotNull()
+                .When(x => x.InventoryStatusId == 3)
+                .WithMessage("Sale date is required when inventory status is Sold");
+
+            RuleFor(x => x.SalePrice)
+                .GreaterThanOrEqualTo(x => x.PurchasePrice + x.RepairCost + 500)
+                .When(x => x.InventoryStatusId == 3)
+                .WithMessage("Sale price should be greater than or equal to sum of  purchase price, repair cost and profit of $500");
 
             RuleFor(x => x.PurchaseTypeId).NotNull();
             RuleFor(x => x.PurchaseTypeId).GreaterThan(0).When(x => x.NewPurchaseTypeName == null);
             RuleFor(x => x.NewPurchaseTypeName).NotNull().When(x => x.PurchaseTypeId <= 0);
 
-
             RuleFor(x => x.IsFeatured).NotNull();
 
             RuleFor(x => x.LotDate).NotNull();
             RuleFor(x => Convert.ToDateTime(x.LotDate)).NotNull();
-            RuleFor(x => Convert.ToDateTime(x.LotDate).Date).GreaterThanOrEqualTo(DateTime.Now.Date);
+            RuleFor(x => Convert.ToDateTime(x.LotDate).Date)
+                .GreaterThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage("Lot date must be greater than or equal to today");
         }
     }
 }
