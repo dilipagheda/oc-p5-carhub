@@ -12,6 +12,7 @@
         const response = responseText.responseJSON;
         if (!response.success) {
             const errors = response.errors;
+            $("#validation-errors ul").empty();
             errors.forEach(error => {
                 const fieldErrors = error.errors;
                 fieldErrors.forEach(fieldError => {
