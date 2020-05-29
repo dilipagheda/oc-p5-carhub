@@ -959,7 +959,7 @@ namespace CarHub.Data
                 {
                     Id = carIds[8],
                     Year = 2011,
-                    CarMakeId = 1,
+                    CarMakeId = 2,
                     CarModelId = 7,
                     TrimId = 43,
                     Kms = 10000,
