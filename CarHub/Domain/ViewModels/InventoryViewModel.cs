@@ -116,7 +116,7 @@ namespace CarHub.Domain.ViewModels
 
         public string SaleDate { get; set; }
 
-        public decimal SalePrice { get; set; }
+        public decimal? SalePrice { get; set; }
 
         [DisplayName("Inventory Status")]
         public int InventoryStatusId { get; set; }
