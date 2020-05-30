@@ -37,6 +37,7 @@ namespace CarHub.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ManageInventory(InventoryViewModel inventoryViewModel)
         {
             if(!ModelState.IsValid)

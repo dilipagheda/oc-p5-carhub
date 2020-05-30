@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 namespace CarHub.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+
     public class LoginModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
