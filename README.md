@@ -40,12 +40,17 @@ This project has few business rules that are implemented at both front-end using
 * Sale price must be at least "purchase price + repair cost + 500"
 * InventoryStatus is mandatory
 
-# Functionality
-
-
 
 # Techskills Used
 
+* .Net Core
+* MVC
+* Razor Views
+* xUnit Tests
+* JavaScript
+* jQuery Plugins for Form Wizard, Image uploads and validations
+* Fluent Validations
+* Automapper
 
 
 # How to set it up locally
