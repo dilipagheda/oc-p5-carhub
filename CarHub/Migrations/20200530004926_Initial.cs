@@ -640,16 +640,16 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "Caption", "ContentType", "FileName" },
                 values: new object[,]
                 {
-                    { new Guid("87158705-4448-4eeb-9036-9e51043c2109"), "caption", "img", "5752029a253e4ff4ae14abcc1a300cd5.jpg" },
-                    { new Guid("e1cc58cc-f8b5-4aac-ab1b-91d72258f27c"), "caption", "img", "7083a10366af463cb621af35baad1043.jpg" },
-                    { new Guid("9a04fc54-246e-44a8-b511-8aa6824ef0da"), "caption", "img", "6ef4b3c9c6c847f3aa8c9c10d647daea.jpg" },
-                    { new Guid("ecd278c0-f2f9-4969-910e-df2a597a353c"), "caption", "img", "41f8b966532d4dbda20b848a1d5f8c12.jpg" },
-                    { new Guid("c2ddc587-7192-4c7d-822f-bee9903634dd"), "caption", "img", "69619222e71b477989ec6fd2b54227ff.jpg" },
-                    { new Guid("24c56b07-7191-4d89-b3bf-e55e783e4a91"), "caption", "img", "19c341d8932c49abaebc34b5d50d8296.jpg" },
-                    { new Guid("b7d9cab7-1eee-4299-9c05-9aeea1cfb68b"), "caption", "img", "1941da49ad4c47f68f2599bc988a0f14.jpg" },
-                    { new Guid("69a4e02c-6c4a-4d55-a633-3b9ec686a65f"), "caption", "img", "15b6d7528c174ebc9a683c8a13f12922.jpg" },
-                    { new Guid("ccf2688d-5cae-44ff-afee-f49ae733ab83"), "caption", "img", "0b58cd3dba9c43ad9439c1c835c2a389.jpg" },
-                    { new Guid("1fb49990-efda-40b6-a93f-526e93db67d0"), "caption", "img", "29d31758302f4a2d8974f700d7c95677.jpg" }
+                    { new Guid("e31cae4e-42f4-4657-b17e-48267dd00442"), "caption", "img", "c795771ef3ee406fa35dfecbc8939a9b.jpg" },
+                    { new Guid("f171dcfc-df89-444a-a635-d65801f2e0aa"), "caption", "img", "8c6ee53a141643269b88691a1b447d4e.jpg" },
+                    { new Guid("dab44ef4-c630-45e3-81e3-63c5377841a2"), "caption", "img", "9c223d45e9234d3e9930bf5073348e6a.jpg" },
+                    { new Guid("cc5600ed-98af-440e-a8fd-0d528c8adf8a"), "caption", "img", "6e159fea5e5148458642e302a69076ca.jpg" },
+                    { new Guid("73bb3398-eb46-4f4a-b22d-12e287bf7732"), "caption", "img", "c516452c82d24564ab014fb98bf3d191.jpg" },
+                    { new Guid("3288763e-24d8-43b3-9123-425a2eeb7e39"), "caption", "img", "ce354b68bbe549db863e019f935f59d2.jpg" },
+                    { new Guid("989bca3f-4da6-44a2-9c69-57cbdfe2fb2a"), "caption", "img", "d9415e772ad947ffa77b5e83a3c39780.jpg" },
+                    { new Guid("92c16b0a-2443-4a35-9033-36a3c2dcd477"), "caption", "img", "e7cc52f3e382453195cc5a7923735419.jpg" },
+                    { new Guid("424e5724-1909-49c6-b50d-0d1223b523e0"), "caption", "img", "ee4c80918c304467b7c030e8fbed5f29.jpg" },
+                    { new Guid("c6bd33b9-3ef3-4b2d-bf10-91dd4e7149af"), "caption", "img", "ca9fe65dba0047a5900f8cb8f7f0d583.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -745,16 +745,16 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "BodyTypeId", "CarMakeId", "CarModelId", "ColorId", "Description", "DriveTypeId", "FuelTypeId", "Kms", "NoOfCylinders", "NoOfDoors", "NoOfSeats", "RegoExpiry", "RegoNumber", "TransmissionType", "TrimId", "Year" },
                 values: new object[,]
                 {
-                    { new Guid("c942016e-37b0-48bf-8cc9-4af709dad2e8"), 1, 2, 7, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7447), "ZBD65F", "A", 43, 2011 },
-                    { new Guid("e796f3f3-ffff-43fb-8430-b2972ee98d99"), 1, 2, 15, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7434), "DBD65F", "A", 72, 2011 },
-                    { new Guid("e9406ac5-8c8c-4a29-b599-8bcb5bc9e26a"), 1, 2, 8, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7450), "SBD65F", "A", 45, 2011 },
-                    { new Guid("2cdb988f-7978-44e6-addd-2b4181886e0d"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7424), "CBD65F", "A", 13, 2011 },
-                    { new Guid("cfb85ea3-151d-41f3-9684-10d19bffd0ad"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7441), "GBD65F", "A", 40, 2011 },
-                    { new Guid("04dfbec0-15b1-46aa-b136-f69716bfa2aa"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7431), "CBD65F", "A", 11, 2011 },
-                    { new Guid("fd9eb378-bce1-4a79-b927-21e1f07996b4"), 1, 1, 1, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 582, DateTimeKind.Local).AddTicks(8452), "ABD65F", "A", 1, 2011 },
-                    { new Guid("9ac116a2-7473-4902-9496-9c2f1b350c6e"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7444), "XBD65F", "A", 39, 2011 },
-                    { new Guid("464bc66b-9bab-4b98-8e81-c4e54d7eee38"), 1, 2, 9, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7349), "BBD65F", "A", 50, 2011 },
-                    { new Guid("1820b19b-a090-4fc8-b7a2-c2f49ba0b7dd"), 1, 2, 13, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(7438), "EBD65F", "A", 62, 2011 }
+                    { new Guid("080abbbb-17ee-4f81-850b-53ed2ffffb46"), 1, 2, 7, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3580), "ZBD65F", "A", 43, 2011 },
+                    { new Guid("bfc298f4-902f-4593-b539-b8ede6572352"), 1, 2, 15, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3567), "DBD65F", "A", 72, 2011 },
+                    { new Guid("4d4d1588-ad73-46ef-a5e9-ec1a8a651dcd"), 1, 2, 8, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3584), "SBD65F", "A", 45, 2011 },
+                    { new Guid("b483e94b-c500-427e-9c61-921bcea33d99"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3558), "CBD65F", "A", 13, 2011 },
+                    { new Guid("5c53626c-2a19-4e10-a711-fdf74af71b01"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3574), "GBD65F", "A", 40, 2011 },
+                    { new Guid("8d0ae456-3bc3-4b60-9405-adf712852e34"), 1, 1, 2, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3564), "CBD65F", "A", 11, 2011 },
+                    { new Guid("5264fe97-ba9e-405b-a400-a35f24e32c6a"), 1, 1, 1, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 566, DateTimeKind.Local).AddTicks(4303), "ABD65F", "A", 1, 2011 },
+                    { new Guid("0a274930-06c8-4054-9003-87182f240de5"), 1, 1, 6, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3577), "XBD65F", "A", 39, 2011 },
+                    { new Guid("a3b626cb-3491-4fde-aec1-646bfe0b74a3"), 1, 2, 9, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3483), "BBD65F", "A", 50, 2011 },
+                    { new Guid("e376f7af-687d-4993-9fea-0a96680db475"), 1, 2, 13, 1, "This is a great car! very good condition", 1, 1, 10000, 4, 4, 4, new DateTime(2020, 11, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(3570), "EBD65F", "A", 62, 2011 }
                 });
 
             migrationBuilder.InsertData(
@@ -885,16 +885,16 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "CarId", "InventoryStatusId", "IsFeatured", "LotDate", "PurchaseDate", "PurchasePrice", "PurchaseTypeId", "SaleDate", "SalePrice" },
                 values: new object[,]
                 {
-                    { new Guid("e0fe014e-0842-4db2-a036-42514043939b"), new Guid("fd9eb378-bce1-4a79-b927-21e1f07996b4"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(256), new DateTime(2020, 5, 29, 21, 30, 15, 585, DateTimeKind.Local).AddTicks(9220), 5000m, 1, null, 0m },
-                    { new Guid("057db8d1-69ff-4e7a-971b-2b4809edcecb"), new Guid("04dfbec0-15b1-46aa-b136-f69716bfa2aa"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1659), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1656), 9000m, 1, null, 0m },
-                    { new Guid("9ec97d5b-e09e-4e3d-b87d-bd70959bbf38"), new Guid("1820b19b-a090-4fc8-b7a2-c2f49ba0b7dd"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1668), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1666), 3000m, 1, null, 0m },
-                    { new Guid("e0bcdb83-f6fb-4c39-bd6c-6cb59ced2d72"), new Guid("2cdb988f-7978-44e6-addd-2b4181886e0d"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1653), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1650), 7000m, 1, null, 0m },
-                    { new Guid("6250f27c-1736-4a54-b1cd-7b62fd76d1c1"), new Guid("9ac116a2-7473-4902-9496-9c2f1b350c6e"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1678), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1676), 2000m, 1, null, 0m },
-                    { new Guid("1fbd0035-6b88-4d7e-bd83-190d3a9a9ae1"), new Guid("464bc66b-9bab-4b98-8e81-c4e54d7eee38"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1629), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1603), 6000m, 1, null, 0m },
-                    { new Guid("f3b46efa-93e3-420b-a8ca-d87fb18739ab"), new Guid("cfb85ea3-151d-41f3-9684-10d19bffd0ad"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1674), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1671), 1000m, 1, null, 0m },
-                    { new Guid("8318e2f9-f17e-48b2-9042-e1a81b0a7bab"), new Guid("e796f3f3-ffff-43fb-8430-b2972ee98d99"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1664), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1661), 8000m, 1, null, 0m },
-                    { new Guid("d4a6f49b-2be0-4b30-ace0-5c6f8596760e"), new Guid("c942016e-37b0-48bf-8cc9-4af709dad2e8"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1685), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1682), 5400m, 1, null, 0m },
-                    { new Guid("3115fca2-a6bb-40fd-aff0-ac3d8659402e"), new Guid("e9406ac5-8c8c-4a29-b599-8bcb5bc9e26a"), 1, false, new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1689), new DateTime(2020, 5, 29, 21, 30, 15, 586, DateTimeKind.Local).AddTicks(1687), 5800m, 1, null, 0m }
+                    { new Guid("fa02b609-f01b-4da6-ac11-7fd080590925"), new Guid("5264fe97-ba9e-405b-a400-a35f24e32c6a"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(6578), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(5323), 5000m, 1, null, 0m },
+                    { new Guid("e53b8946-0e9a-41a1-9e3e-b513679e87e2"), new Guid("8d0ae456-3bc3-4b60-9405-adf712852e34"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8443), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8440), 9000m, 1, null, 0m },
+                    { new Guid("8e95eb45-c543-4031-9cef-39d4f5be38c4"), new Guid("e376f7af-687d-4993-9fea-0a96680db475"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8453), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8450), 3000m, 1, null, 0m },
+                    { new Guid("1548431f-6c94-403f-a45f-75cdeed06aa6"), new Guid("b483e94b-c500-427e-9c61-921bcea33d99"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8437), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8435), 7000m, 1, null, 0m },
+                    { new Guid("702dd0bf-7d0f-4c09-ba91-e6fd4d459834"), new Guid("0a274930-06c8-4054-9003-87182f240de5"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8463), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8461), 2000m, 1, null, 0m },
+                    { new Guid("dd3c7a85-a94d-4d48-b172-29b8f009e915"), new Guid("a3b626cb-3491-4fde-aec1-646bfe0b74a3"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8412), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8387), 6000m, 1, null, 0m },
+                    { new Guid("d87ce513-e037-4b07-a74e-c3d8400a716c"), new Guid("5c53626c-2a19-4e10-a711-fdf74af71b01"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8458), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8455), 1000m, 1, null, 0m },
+                    { new Guid("3e324ecc-7401-4d9d-ae63-78660a23566f"), new Guid("bfc298f4-902f-4593-b539-b8ede6572352"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8447), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8445), 8000m, 1, null, 0m },
+                    { new Guid("afded9de-8704-4047-8d3f-ad125d9da7b7"), new Guid("080abbbb-17ee-4f81-850b-53ed2ffffb46"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8468), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8465), 5400m, 1, null, 0m },
+                    { new Guid("926f9611-ffad-4097-87de-5cb306605470"), new Guid("4d4d1588-ad73-46ef-a5e9-ec1a8a651dcd"), 1, false, new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8472), new DateTime(2020, 5, 30, 10, 49, 25, 569, DateTimeKind.Local).AddTicks(8470), 5800m, 1, null, 0m }
                 });
 
             migrationBuilder.InsertData(
@@ -902,16 +902,16 @@ namespace CarHub.Migrations
                 columns: new[] { "Id", "CarId", "Cost", "Description" },
                 values: new object[,]
                 {
-                    { 6, new Guid("1820b19b-a090-4fc8-b7a2-c2f49ba0b7dd"), 500m, "Tires" },
-                    { 2, new Guid("464bc66b-9bab-4b98-8e81-c4e54d7eee38"), 500m, "New engine, new gearbox" },
-                    { 10, new Guid("e9406ac5-8c8c-4a29-b599-8bcb5bc9e26a"), 500m, "Front wheel bearings" },
-                    { 7, new Guid("cfb85ea3-151d-41f3-9684-10d19bffd0ad"), 500m, "AC, brakes" },
-                    { 8, new Guid("9ac116a2-7473-4902-9496-9c2f1b350c6e"), 500m, "Tires, brakes" },
-                    { 3, new Guid("2cdb988f-7978-44e6-addd-2b4181886e0d"), 500m, "New suspensions, repainting" },
-                    { 4, new Guid("04dfbec0-15b1-46aa-b136-f69716bfa2aa"), 500m, "Wheels replacements, new tyres" },
-                    { 1, new Guid("fd9eb378-bce1-4a79-b927-21e1f07996b4"), 500m, "Full restoration" },
-                    { 9, new Guid("c942016e-37b0-48bf-8cc9-4af709dad2e8"), 500m, "Radiator, brakes" },
-                    { 5, new Guid("e796f3f3-ffff-43fb-8430-b2972ee98d99"), 500m, "Tires, brakes, AC" }
+                    { 6, new Guid("e376f7af-687d-4993-9fea-0a96680db475"), 500m, "Tires" },
+                    { 2, new Guid("a3b626cb-3491-4fde-aec1-646bfe0b74a3"), 500m, "New engine, new gearbox" },
+                    { 10, new Guid("4d4d1588-ad73-46ef-a5e9-ec1a8a651dcd"), 500m, "Front wheel bearings" },
+                    { 7, new Guid("5c53626c-2a19-4e10-a711-fdf74af71b01"), 500m, "AC, brakes" },
+                    { 8, new Guid("0a274930-06c8-4054-9003-87182f240de5"), 500m, "Tires, brakes" },
+                    { 3, new Guid("b483e94b-c500-427e-9c61-921bcea33d99"), 500m, "New suspensions, repainting" },
+                    { 4, new Guid("8d0ae456-3bc3-4b60-9405-adf712852e34"), 500m, "Wheels replacements, new tyres" },
+                    { 1, new Guid("5264fe97-ba9e-405b-a400-a35f24e32c6a"), 500m, "Full restoration" },
+                    { 9, new Guid("080abbbb-17ee-4f81-850b-53ed2ffffb46"), 500m, "Radiator, brakes" },
+                    { 5, new Guid("bfc298f4-902f-4593-b539-b8ede6572352"), 500m, "Tires, brakes, AC" }
                 });
 
             migrationBuilder.InsertData(
@@ -919,16 +919,16 @@ namespace CarHub.Migrations
                 columns: new[] { "InventoryId", "MediaId", "IsCoverMedia" },
                 values: new object[,]
                 {
-                    { new Guid("e0fe014e-0842-4db2-a036-42514043939b"), new Guid("ccf2688d-5cae-44ff-afee-f49ae733ab83"), true },
-                    { new Guid("057db8d1-69ff-4e7a-971b-2b4809edcecb"), new Guid("24c56b07-7191-4d89-b3bf-e55e783e4a91"), true },
-                    { new Guid("e0bcdb83-f6fb-4c39-bd6c-6cb59ced2d72"), new Guid("b7d9cab7-1eee-4299-9c05-9aeea1cfb68b"), true },
-                    { new Guid("6250f27c-1736-4a54-b1cd-7b62fd76d1c1"), new Guid("c2ddc587-7192-4c7d-822f-bee9903634dd"), true },
-                    { new Guid("f3b46efa-93e3-420b-a8ca-d87fb18739ab"), new Guid("87158705-4448-4eeb-9036-9e51043c2109"), true },
-                    { new Guid("d4a6f49b-2be0-4b30-ace0-5c6f8596760e"), new Guid("9a04fc54-246e-44a8-b511-8aa6824ef0da"), true },
-                    { new Guid("3115fca2-a6bb-40fd-aff0-ac3d8659402e"), new Guid("e1cc58cc-f8b5-4aac-ab1b-91d72258f27c"), true },
-                    { new Guid("1fbd0035-6b88-4d7e-bd83-190d3a9a9ae1"), new Guid("69a4e02c-6c4a-4d55-a633-3b9ec686a65f"), true },
-                    { new Guid("9ec97d5b-e09e-4e3d-b87d-bd70959bbf38"), new Guid("ecd278c0-f2f9-4969-910e-df2a597a353c"), true },
-                    { new Guid("8318e2f9-f17e-48b2-9042-e1a81b0a7bab"), new Guid("1fb49990-efda-40b6-a93f-526e93db67d0"), true }
+                    { new Guid("fa02b609-f01b-4da6-ac11-7fd080590925"), new Guid("424e5724-1909-49c6-b50d-0d1223b523e0"), true },
+                    { new Guid("e53b8946-0e9a-41a1-9e3e-b513679e87e2"), new Guid("3288763e-24d8-43b3-9123-425a2eeb7e39"), true },
+                    { new Guid("1548431f-6c94-403f-a45f-75cdeed06aa6"), new Guid("989bca3f-4da6-44a2-9c69-57cbdfe2fb2a"), true },
+                    { new Guid("702dd0bf-7d0f-4c09-ba91-e6fd4d459834"), new Guid("73bb3398-eb46-4f4a-b22d-12e287bf7732"), true },
+                    { new Guid("d87ce513-e037-4b07-a74e-c3d8400a716c"), new Guid("e31cae4e-42f4-4657-b17e-48267dd00442"), true },
+                    { new Guid("afded9de-8704-4047-8d3f-ad125d9da7b7"), new Guid("dab44ef4-c630-45e3-81e3-63c5377841a2"), true },
+                    { new Guid("926f9611-ffad-4097-87de-5cb306605470"), new Guid("f171dcfc-df89-444a-a635-d65801f2e0aa"), true },
+                    { new Guid("dd3c7a85-a94d-4d48-b172-29b8f009e915"), new Guid("92c16b0a-2443-4a35-9033-36a3c2dcd477"), true },
+                    { new Guid("8e95eb45-c543-4031-9cef-39d4f5be38c4"), new Guid("cc5600ed-98af-440e-a8fd-0d528c8adf8a"), true },
+                    { new Guid("3e324ecc-7401-4d9d-ae63-78660a23566f"), new Guid("c6bd33b9-3ef3-4b2d-bf10-91dd4e7149af"), true }
                 });
 
             migrationBuilder.CreateIndex(
