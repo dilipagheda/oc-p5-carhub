@@ -79,6 +79,36 @@ This command will create the local database and seed it with starter data.
 
 * Open the solution (*.sln) file in Visual Studio 2019. and hit the run button. Once project starts running, it should display the home page. Then, you can click on Login and login with above credentials in order to see the Admin menu and manage inventory data as an admin.
 
+# Database design
+
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/database_diagram.png)
+
+
 # Screenshots
 
+## Upload images using Uppy plugin
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/add_images.PNG)
 
+## Add new inventory
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/add_new.PNG)
+
+## View inventory as an Admin
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/admin_viewlistings.PNG)
+
+## View details page
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/detailspage.PNG)
+
+## Edit inventory
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/edit_inventory.PNG)
+
+## Footer (most 3 recent cars widget)
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/footer.PNG)
+
+## Home Page
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/home.PNG)
+
+## Login screen
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/login.PNG)
+
+## View listings - public page
+![](https://github.com/dilipagheda/oc-p5-carhub/blob/master/screenshots/viewlistings.PNG)
